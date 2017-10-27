@@ -23,9 +23,11 @@ class Monster : public rdtk::BaseScene
 {
 public:
 	
-	vector<int> treeBase, treeSwap;
+	vector<int> treeBase, treeSwap, treeSwap1, treeSwap2;
 	vector<float> lengthScale;
 	rdtk::NodeArray monsterArray;
+    rdtk::NodeArray monsterArray1;
+    rdtk::NodeArray monsterArray2;
 	float minScale, maxScale, randomizationAmount;
 	bool needToReset, randomLine, randomizeTopology, randomizeGeometry;
 		
@@ -104,6 +106,7 @@ public:
 		treeSwap = treeBase;
 		lengthScale.clear();
 		lengthScale.resize(rdtk::Actor::NUM_JOINTS, 1);
+        
 	}
 	
 	bool isAncestor(int ancestor, int child) {
@@ -143,6 +146,7 @@ public:
 	void attach(int child, int parent)
 	{
 		treeSwap[child] = parent;
+        
 	}
 	
 	void update()
@@ -205,15 +209,29 @@ public:
 	{	
 		
 		monsterArray = actor;
+//        monsterArray2 = actor;
+//        monsterArray3 = actor;
 		
-		for (int i=0; i < treeSwap.size(); i++)
-		{
-			if(treeSwap[i] != -1)
-			{
-				monsterArray.getNode(i).setParent(monsterArray.getNode(treeSwap[i]));
-				monsterArray.getNode(i).setScale(lengthScale[i]);
-			}
-		}
+        for (int i=0; i < treeSwap.size(); i++)
+        {
+            if(treeSwap[i] != -1)
+            {
+                monsterArray.getNode(i).setParent(monsterArray.getNode(treeSwap[i]));
+                monsterArray.getNode(i).setScale(lengthScale[i]);
+            }
+        }
+
+        for (int i=0; i<actor.getNumNode(); i++)
+        {
+
+            const rdtk::Node &node = actor.getNode(i);
+            ofSetColor(255);
+            ofSetLineWidth(5);
+            if(node.hasParent())
+            {
+                node.drawNodeName(10);
+            }
+        }
 		
 		ofPushStyle();
 		ofNoFill();
@@ -222,6 +240,7 @@ public:
 			rdtk::Node &node = monsterArray.getNode(i);
 			ofSetColor(255);
 			ofSetLineWidth(2);
+            
 			if(node.hasParent())
 			{
 				ofDrawLine(node, *node.getParent());

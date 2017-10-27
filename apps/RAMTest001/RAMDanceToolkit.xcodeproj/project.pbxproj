@@ -7,6 +7,83 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A4B88C51FA2CF150066A400 /* Mandolin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87AD1FA2CF140066A400 /* Mandolin.cpp */; };
+		1A4B88C61FA2CF150066A400 /* Stk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87AE1FA2CF140066A400 /* Stk.cpp */; };
+		1A4B88C71FA2CF150066A400 /* Bowed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87AF1FA2CF140066A400 /* Bowed.cpp */; };
+		1A4B88C81FA2CF150066A400 /* TwoPole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87B01FA2CF140066A400 /* TwoPole.cpp */; };
+		1A4B88C91FA2CF150066A400 /* LentPitShift.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87B11FA2CF140066A400 /* LentPitShift.cpp */; };
+		1A4B88CA1FA2CF150066A400 /* Guitar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87B21FA2CF140066A400 /* Guitar.cpp */; };
+		1A4B88CB1FA2CF150066A400 /* BlowHole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87B31FA2CF140066A400 /* BlowHole.cpp */; };
+		1A4B88CC1FA2CF150066A400 /* FileWvOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87B41FA2CF140066A400 /* FileWvOut.cpp */; };
+		1A4B88CD1FA2CF150066A400 /* Blit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87B51FA2CF140066A400 /* Blit.cpp */; };
+		1A4B88CE1FA2CF150066A400 /* TwoZero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87B61FA2CF140066A400 /* TwoZero.cpp */; };
+		1A4B88CF1FA2CF150066A400 /* Modal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87B71FA2CF140066A400 /* Modal.cpp */; };
+		1A4B88D01FA2CF150066A400 /* Mesh2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87B81FA2CF140066A400 /* Mesh2D.cpp */; };
+		1A4B88D11FA2CF150066A400 /* Voicer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87B91FA2CF140066A400 /* Voicer.cpp */; };
+		1A4B88D21FA2CF150066A400 /* ModalBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87BA1FA2CF140066A400 /* ModalBar.cpp */; };
+		1A4B88D31FA2CF150066A400 /* PitShift.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87BB1FA2CF140066A400 /* PitShift.cpp */; };
+		1A4B88D41FA2CF150066A400 /* Granulate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87BC1FA2CF140066A400 /* Granulate.cpp */; };
+		1A4B88D51FA2CF150066A400 /* Saxofony.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87BD1FA2CF140066A400 /* Saxofony.cpp */; };
+		1A4B88D61FA2CF150066A400 /* Messager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87BE1FA2CF140066A400 /* Messager.cpp */; };
+		1A4B88D71FA2CF150066A400 /* Iir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87BF1FA2CF140066A400 /* Iir.cpp */; };
+		1A4B88D81FA2CF150066A400 /* FormSwep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87C01FA2CF140066A400 /* FormSwep.cpp */; };
+		1A4B88D91FA2CF150066A400 /* FileWrite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87C11FA2CF140066A400 /* FileWrite.cpp */; };
+		1A4B88DA1FA2CF150066A400 /* Sitar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87C21FA2CF140066A400 /* Sitar.cpp */; };
+		1A4B88DB1FA2CF150066A400 /* Simple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87C31FA2CF140066A400 /* Simple.cpp */; };
+		1A4B88DC1FA2CF150066A400 /* DelayA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87C41FA2CF140066A400 /* DelayA.cpp */; };
+		1A4B88DD1FA2CF150066A400 /* Asymp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87C51FA2CF140066A400 /* Asymp.cpp */; };
+		1A4B88DE1FA2CF150066A400 /* Wurley.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87C61FA2CF140066A400 /* Wurley.cpp */; };
+		1A4B88DF1FA2CF150066A400 /* Modulate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87C71FA2CF140066A400 /* Modulate.cpp */; };
+		1A4B88E01FA2CF150066A400 /* PoleZero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87C81FA2CF140066A400 /* PoleZero.cpp */; };
+		1A4B88E11FA2CF150066A400 /* VoicForm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87C91FA2CF140066A400 /* VoicForm.cpp */; };
+		1A4B88E21FA2CF150066A400 /* BlitSquare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87CA1FA2CF140066A400 /* BlitSquare.cpp */; };
+		1A4B88E31FA2CF150066A400 /* Sampler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87CB1FA2CF140066A400 /* Sampler.cpp */; };
+		1A4B88E41FA2CF150066A400 /* FM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87CC1FA2CF140066A400 /* FM.cpp */; };
+		1A4B88E51FA2CF150066A400 /* MidiFileIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87CD1FA2CF140066A400 /* MidiFileIn.cpp */; };
+		1A4B88E61FA2CF150066A400 /* NRev.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87CE1FA2CF140066A400 /* NRev.cpp */; };
+		1A4B88E71FA2CF150066A400 /* Noise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87CF1FA2CF140066A400 /* Noise.cpp */; };
+		1A4B88E81FA2CF150066A400 /* BeeThree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87D01FA2CF140066A400 /* BeeThree.cpp */; };
+		1A4B88E91FA2CF150066A400 /* BandedWG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87D11FA2CF140066A400 /* BandedWG.cpp */; };
+		1A4B88EA1FA2CF150066A400 /* JCRev.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87D21FA2CF140066A400 /* JCRev.cpp */; };
+		1A4B88EB1FA2CF150066A400 /* BlitSaw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87D31FA2CF140066A400 /* BlitSaw.cpp */; };
+		1A4B88EC1FA2CF150066A400 /* Fir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87D41FA2CF140066A400 /* Fir.cpp */; };
+		1A4B88ED1FA2CF150066A400 /* FileRead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87D51FA2CF140066A400 /* FileRead.cpp */; };
+		1A4B88EE1FA2CF150066A400 /* Rhodey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87D61FA2CF140066A400 /* Rhodey.cpp */; };
+		1A4B88EF1FA2CF150066A400 /* SingWave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87D71FA2CF140066A400 /* SingWave.cpp */; };
+		1A4B88F01FA2CF150066A400 /* BiQuad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87D81FA2CF140066A400 /* BiQuad.cpp */; };
+		1A4B88F11FA2CF150066A400 /* TapDelay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87D91FA2CF140066A400 /* TapDelay.cpp */; };
+		1A4B88F21FA2CF150066A400 /* Moog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87DA1FA2CF140066A400 /* Moog.cpp */; };
+		1A4B88F31FA2CF150066A400 /* FMVoices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87DB1FA2CF140066A400 /* FMVoices.cpp */; };
+		1A4B88F41FA2CF150066A400 /* Twang.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87DC1FA2CF140066A400 /* Twang.cpp */; };
+		1A4B88F51FA2CF150066A400 /* Resonate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87DD1FA2CF140066A400 /* Resonate.cpp */; };
+		1A4B88F61FA2CF150066A400 /* Brass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87DE1FA2CF140066A400 /* Brass.cpp */; };
+		1A4B88F71FA2CF150066A400 /* Echo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87DF1FA2CF140066A400 /* Echo.cpp */; };
+		1A4B88F81FA2CF150066A400 /* BlowBotl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87E01FA2CF140066A400 /* BlowBotl.cpp */; };
+		1A4B88F91FA2CF150066A400 /* ADSR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87E11FA2CF140066A400 /* ADSR.cpp */; };
+		1A4B88FA1FA2CF150066A400 /* DelayL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87E21FA2CF140066A400 /* DelayL.cpp */; };
+		1A4B88FB1FA2CF150066A400 /* Delay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87E31FA2CF140066A400 /* Delay.cpp */; };
+		1A4B88FC1FA2CF150066A400 /* Chorus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87E41FA2CF140066A400 /* Chorus.cpp */; };
+		1A4B88FD1FA2CF150066A400 /* Plucked.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87E51FA2CF140066A400 /* Plucked.cpp */; };
+		1A4B88FE1FA2CF150066A400 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87E61FA2CF140066A400 /* Sphere.cpp */; };
+		1A4B88FF1FA2CF150066A400 /* OnePole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87E71FA2CF140066A400 /* OnePole.cpp */; };
+		1A4B89001FA2CF150066A400 /* TubeBell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87E81FA2CF140066A400 /* TubeBell.cpp */; };
+		1A4B89011FA2CF150066A400 /* FileLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87E91FA2CF140066A400 /* FileLoop.cpp */; };
+		1A4B89021FA2CF150066A400 /* Drummer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87EA1FA2CF140066A400 /* Drummer.cpp */; };
+		1A4B89031FA2CF150066A400 /* Clarinet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87EB1FA2CF140066A400 /* Clarinet.cpp */; };
+		1A4B89041FA2CF150066A400 /* HevyMetl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87EC1FA2CF140066A400 /* HevyMetl.cpp */; };
+		1A4B89051FA2CF150066A400 /* StifKarp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87ED1FA2CF140066A400 /* StifKarp.cpp */; };
+		1A4B89061FA2CF150066A400 /* PRCRev.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87EE1FA2CF140066A400 /* PRCRev.cpp */; };
+		1A4B89071FA2CF150066A400 /* Phonemes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87EF1FA2CF140066A400 /* Phonemes.cpp */; };
+		1A4B89081FA2CF150066A400 /* Shakers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87F01FA2CF140066A400 /* Shakers.cpp */; };
+		1A4B89091FA2CF150066A400 /* Flute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87F11FA2CF140066A400 /* Flute.cpp */; };
+		1A4B890A1FA2CF150066A400 /* FileWvIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87F21FA2CF140066A400 /* FileWvIn.cpp */; };
+		1A4B890B1FA2CF150066A400 /* PercFlut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87F31FA2CF140066A400 /* PercFlut.cpp */; };
+		1A4B890C1FA2CF150066A400 /* OneZero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87F41FA2CF140066A400 /* OneZero.cpp */; };
+		1A4B890D1FA2CF150066A400 /* FreeVerb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87F51FA2CF140066A400 /* FreeVerb.cpp */; };
+		1A4B890E1FA2CF150066A400 /* Whistle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87F61FA2CF140066A400 /* Whistle.cpp */; };
+		1A4B890F1FA2CF150066A400 /* Envelope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87F71FA2CF140066A400 /* Envelope.cpp */; };
+		1A4B89101FA2CF150066A400 /* SineWave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87F81FA2CF140066A400 /* SineWave.cpp */; };
+		1A4B89331FA2D2800066A400 /* DrawSynth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B89311FA2D2800066A400 /* DrawSynth.cpp */; };
 		270D2D9C16E4760700D5F750 /* icon.icns in CopyFiles */ = {isa = PBXBuildFile; fileRef = 270D2D9916E475D800D5F750 /* icon.icns */; };
 		601900591644E31F001930AA /* libram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B90AB31644E21400AF2156 /* libram.a */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
@@ -86,6 +163,177 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A4B87511FA2CF130066A400 /* HevyMetl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HevyMetl.h; sourceTree = "<group>"; };
+		1A4B87521FA2CF130066A400 /* PRCRev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRCRev.h; sourceTree = "<group>"; };
+		1A4B87531FA2CF130066A400 /* OnePole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePole.h; sourceTree = "<group>"; };
+		1A4B87541FA2CF130066A400 /* Voicer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voicer.h; sourceTree = "<group>"; };
+		1A4B87551FA2CF130066A400 /* BlitSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitSquare.h; sourceTree = "<group>"; };
+		1A4B87561FA2CF130066A400 /* Sitar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sitar.h; sourceTree = "<group>"; };
+		1A4B87571FA2CF130066A400 /* Twang.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Twang.h; sourceTree = "<group>"; };
+		1A4B87581FA2CF130066A400 /* Flute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flute.h; sourceTree = "<group>"; };
+		1A4B87591FA2CF130066A400 /* Iir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Iir.h; sourceTree = "<group>"; };
+		1A4B875A1FA2CF130066A400 /* FileWvIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileWvIn.h; sourceTree = "<group>"; };
+		1A4B875B1FA2CF130066A400 /* Noise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Noise.h; sourceTree = "<group>"; };
+		1A4B875C1FA2CF130066A400 /* FreeVerb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeVerb.h; sourceTree = "<group>"; };
+		1A4B875D1FA2CF130066A400 /* Skini.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skini.h; sourceTree = "<group>"; };
+		1A4B875E1FA2CF130066A400 /* PoleZero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoleZero.h; sourceTree = "<group>"; };
+		1A4B875F1FA2CF130066A400 /* BowTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BowTable.h; sourceTree = "<group>"; };
+		1A4B87601FA2CF130066A400 /* FileRead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileRead.h; sourceTree = "<group>"; };
+		1A4B87611FA2CF130066A400 /* BiQuad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BiQuad.h; sourceTree = "<group>"; };
+		1A4B87621FA2CF130066A400 /* FMVoices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMVoices.h; sourceTree = "<group>"; };
+		1A4B87631FA2CF130066A400 /* Simple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simple.h; sourceTree = "<group>"; };
+		1A4B87641FA2CF130066A400 /* Stk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stk.h; sourceTree = "<group>"; };
+		1A4B87651FA2CF130066A400 /* ReedTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReedTable.h; sourceTree = "<group>"; };
+		1A4B87661FA2CF130066A400 /* SingWave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingWave.h; sourceTree = "<group>"; };
+		1A4B87671FA2CF130066A400 /* SKINImsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKINImsg.h; sourceTree = "<group>"; };
+		1A4B87681FA2CF130066A400 /* BeeThree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeThree.h; sourceTree = "<group>"; };
+		1A4B87691FA2CF130066A400 /* SineWave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SineWave.h; sourceTree = "<group>"; };
+		1A4B876A1FA2CF130066A400 /* Resonate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resonate.h; sourceTree = "<group>"; };
+		1A4B876B1FA2CF130066A400 /* Sampler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sampler.h; sourceTree = "<group>"; };
+		1A4B876C1FA2CF130066A400 /* Wurley.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wurley.h; sourceTree = "<group>"; };
+		1A4B876D1FA2CF130066A400 /* MidiFileIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiFileIn.h; sourceTree = "<group>"; };
+		1A4B876E1FA2CF130066A400 /* BlowHole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlowHole.h; sourceTree = "<group>"; };
+		1A4B876F1FA2CF130066A400 /* BlowBotl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlowBotl.h; sourceTree = "<group>"; };
+		1A4B87701FA2CF130066A400 /* VoicForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoicForm.h; sourceTree = "<group>"; };
+		1A4B87711FA2CF130066A400 /* Sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sphere.h; sourceTree = "<group>"; };
+		1A4B87721FA2CF130066A400 /* FM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FM.h; sourceTree = "<group>"; };
+		1A4B87731FA2CF130066A400 /* Granulate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Granulate.h; sourceTree = "<group>"; };
+		1A4B87741FA2CF130066A400 /* StifKarp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StifKarp.h; sourceTree = "<group>"; };
+		1A4B87751FA2CF130066A400 /* FileLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileLoop.h; sourceTree = "<group>"; };
+		1A4B87761FA2CF130066A400 /* JetTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JetTable.h; sourceTree = "<group>"; };
+		1A4B87771FA2CF130066A400 /* Drummer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drummer.h; sourceTree = "<group>"; };
+		1A4B87781FA2CF130066A400 /* BandedWG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandedWG.h; sourceTree = "<group>"; };
+		1A4B87791FA2CF130066A400 /* OneZero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneZero.h; sourceTree = "<group>"; };
+		1A4B877A1FA2CF130066A400 /* FileWrite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileWrite.h; sourceTree = "<group>"; };
+		1A4B877B1FA2CF130066A400 /* Instrmnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrmnt.h; sourceTree = "<group>"; };
+		1A4B877C1FA2CF130066A400 /* Moog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moog.h; sourceTree = "<group>"; };
+		1A4B877D1FA2CF130066A400 /* Echo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Echo.h; sourceTree = "<group>"; };
+		1A4B877E1FA2CF130066A400 /* NRev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRev.h; sourceTree = "<group>"; };
+		1A4B877F1FA2CF130066A400 /* PitShift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PitShift.h; sourceTree = "<group>"; };
+		1A4B87801FA2CF130066A400 /* Modulate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Modulate.h; sourceTree = "<group>"; };
+		1A4B87811FA2CF130066A400 /* Mesh2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh2D.h; sourceTree = "<group>"; };
+		1A4B87821FA2CF130066A400 /* JCRev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCRev.h; sourceTree = "<group>"; };
+		1A4B87831FA2CF130066A400 /* Phonemes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phonemes.h; sourceTree = "<group>"; };
+		1A4B87841FA2CF130066A400 /* Whistle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Whistle.h; sourceTree = "<group>"; };
+		1A4B87851FA2CF130066A400 /* Asymp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asymp.h; sourceTree = "<group>"; };
+		1A4B87861FA2CF130066A400 /* FormSwep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormSwep.h; sourceTree = "<group>"; };
+		1A4B87871FA2CF130066A400 /* Shakers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shakers.h; sourceTree = "<group>"; };
+		1A4B87881FA2CF130066A400 /* Brass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brass.h; sourceTree = "<group>"; };
+		1A4B87891FA2CF130066A400 /* WvOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WvOut.h; sourceTree = "<group>"; };
+		1A4B878A1FA2CF130066A400 /* DelayL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayL.h; sourceTree = "<group>"; };
+		1A4B878B1FA2CF140066A400 /* TwoZero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoZero.h; sourceTree = "<group>"; };
+		1A4B878C1FA2CF140066A400 /* ModalBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalBar.h; sourceTree = "<group>"; };
+		1A4B878D1FA2CF140066A400 /* Mandolin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mandolin.h; sourceTree = "<group>"; };
+		1A4B878E1FA2CF140066A400 /* Rhodey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rhodey.h; sourceTree = "<group>"; };
+		1A4B878F1FA2CF140066A400 /* Modal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Modal.h; sourceTree = "<group>"; };
+		1A4B87901FA2CF140066A400 /* FileWvOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileWvOut.h; sourceTree = "<group>"; };
+		1A4B87911FA2CF140066A400 /* TapDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapDelay.h; sourceTree = "<group>"; };
+		1A4B87921FA2CF140066A400 /* SKINItbl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKINItbl.h; sourceTree = "<group>"; };
+		1A4B87931FA2CF140066A400 /* Bowed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bowed.h; sourceTree = "<group>"; };
+		1A4B87941FA2CF140066A400 /* Saxofony.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Saxofony.h; sourceTree = "<group>"; };
+		1A4B87951FA2CF140066A400 /* Guitar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guitar.h; sourceTree = "<group>"; };
+		1A4B87961FA2CF140066A400 /* Blit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blit.h; sourceTree = "<group>"; };
+		1A4B87971FA2CF140066A400 /* PercFlut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PercFlut.h; sourceTree = "<group>"; };
+		1A4B87981FA2CF140066A400 /* Cubic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cubic.h; sourceTree = "<group>"; };
+		1A4B87991FA2CF140066A400 /* TwoPole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoPole.h; sourceTree = "<group>"; };
+		1A4B879A1FA2CF140066A400 /* Envelope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Envelope.h; sourceTree = "<group>"; };
+		1A4B879B1FA2CF140066A400 /* Delay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Delay.h; sourceTree = "<group>"; };
+		1A4B879C1FA2CF140066A400 /* DelayA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayA.h; sourceTree = "<group>"; };
+		1A4B879D1FA2CF140066A400 /* BlitSaw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlitSaw.h; sourceTree = "<group>"; };
+		1A4B879E1FA2CF140066A400 /* Effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Effect.h; sourceTree = "<group>"; };
+		1A4B879F1FA2CF140066A400 /* Chorus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chorus.h; sourceTree = "<group>"; };
+		1A4B87A01FA2CF140066A400 /* ADSR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADSR.h; sourceTree = "<group>"; };
+		1A4B87A11FA2CF140066A400 /* Vector3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3D.h; sourceTree = "<group>"; };
+		1A4B87A21FA2CF140066A400 /* TubeBell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TubeBell.h; sourceTree = "<group>"; };
+		1A4B87A31FA2CF140066A400 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
+		1A4B87A41FA2CF140066A400 /* LentPitShift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LentPitShift.h; sourceTree = "<group>"; };
+		1A4B87A51FA2CF140066A400 /* Messager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Messager.h; sourceTree = "<group>"; };
+		1A4B87A61FA2CF140066A400 /* Clarinet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clarinet.h; sourceTree = "<group>"; };
+		1A4B87A71FA2CF140066A400 /* Function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Function.h; sourceTree = "<group>"; };
+		1A4B87A81FA2CF140066A400 /* WvIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WvIn.h; sourceTree = "<group>"; };
+		1A4B87A91FA2CF140066A400 /* Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Generator.h; sourceTree = "<group>"; };
+		1A4B87AA1FA2CF140066A400 /* Fir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fir.h; sourceTree = "<group>"; };
+		1A4B87AB1FA2CF140066A400 /* Plucked.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plucked.h; sourceTree = "<group>"; };
+		1A4B87AD1FA2CF140066A400 /* Mandolin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mandolin.cpp; sourceTree = "<group>"; };
+		1A4B87AE1FA2CF140066A400 /* Stk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Stk.cpp; sourceTree = "<group>"; };
+		1A4B87AF1FA2CF140066A400 /* Bowed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bowed.cpp; sourceTree = "<group>"; };
+		1A4B87B01FA2CF140066A400 /* TwoPole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TwoPole.cpp; sourceTree = "<group>"; };
+		1A4B87B11FA2CF140066A400 /* LentPitShift.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LentPitShift.cpp; sourceTree = "<group>"; };
+		1A4B87B21FA2CF140066A400 /* Guitar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Guitar.cpp; sourceTree = "<group>"; };
+		1A4B87B31FA2CF140066A400 /* BlowHole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BlowHole.cpp; sourceTree = "<group>"; };
+		1A4B87B41FA2CF140066A400 /* FileWvOut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileWvOut.cpp; sourceTree = "<group>"; };
+		1A4B87B51FA2CF140066A400 /* Blit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Blit.cpp; sourceTree = "<group>"; };
+		1A4B87B61FA2CF140066A400 /* TwoZero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TwoZero.cpp; sourceTree = "<group>"; };
+		1A4B87B71FA2CF140066A400 /* Modal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Modal.cpp; sourceTree = "<group>"; };
+		1A4B87B81FA2CF140066A400 /* Mesh2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh2D.cpp; sourceTree = "<group>"; };
+		1A4B87B91FA2CF140066A400 /* Voicer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Voicer.cpp; sourceTree = "<group>"; };
+		1A4B87BA1FA2CF140066A400 /* ModalBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModalBar.cpp; sourceTree = "<group>"; };
+		1A4B87BB1FA2CF140066A400 /* PitShift.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PitShift.cpp; sourceTree = "<group>"; };
+		1A4B87BC1FA2CF140066A400 /* Granulate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Granulate.cpp; sourceTree = "<group>"; };
+		1A4B87BD1FA2CF140066A400 /* Saxofony.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Saxofony.cpp; sourceTree = "<group>"; };
+		1A4B87BE1FA2CF140066A400 /* Messager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Messager.cpp; sourceTree = "<group>"; };
+		1A4B87BF1FA2CF140066A400 /* Iir.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Iir.cpp; sourceTree = "<group>"; };
+		1A4B87C01FA2CF140066A400 /* FormSwep.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FormSwep.cpp; sourceTree = "<group>"; };
+		1A4B87C11FA2CF140066A400 /* FileWrite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileWrite.cpp; sourceTree = "<group>"; };
+		1A4B87C21FA2CF140066A400 /* Sitar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sitar.cpp; sourceTree = "<group>"; };
+		1A4B87C31FA2CF140066A400 /* Simple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Simple.cpp; sourceTree = "<group>"; };
+		1A4B87C41FA2CF140066A400 /* DelayA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DelayA.cpp; sourceTree = "<group>"; };
+		1A4B87C51FA2CF140066A400 /* Asymp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Asymp.cpp; sourceTree = "<group>"; };
+		1A4B87C61FA2CF140066A400 /* Wurley.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wurley.cpp; sourceTree = "<group>"; };
+		1A4B87C71FA2CF140066A400 /* Modulate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Modulate.cpp; sourceTree = "<group>"; };
+		1A4B87C81FA2CF140066A400 /* PoleZero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PoleZero.cpp; sourceTree = "<group>"; };
+		1A4B87C91FA2CF140066A400 /* VoicForm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VoicForm.cpp; sourceTree = "<group>"; };
+		1A4B87CA1FA2CF140066A400 /* BlitSquare.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BlitSquare.cpp; sourceTree = "<group>"; };
+		1A4B87CB1FA2CF140066A400 /* Sampler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sampler.cpp; sourceTree = "<group>"; };
+		1A4B87CC1FA2CF140066A400 /* FM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FM.cpp; sourceTree = "<group>"; };
+		1A4B87CD1FA2CF140066A400 /* MidiFileIn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MidiFileIn.cpp; sourceTree = "<group>"; };
+		1A4B87CE1FA2CF140066A400 /* NRev.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NRev.cpp; sourceTree = "<group>"; };
+		1A4B87CF1FA2CF140066A400 /* Noise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Noise.cpp; sourceTree = "<group>"; };
+		1A4B87D01FA2CF140066A400 /* BeeThree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeeThree.cpp; sourceTree = "<group>"; };
+		1A4B87D11FA2CF140066A400 /* BandedWG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BandedWG.cpp; sourceTree = "<group>"; };
+		1A4B87D21FA2CF140066A400 /* JCRev.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JCRev.cpp; sourceTree = "<group>"; };
+		1A4B87D31FA2CF140066A400 /* BlitSaw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BlitSaw.cpp; sourceTree = "<group>"; };
+		1A4B87D41FA2CF140066A400 /* Fir.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fir.cpp; sourceTree = "<group>"; };
+		1A4B87D51FA2CF140066A400 /* FileRead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileRead.cpp; sourceTree = "<group>"; };
+		1A4B87D61FA2CF140066A400 /* Rhodey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rhodey.cpp; sourceTree = "<group>"; };
+		1A4B87D71FA2CF140066A400 /* SingWave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SingWave.cpp; sourceTree = "<group>"; };
+		1A4B87D81FA2CF140066A400 /* BiQuad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BiQuad.cpp; sourceTree = "<group>"; };
+		1A4B87D91FA2CF140066A400 /* TapDelay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TapDelay.cpp; sourceTree = "<group>"; };
+		1A4B87DA1FA2CF140066A400 /* Moog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Moog.cpp; sourceTree = "<group>"; };
+		1A4B87DB1FA2CF140066A400 /* FMVoices.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FMVoices.cpp; sourceTree = "<group>"; };
+		1A4B87DC1FA2CF140066A400 /* Twang.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Twang.cpp; sourceTree = "<group>"; };
+		1A4B87DD1FA2CF140066A400 /* Resonate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Resonate.cpp; sourceTree = "<group>"; };
+		1A4B87DE1FA2CF140066A400 /* Brass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Brass.cpp; sourceTree = "<group>"; };
+		1A4B87DF1FA2CF140066A400 /* Echo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Echo.cpp; sourceTree = "<group>"; };
+		1A4B87E01FA2CF140066A400 /* BlowBotl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BlowBotl.cpp; sourceTree = "<group>"; };
+		1A4B87E11FA2CF140066A400 /* ADSR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ADSR.cpp; sourceTree = "<group>"; };
+		1A4B87E21FA2CF140066A400 /* DelayL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DelayL.cpp; sourceTree = "<group>"; };
+		1A4B87E31FA2CF140066A400 /* Delay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Delay.cpp; sourceTree = "<group>"; };
+		1A4B87E41FA2CF140066A400 /* Chorus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Chorus.cpp; sourceTree = "<group>"; };
+		1A4B87E51FA2CF140066A400 /* Plucked.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plucked.cpp; sourceTree = "<group>"; };
+		1A4B87E61FA2CF140066A400 /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = "<group>"; };
+		1A4B87E71FA2CF140066A400 /* OnePole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OnePole.cpp; sourceTree = "<group>"; };
+		1A4B87E81FA2CF140066A400 /* TubeBell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TubeBell.cpp; sourceTree = "<group>"; };
+		1A4B87E91FA2CF140066A400 /* FileLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileLoop.cpp; sourceTree = "<group>"; };
+		1A4B87EA1FA2CF140066A400 /* Drummer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Drummer.cpp; sourceTree = "<group>"; };
+		1A4B87EB1FA2CF140066A400 /* Clarinet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clarinet.cpp; sourceTree = "<group>"; };
+		1A4B87EC1FA2CF140066A400 /* HevyMetl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HevyMetl.cpp; sourceTree = "<group>"; };
+		1A4B87ED1FA2CF140066A400 /* StifKarp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StifKarp.cpp; sourceTree = "<group>"; };
+		1A4B87EE1FA2CF140066A400 /* PRCRev.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PRCRev.cpp; sourceTree = "<group>"; };
+		1A4B87EF1FA2CF140066A400 /* Phonemes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Phonemes.cpp; sourceTree = "<group>"; };
+		1A4B87F01FA2CF140066A400 /* Shakers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shakers.cpp; sourceTree = "<group>"; };
+		1A4B87F11FA2CF140066A400 /* Flute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Flute.cpp; sourceTree = "<group>"; };
+		1A4B87F21FA2CF140066A400 /* FileWvIn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileWvIn.cpp; sourceTree = "<group>"; };
+		1A4B87F31FA2CF140066A400 /* PercFlut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PercFlut.cpp; sourceTree = "<group>"; };
+		1A4B87F41FA2CF140066A400 /* OneZero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OneZero.cpp; sourceTree = "<group>"; };
+		1A4B87F51FA2CF140066A400 /* FreeVerb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FreeVerb.cpp; sourceTree = "<group>"; };
+		1A4B87F61FA2CF140066A400 /* Whistle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Whistle.cpp; sourceTree = "<group>"; };
+		1A4B87F71FA2CF140066A400 /* Envelope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Envelope.cpp; sourceTree = "<group>"; };
+		1A4B87F81FA2CF140066A400 /* SineWave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SineWave.cpp; sourceTree = "<group>"; };
+		1A4B88A71FA2CF140066A400 /* ofxStk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxStk.h; sourceTree = "<group>"; };
+		1A4B89311FA2D2800066A400 /* DrawSynth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DrawSynth.cpp; path = scenes/DrawSynth.cpp; sourceTree = "<group>"; };
+		1A4B89321FA2D2800066A400 /* DrawSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawSynth.h; path = scenes/DrawSynth.h; sourceTree = "<group>"; };
+		1A4B893D1FA2E7750066A400 /* Moji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moji.h; sourceTree = "<group>"; };
 		270D2D9916E475D800D5F750 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../../resources/Icons/icon.icns; sourceTree = "<group>"; };
 		5A609DDA1FA0D218000F59DF /* Interp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Interp.hpp; path = scenes/Interp.hpp; sourceTree = "<group>"; };
 		5A609DDD1FA0E79B000F59DF /* Lines.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Lines.hpp; path = scenes/Lines.hpp; sourceTree = "<group>"; };
@@ -146,6 +394,240 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A4B86C21FA2CF130066A400 /* ofxStk */ = {
+			isa = PBXGroup;
+			children = (
+				1A4B874E1FA2CF130066A400 /* libs */,
+				1A4B88A61FA2CF140066A400 /* src */,
+			);
+			name = ofxStk;
+			path = ../../../addons/ofxStk;
+			sourceTree = "<group>";
+		};
+		1A4B874E1FA2CF130066A400 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				1A4B874F1FA2CF130066A400 /* STK */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		1A4B874F1FA2CF130066A400 /* STK */ = {
+			isa = PBXGroup;
+			children = (
+				1A4B87501FA2CF130066A400 /* include */,
+				1A4B87AC1FA2CF140066A400 /* src */,
+			);
+			path = STK;
+			sourceTree = "<group>";
+		};
+		1A4B87501FA2CF130066A400 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				1A4B87511FA2CF130066A400 /* HevyMetl.h */,
+				1A4B87521FA2CF130066A400 /* PRCRev.h */,
+				1A4B87531FA2CF130066A400 /* OnePole.h */,
+				1A4B87541FA2CF130066A400 /* Voicer.h */,
+				1A4B87551FA2CF130066A400 /* BlitSquare.h */,
+				1A4B87561FA2CF130066A400 /* Sitar.h */,
+				1A4B87571FA2CF130066A400 /* Twang.h */,
+				1A4B87581FA2CF130066A400 /* Flute.h */,
+				1A4B87591FA2CF130066A400 /* Iir.h */,
+				1A4B875A1FA2CF130066A400 /* FileWvIn.h */,
+				1A4B875B1FA2CF130066A400 /* Noise.h */,
+				1A4B875C1FA2CF130066A400 /* FreeVerb.h */,
+				1A4B875D1FA2CF130066A400 /* Skini.h */,
+				1A4B875E1FA2CF130066A400 /* PoleZero.h */,
+				1A4B875F1FA2CF130066A400 /* BowTable.h */,
+				1A4B87601FA2CF130066A400 /* FileRead.h */,
+				1A4B87611FA2CF130066A400 /* BiQuad.h */,
+				1A4B87621FA2CF130066A400 /* FMVoices.h */,
+				1A4B87631FA2CF130066A400 /* Simple.h */,
+				1A4B87641FA2CF130066A400 /* Stk.h */,
+				1A4B87651FA2CF130066A400 /* ReedTable.h */,
+				1A4B87661FA2CF130066A400 /* SingWave.h */,
+				1A4B87671FA2CF130066A400 /* SKINImsg.h */,
+				1A4B87681FA2CF130066A400 /* BeeThree.h */,
+				1A4B87691FA2CF130066A400 /* SineWave.h */,
+				1A4B876A1FA2CF130066A400 /* Resonate.h */,
+				1A4B876B1FA2CF130066A400 /* Sampler.h */,
+				1A4B876C1FA2CF130066A400 /* Wurley.h */,
+				1A4B876D1FA2CF130066A400 /* MidiFileIn.h */,
+				1A4B876E1FA2CF130066A400 /* BlowHole.h */,
+				1A4B876F1FA2CF130066A400 /* BlowBotl.h */,
+				1A4B87701FA2CF130066A400 /* VoicForm.h */,
+				1A4B87711FA2CF130066A400 /* Sphere.h */,
+				1A4B87721FA2CF130066A400 /* FM.h */,
+				1A4B87731FA2CF130066A400 /* Granulate.h */,
+				1A4B87741FA2CF130066A400 /* StifKarp.h */,
+				1A4B87751FA2CF130066A400 /* FileLoop.h */,
+				1A4B87761FA2CF130066A400 /* JetTable.h */,
+				1A4B87771FA2CF130066A400 /* Drummer.h */,
+				1A4B87781FA2CF130066A400 /* BandedWG.h */,
+				1A4B87791FA2CF130066A400 /* OneZero.h */,
+				1A4B877A1FA2CF130066A400 /* FileWrite.h */,
+				1A4B877B1FA2CF130066A400 /* Instrmnt.h */,
+				1A4B877C1FA2CF130066A400 /* Moog.h */,
+				1A4B877D1FA2CF130066A400 /* Echo.h */,
+				1A4B877E1FA2CF130066A400 /* NRev.h */,
+				1A4B877F1FA2CF130066A400 /* PitShift.h */,
+				1A4B87801FA2CF130066A400 /* Modulate.h */,
+				1A4B87811FA2CF130066A400 /* Mesh2D.h */,
+				1A4B87821FA2CF130066A400 /* JCRev.h */,
+				1A4B87831FA2CF130066A400 /* Phonemes.h */,
+				1A4B87841FA2CF130066A400 /* Whistle.h */,
+				1A4B87851FA2CF130066A400 /* Asymp.h */,
+				1A4B87861FA2CF130066A400 /* FormSwep.h */,
+				1A4B87871FA2CF130066A400 /* Shakers.h */,
+				1A4B87881FA2CF130066A400 /* Brass.h */,
+				1A4B87891FA2CF130066A400 /* WvOut.h */,
+				1A4B878A1FA2CF130066A400 /* DelayL.h */,
+				1A4B878B1FA2CF140066A400 /* TwoZero.h */,
+				1A4B878C1FA2CF140066A400 /* ModalBar.h */,
+				1A4B878D1FA2CF140066A400 /* Mandolin.h */,
+				1A4B878E1FA2CF140066A400 /* Rhodey.h */,
+				1A4B878F1FA2CF140066A400 /* Modal.h */,
+				1A4B87901FA2CF140066A400 /* FileWvOut.h */,
+				1A4B87911FA2CF140066A400 /* TapDelay.h */,
+				1A4B87921FA2CF140066A400 /* SKINItbl.h */,
+				1A4B87931FA2CF140066A400 /* Bowed.h */,
+				1A4B87941FA2CF140066A400 /* Saxofony.h */,
+				1A4B87951FA2CF140066A400 /* Guitar.h */,
+				1A4B87961FA2CF140066A400 /* Blit.h */,
+				1A4B87971FA2CF140066A400 /* PercFlut.h */,
+				1A4B87981FA2CF140066A400 /* Cubic.h */,
+				1A4B87991FA2CF140066A400 /* TwoPole.h */,
+				1A4B879A1FA2CF140066A400 /* Envelope.h */,
+				1A4B879B1FA2CF140066A400 /* Delay.h */,
+				1A4B879C1FA2CF140066A400 /* DelayA.h */,
+				1A4B879D1FA2CF140066A400 /* BlitSaw.h */,
+				1A4B879E1FA2CF140066A400 /* Effect.h */,
+				1A4B879F1FA2CF140066A400 /* Chorus.h */,
+				1A4B87A01FA2CF140066A400 /* ADSR.h */,
+				1A4B87A11FA2CF140066A400 /* Vector3D.h */,
+				1A4B87A21FA2CF140066A400 /* TubeBell.h */,
+				1A4B87A31FA2CF140066A400 /* Filter.h */,
+				1A4B87A41FA2CF140066A400 /* LentPitShift.h */,
+				1A4B87A51FA2CF140066A400 /* Messager.h */,
+				1A4B87A61FA2CF140066A400 /* Clarinet.h */,
+				1A4B87A71FA2CF140066A400 /* Function.h */,
+				1A4B87A81FA2CF140066A400 /* WvIn.h */,
+				1A4B87A91FA2CF140066A400 /* Generator.h */,
+				1A4B87AA1FA2CF140066A400 /* Fir.h */,
+				1A4B87AB1FA2CF140066A400 /* Plucked.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		1A4B87AC1FA2CF140066A400 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				1A4B87AD1FA2CF140066A400 /* Mandolin.cpp */,
+				1A4B87AE1FA2CF140066A400 /* Stk.cpp */,
+				1A4B87AF1FA2CF140066A400 /* Bowed.cpp */,
+				1A4B87B01FA2CF140066A400 /* TwoPole.cpp */,
+				1A4B87B11FA2CF140066A400 /* LentPitShift.cpp */,
+				1A4B87B21FA2CF140066A400 /* Guitar.cpp */,
+				1A4B87B31FA2CF140066A400 /* BlowHole.cpp */,
+				1A4B87B41FA2CF140066A400 /* FileWvOut.cpp */,
+				1A4B87B51FA2CF140066A400 /* Blit.cpp */,
+				1A4B87B61FA2CF140066A400 /* TwoZero.cpp */,
+				1A4B87B71FA2CF140066A400 /* Modal.cpp */,
+				1A4B87B81FA2CF140066A400 /* Mesh2D.cpp */,
+				1A4B87B91FA2CF140066A400 /* Voicer.cpp */,
+				1A4B87BA1FA2CF140066A400 /* ModalBar.cpp */,
+				1A4B87BB1FA2CF140066A400 /* PitShift.cpp */,
+				1A4B87BC1FA2CF140066A400 /* Granulate.cpp */,
+				1A4B87BD1FA2CF140066A400 /* Saxofony.cpp */,
+				1A4B87BE1FA2CF140066A400 /* Messager.cpp */,
+				1A4B87BF1FA2CF140066A400 /* Iir.cpp */,
+				1A4B87C01FA2CF140066A400 /* FormSwep.cpp */,
+				1A4B87C11FA2CF140066A400 /* FileWrite.cpp */,
+				1A4B87C21FA2CF140066A400 /* Sitar.cpp */,
+				1A4B87C31FA2CF140066A400 /* Simple.cpp */,
+				1A4B87C41FA2CF140066A400 /* DelayA.cpp */,
+				1A4B87C51FA2CF140066A400 /* Asymp.cpp */,
+				1A4B87C61FA2CF140066A400 /* Wurley.cpp */,
+				1A4B87C71FA2CF140066A400 /* Modulate.cpp */,
+				1A4B87C81FA2CF140066A400 /* PoleZero.cpp */,
+				1A4B87C91FA2CF140066A400 /* VoicForm.cpp */,
+				1A4B87CA1FA2CF140066A400 /* BlitSquare.cpp */,
+				1A4B87CB1FA2CF140066A400 /* Sampler.cpp */,
+				1A4B87CC1FA2CF140066A400 /* FM.cpp */,
+				1A4B87CD1FA2CF140066A400 /* MidiFileIn.cpp */,
+				1A4B87CE1FA2CF140066A400 /* NRev.cpp */,
+				1A4B87CF1FA2CF140066A400 /* Noise.cpp */,
+				1A4B87D01FA2CF140066A400 /* BeeThree.cpp */,
+				1A4B87D11FA2CF140066A400 /* BandedWG.cpp */,
+				1A4B87D21FA2CF140066A400 /* JCRev.cpp */,
+				1A4B87D31FA2CF140066A400 /* BlitSaw.cpp */,
+				1A4B87D41FA2CF140066A400 /* Fir.cpp */,
+				1A4B87D51FA2CF140066A400 /* FileRead.cpp */,
+				1A4B87D61FA2CF140066A400 /* Rhodey.cpp */,
+				1A4B87D71FA2CF140066A400 /* SingWave.cpp */,
+				1A4B87D81FA2CF140066A400 /* BiQuad.cpp */,
+				1A4B87D91FA2CF140066A400 /* TapDelay.cpp */,
+				1A4B87DA1FA2CF140066A400 /* Moog.cpp */,
+				1A4B87DB1FA2CF140066A400 /* FMVoices.cpp */,
+				1A4B87DC1FA2CF140066A400 /* Twang.cpp */,
+				1A4B87DD1FA2CF140066A400 /* Resonate.cpp */,
+				1A4B87DE1FA2CF140066A400 /* Brass.cpp */,
+				1A4B87DF1FA2CF140066A400 /* Echo.cpp */,
+				1A4B87E01FA2CF140066A400 /* BlowBotl.cpp */,
+				1A4B87E11FA2CF140066A400 /* ADSR.cpp */,
+				1A4B87E21FA2CF140066A400 /* DelayL.cpp */,
+				1A4B87E31FA2CF140066A400 /* Delay.cpp */,
+				1A4B87E41FA2CF140066A400 /* Chorus.cpp */,
+				1A4B87E51FA2CF140066A400 /* Plucked.cpp */,
+				1A4B87E61FA2CF140066A400 /* Sphere.cpp */,
+				1A4B87E71FA2CF140066A400 /* OnePole.cpp */,
+				1A4B87E81FA2CF140066A400 /* TubeBell.cpp */,
+				1A4B87E91FA2CF140066A400 /* FileLoop.cpp */,
+				1A4B87EA1FA2CF140066A400 /* Drummer.cpp */,
+				1A4B87EB1FA2CF140066A400 /* Clarinet.cpp */,
+				1A4B87EC1FA2CF140066A400 /* HevyMetl.cpp */,
+				1A4B87ED1FA2CF140066A400 /* StifKarp.cpp */,
+				1A4B87EE1FA2CF140066A400 /* PRCRev.cpp */,
+				1A4B87EF1FA2CF140066A400 /* Phonemes.cpp */,
+				1A4B87F01FA2CF140066A400 /* Shakers.cpp */,
+				1A4B87F11FA2CF140066A400 /* Flute.cpp */,
+				1A4B87F21FA2CF140066A400 /* FileWvIn.cpp */,
+				1A4B87F31FA2CF140066A400 /* PercFlut.cpp */,
+				1A4B87F41FA2CF140066A400 /* OneZero.cpp */,
+				1A4B87F51FA2CF140066A400 /* FreeVerb.cpp */,
+				1A4B87F61FA2CF140066A400 /* Whistle.cpp */,
+				1A4B87F71FA2CF140066A400 /* Envelope.cpp */,
+				1A4B87F81FA2CF140066A400 /* SineWave.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		1A4B88A61FA2CF140066A400 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				1A4B88A71FA2CF140066A400 /* ofxStk.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		1A4B893B1FA2E76D0066A400 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				1A4B893C1FA2E7750066A400 /* Moji */,
+			);
+			name = Scene;
+			path = src/scenes;
+			sourceTree = SOURCE_ROOT;
+		};
+		1A4B893C1FA2E7750066A400 /* Moji */ = {
+			isa = PBXGroup;
+			children = (
+				1A4B893D1FA2E7750066A400 /* Moji.h */,
+			);
+			name = Moji;
+			path = src/scenes/Moji;
+			sourceTree = SOURCE_ROOT;
+		};
 		601900561644E22B001930AA /* ram */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +647,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				1A4B86C21FA2CF130066A400 /* ofxStk */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -234,12 +717,15 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				1A4B893B1FA2E76D0066A400 /* Scene */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				5A609DDA1FA0D218000F59DF /* Interp.hpp */,
 				5A609DDD1FA0E79B000F59DF /* Lines.hpp */,
 				5A7DEF581FA19BC0002FD999 /* MakeSound.hpp */,
+				1A4B89311FA2D2800066A400 /* DrawSynth.cpp */,
+				1A4B89321FA2D2800066A400 /* DrawSynth.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -353,8 +839,85 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A4B88F71FA2CF150066A400 /* Echo.cpp in Sources */,
+				1A4B88EB1FA2CF150066A400 /* BlitSaw.cpp in Sources */,
+				1A4B88DF1FA2CF150066A400 /* Modulate.cpp in Sources */,
+				1A4B89061FA2CF150066A400 /* PRCRev.cpp in Sources */,
+				1A4B88CD1FA2CF150066A400 /* Blit.cpp in Sources */,
+				1A4B88FF1FA2CF150066A400 /* OnePole.cpp in Sources */,
+				1A4B89071FA2CF150066A400 /* Phonemes.cpp in Sources */,
+				1A4B88FD1FA2CF150066A400 /* Plucked.cpp in Sources */,
+				1A4B88F11FA2CF150066A400 /* TapDelay.cpp in Sources */,
+				1A4B88F61FA2CF150066A400 /* Brass.cpp in Sources */,
+				1A4B89021FA2CF150066A400 /* Drummer.cpp in Sources */,
+				1A4B88D71FA2CF150066A400 /* Iir.cpp in Sources */,
+				1A4B890E1FA2CF150066A400 /* Whistle.cpp in Sources */,
+				1A4B88F31FA2CF150066A400 /* FMVoices.cpp in Sources */,
+				1A4B89331FA2D2800066A400 /* DrawSynth.cpp in Sources */,
+				1A4B88E01FA2CF150066A400 /* PoleZero.cpp in Sources */,
+				1A4B88E71FA2CF150066A400 /* Noise.cpp in Sources */,
+				1A4B88D61FA2CF150066A400 /* Messager.cpp in Sources */,
+				1A4B88CE1FA2CF150066A400 /* TwoZero.cpp in Sources */,
+				1A4B88E21FA2CF150066A400 /* BlitSquare.cpp in Sources */,
+				1A4B88DB1FA2CF150066A400 /* Simple.cpp in Sources */,
+				1A4B88FE1FA2CF150066A400 /* Sphere.cpp in Sources */,
+				1A4B88FB1FA2CF150066A400 /* Delay.cpp in Sources */,
+				1A4B88F41FA2CF150066A400 /* Twang.cpp in Sources */,
+				1A4B88EC1FA2CF150066A400 /* Fir.cpp in Sources */,
+				1A4B88CA1FA2CF150066A400 /* Guitar.cpp in Sources */,
+				1A4B88F51FA2CF150066A400 /* Resonate.cpp in Sources */,
+				1A4B88C71FA2CF150066A400 /* Bowed.cpp in Sources */,
+				1A4B88EE1FA2CF150066A400 /* Rhodey.cpp in Sources */,
+				1A4B88D51FA2CF150066A400 /* Saxofony.cpp in Sources */,
+				1A4B88E91FA2CF150066A400 /* BandedWG.cpp in Sources */,
+				1A4B890B1FA2CF150066A400 /* PercFlut.cpp in Sources */,
+				1A4B88DC1FA2CF150066A400 /* DelayA.cpp in Sources */,
+				1A4B88EA1FA2CF150066A400 /* JCRev.cpp in Sources */,
+				1A4B88E51FA2CF150066A400 /* MidiFileIn.cpp in Sources */,
+				1A4B890F1FA2CF150066A400 /* Envelope.cpp in Sources */,
+				1A4B88ED1FA2CF150066A400 /* FileRead.cpp in Sources */,
+				1A4B89091FA2CF150066A400 /* Flute.cpp in Sources */,
+				1A4B88FA1FA2CF150066A400 /* DelayL.cpp in Sources */,
+				1A4B88C51FA2CF150066A400 /* Mandolin.cpp in Sources */,
+				1A4B89001FA2CF150066A400 /* TubeBell.cpp in Sources */,
+				1A4B88F01FA2CF150066A400 /* BiQuad.cpp in Sources */,
+				1A4B88D91FA2CF150066A400 /* FileWrite.cpp in Sources */,
+				1A4B88C81FA2CF150066A400 /* TwoPole.cpp in Sources */,
+				1A4B88F81FA2CF150066A400 /* BlowBotl.cpp in Sources */,
+				1A4B890C1FA2CF150066A400 /* OneZero.cpp in Sources */,
+				1A4B88C91FA2CF150066A400 /* LentPitShift.cpp in Sources */,
+				1A4B88DA1FA2CF150066A400 /* Sitar.cpp in Sources */,
+				1A4B890A1FA2CF150066A400 /* FileWvIn.cpp in Sources */,
+				1A4B88D31FA2CF150066A400 /* PitShift.cpp in Sources */,
+				1A4B88D81FA2CF150066A400 /* FormSwep.cpp in Sources */,
+				1A4B88D41FA2CF150066A400 /* Granulate.cpp in Sources */,
+				1A4B88E61FA2CF150066A400 /* NRev.cpp in Sources */,
+				1A4B88CB1FA2CF150066A400 /* BlowHole.cpp in Sources */,
+				1A4B89011FA2CF150066A400 /* FileLoop.cpp in Sources */,
+				1A4B88D11FA2CF150066A400 /* Voicer.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				1A4B89031FA2CF150066A400 /* Clarinet.cpp in Sources */,
+				1A4B89101FA2CF150066A400 /* SineWave.cpp in Sources */,
+				1A4B88E81FA2CF150066A400 /* BeeThree.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
+				1A4B88FC1FA2CF150066A400 /* Chorus.cpp in Sources */,
+				1A4B88EF1FA2CF150066A400 /* SingWave.cpp in Sources */,
+				1A4B88C61FA2CF150066A400 /* Stk.cpp in Sources */,
+				1A4B88CF1FA2CF150066A400 /* Modal.cpp in Sources */,
+				1A4B88F91FA2CF150066A400 /* ADSR.cpp in Sources */,
+				1A4B88DD1FA2CF150066A400 /* Asymp.cpp in Sources */,
+				1A4B88D21FA2CF150066A400 /* ModalBar.cpp in Sources */,
+				1A4B890D1FA2CF150066A400 /* FreeVerb.cpp in Sources */,
+				1A4B88E31FA2CF150066A400 /* Sampler.cpp in Sources */,
+				1A4B88DE1FA2CF150066A400 /* Wurley.cpp in Sources */,
+				1A4B88F21FA2CF150066A400 /* Moog.cpp in Sources */,
+				1A4B88D01FA2CF150066A400 /* Mesh2D.cpp in Sources */,
+				1A4B89051FA2CF150066A400 /* StifKarp.cpp in Sources */,
+				1A4B88CC1FA2CF150066A400 /* FileWvOut.cpp in Sources */,
+				1A4B88E41FA2CF150066A400 /* FM.cpp in Sources */,
+				1A4B89081FA2CF150066A400 /* Shakers.cpp in Sources */,
+				1A4B88E11FA2CF150066A400 /* VoicForm.cpp in Sources */,
+				1A4B89041FA2CF150066A400 /* HevyMetl.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
