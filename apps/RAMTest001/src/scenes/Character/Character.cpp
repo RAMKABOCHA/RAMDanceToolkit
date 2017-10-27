@@ -14,10 +14,10 @@ Character::Character(){
     font.load("FreeUniversal-Regular.ttf",24,true,true,true);
     setup();
     
-//    characterSet[0]={};
-//    characterSet[1]={};
-//    characterSet[2]={};
-//    characterSet[3]={};
+    //    characterSet[0]={};
+    //    characterSet[1]={};
+    //    characterSet[2]={};
+    //    characterSet[3]={};
 }
 
 vector<string> substrings(string filename){
@@ -32,7 +32,7 @@ void Character::setup()
     
     subjects = substrings("subjects.txt");
     
-
+    
     vector<string>substring1 ;
     for(int i = 0 ; i < subjects[0].size() ; i++){
         substring1.push_back(subjects[0].substr(i,1));
@@ -53,7 +53,7 @@ void Character::setup()
         substring3.push_back(objects[0].substr(i,1));
     }
     characterSet[2] = substring3;
-
+    
     
 }
 
@@ -87,7 +87,7 @@ void Character::setupControlPanel(){
     ofAddListener(rdtk::GetGUI().getCurrentUIContext()->newGUIEvent, this, &Character::onPanelChanged);
     
 #endif
-
+    
 }
 void Character::onPanelChanged(ofxUIEventArgs& e){
     
@@ -110,26 +110,46 @@ void Character::draw(){
         if(j<characterSet.size()){
             vector<string> strings = characterSet[j];
             
+            int index = 0;
             for (int i=0; i<NA.getNumNode(); i++)
             {
-                const rdtk::Node &node = NA.getNode(i);
-                
-                glPushAttrib(GL_ALL_ATTRIB_BITS);
-                glPushMatrix();
-                {
-                    ofPushStyle();
-                    ofNoFill();
+                if(i == rdtk::Actor::JOINT_HEAD ||
+                   i == rdtk::Actor::JOINT_CHEST ||
+                   i == rdtk::Actor::JOINT_ABDOMEN ||
+                   i == rdtk::Actor::JOINT_HIPS ||
+                   i == rdtk::Actor::JOINT_LEFT_SHOULDER ||
+                   i == rdtk::Actor::JOINT_RIGHT_SHOULDER ||
+                   i == rdtk::Actor::JOINT_LEFT_ELBOW ||
+                   i == rdtk::Actor::JOINT_RIGHT_ELBOW ||
+                   i == rdtk::Actor::JOINT_LEFT_WRIST ||
+                   i == rdtk::Actor::JOINT_RIGHT_ELBOW ||
+                   i == rdtk::Actor::JOINT_RIGHT_HAND ||
+                   i == rdtk::Actor::JOINT_LEFT_HAND ||
+                   i == rdtk::Actor::JOINT_LEFT_KNEE ||
+                   i == rdtk::Actor::JOINT_RIGHT_KNEE ||
+                   i == rdtk::Actor::JOINT_LEFT_ANKLE ||
+                   i == rdtk::Actor::JOINT_RIGHT_ANKLE
+                   ){
+                    const rdtk::Node &node = NA.getNode(i);
                     
-                    glEnable(GL_DEPTH_TEST);
-                    node.beginTransform();
-                    font.drawStringAsShapes(strings[i%strings.size()], 0, 0);
-                    
-                    node.endTransform();
-                    
-                    ofPopStyle();
+                    glPushAttrib(GL_ALL_ATTRIB_BITS);
+                    glPushMatrix();
+                    {
+                        ofPushStyle();
+                        ofNoFill();
+                        
+                        glEnable(GL_DEPTH_TEST);
+                        node.beginTransform();
+                        font.drawStringAsShapes(strings[index%strings.size()], 0, 0);
+                        
+                        node.endTransform();
+                        
+                        ofPopStyle();
+                    }
+                    glPopMatrix();
+                    glPopAttrib();
+                    index++;
                 }
-                glPopMatrix();
-                glPopAttrib();
             }
             
         }
