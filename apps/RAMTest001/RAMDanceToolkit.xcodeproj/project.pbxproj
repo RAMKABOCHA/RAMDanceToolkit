@@ -84,6 +84,7 @@
 		1A4B890F1FA2CF150066A400 /* Envelope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87F71FA2CF140066A400 /* Envelope.cpp */; };
 		1A4B89101FA2CF150066A400 /* SineWave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87F81FA2CF140066A400 /* SineWave.cpp */; };
 		1A4B89331FA2D2800066A400 /* DrawSynth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B89311FA2D2800066A400 /* DrawSynth.cpp */; };
+		1AD88AD91FA3125100BE92CB /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AD88AD71FA3125100BE92CB /* Character.cpp */; };
 		270D2D9C16E4760700D5F750 /* icon.icns in CopyFiles */ = {isa = PBXBuildFile; fileRef = 270D2D9916E475D800D5F750 /* icon.icns */; };
 		601900591644E31F001930AA /* libram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B90AB31644E21400AF2156 /* libram.a */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
@@ -334,6 +335,8 @@
 		1A4B89311FA2D2800066A400 /* DrawSynth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DrawSynth.cpp; path = scenes/DrawSynth.cpp; sourceTree = "<group>"; };
 		1A4B89321FA2D2800066A400 /* DrawSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawSynth.h; path = scenes/DrawSynth.h; sourceTree = "<group>"; };
 		1A4B893D1FA2E7750066A400 /* Moji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moji.h; sourceTree = "<group>"; };
+		1AD88AD71FA3125100BE92CB /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
+		1AD88AD81FA3125100BE92CB /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		270D2D9916E475D800D5F750 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../../resources/Icons/icon.icns; sourceTree = "<group>"; };
 		5A609DDA1FA0D218000F59DF /* Interp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Interp.hpp; path = scenes/Interp.hpp; sourceTree = "<group>"; };
 		5A609DDD1FA0E79B000F59DF /* Lines.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Lines.hpp; path = scenes/Lines.hpp; sourceTree = "<group>"; };
@@ -613,6 +616,7 @@
 		1A4B893B1FA2E76D0066A400 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				1AD88AD61FA3125100BE92CB /* Character */,
 				1A4B893C1FA2E7750066A400 /* Moji */,
 			);
 			name = Scene;
@@ -627,6 +631,15 @@
 			name = Moji;
 			path = src/scenes/Moji;
 			sourceTree = SOURCE_ROOT;
+		};
+		1AD88AD61FA3125100BE92CB /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				1AD88AD71FA3125100BE92CB /* Character.cpp */,
+				1AD88AD81FA3125100BE92CB /* Character.h */,
+			);
+			path = Character;
+			sourceTree = "<group>";
 		};
 		601900561644E22B001930AA /* ram */ = {
 			isa = PBXGroup;
@@ -882,6 +895,7 @@
 				1A4B89001FA2CF150066A400 /* TubeBell.cpp in Sources */,
 				1A4B88F01FA2CF150066A400 /* BiQuad.cpp in Sources */,
 				1A4B88D91FA2CF150066A400 /* FileWrite.cpp in Sources */,
+				1AD88AD91FA3125100BE92CB /* Character.cpp in Sources */,
 				1A4B88C81FA2CF150066A400 /* TwoPole.cpp in Sources */,
 				1A4B88F81FA2CF150066A400 /* BlowBotl.cpp in Sources */,
 				1A4B890C1FA2CF150066A400 /* OneZero.cpp in Sources */,

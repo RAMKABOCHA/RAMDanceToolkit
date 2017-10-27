@@ -61,6 +61,11 @@ class Moji : public rdtk::BaseScene
 //        ImGui::Checkbox("Use single color", &mUseSingleColor);
 //        ImGui::ColorEdit3("Line color", &mLineColor[0]);
         ImGui::DragFloat("mMinDistance", &mMinDistance, 0.1, 0.0, 100.0);
+        if (ImGui::Button("Reset")) {
+            while(nodes.size()>0){
+                nodes.pop_back();
+            }
+        }
         
         
 //        if (ImGui::DragFloat("Master box size", &mMasterBoxSize, 1, 0, 1000.0))

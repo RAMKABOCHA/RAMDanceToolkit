@@ -23,7 +23,8 @@
 #include "Lines.hpp"
 #include "Interp.hpp"
 #include "MakeSound.hpp"
-#include "Moji"
+#include "Moji.h"
+#include "Character.h"
 class ofApp : public rdtk::BaseApp
 {
 public:

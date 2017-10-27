@@ -3,7 +3,7 @@
 #include "DrawSynth.h"
 class MakeSound : public rdtk::BaseScene {
 public:
-    MakeSound(): attack(10),delay(200),sustain(1),release(500),gain(0.5) {
+    MakeSound(): attack(10),decay(200),sustain(1),release(500),gain(0.5) {
         
     }
     void drawImGui(){
@@ -11,8 +11,8 @@ public:
         ImGui::Checkbox("draw line", &isDrawLine);
         ImGui::SliderFloat("Volume", &volume, 0., 1.);
         if (ImGui::Button("set wave to synth")) {
-            StkFrames frames = createWaveTableFromDrawing();
-            drawSynth.setWaveTable(frames);
+//            StkFrames frames = createWaveTableFromDrawing();
+//            drawSynth.setWaveTable(frames);
         };
         bool update = false;
         
@@ -31,111 +31,111 @@ public:
         if(ImGui::SliderFloat("gain",&gain,0,1)){
             update = true;
         }
-        if(update){
-            drawSynth.setAttack(attack/1000.0);
-            drawSynth.setDecay(decay/1000.0);
-            drawSynth.setSustain(sustain);
-            drawSynth.setRelease(release/1000.0);
-            drawSynth.setGain(gain);
-        }
+//        if(update){
+//            drawSynth.setAttack(attack/1000.0);
+//            drawSynth.setDecay(decay/1000.0);
+//            drawSynth.setSustain(sustain);
+//            drawSynth.setRelease(release/1000.0);
+//            drawSynth.setGain(gain);
+//        }
     };
-    void keyPressed(int key){
-        // openframeworks calls keyPressed() even when key is heldDown
-        // so we have check if key is already held down before calling noteOn
-        if (key == 'a') {
-            if (!aDown) {
-                drawSynth.noteOn(NoteC, gain);
-                aDown = true;
-            }
-        }else if (key == 's'){
-            if (!sDown) {
-                drawSynth.noteOn(NoteD, gain);
-                sDown = true;
-            }
-        }else if (key == 'd'){
-            if (!dDown) {
-                drawSynth.noteOn(NoteE, gain);
-                dDown = true;
-            }
-        }else if (key == 'f'){
-            if (!fDown) {
-                drawSynth.noteOn(NoteF, gain);
-                fDown = true;
-            }
-        }else if (key == 'g'){
-            if (!gDown) {
-                drawSynth.noteOn(NoteG, gain);
-                gDown = true;
-            }
-        }else if(key == 'h'){
-            if (!hDown) {
-                drawSynth.noteOn(NoteA, gain);
-                hDown = true;
-            }
-        }else if (key == 'j'){
-            if (!jDown) {
-                drawSynth.noteOn(NoteB, gain);
-                jDown = true;
-            }
-            
-        }else if (key =='k'){
-            if (!kDown) {
-                drawSynth.noteOn(NoteC2, gain);
-                kDown = true;
-            }
-        }else if (key == 'l'){
-            if (!lDown) {
-                drawSynth.noteOn(NoteD2, gain);
-                lDown = true;
-            }
-        }
-    }
-    
-    //--------------------------------------------------------------
-    void keyReleased(int key){
-        switch (key) {
-            case 'a':
-                aDown = false;
-                break;
-            case 's':
-                sDown = false;
-                break;
-            case 'd':
-                dDown = false;
-                break;
-            case 'f':
-                fDown = false;
-                break;
-            case 'g':
-                gDown = false;
-                break;
-            case 'h':
-                hDown = false;
-                break;
-            case 'j':
-                jDown = false;
-                break;
-            case 'k':
-                kDown = false;
-                break;
-            case 'l':
-                lDown = false;
-            default:
-                break;
-        }
-        
-        // have to do this check to allow legato style playing
-        if (noNotesDown()) {
-            drawSynth.noteOff(.5);
-        }
-    }
-    bool ofApp::noNotesDown() const{
-        if (!(aDown || sDown || dDown || fDown || gDown || hDown || jDown || kDown || lDown)) {
-            return true;
-        }else{
-            return false;
-        }
-    }
+//    void keyPressed(int key){
+//        // openframeworks calls keyPressed() even when key is heldDown
+//        // so we have check if key is already held down before calling noteOn
+//        if (key == 'a') {
+//            if (!aDown) {
+//                drawSynth.noteOn(NoteC, gain);
+//                aDown = true;
+//            }
+//        }else if (key == 's'){
+//            if (!sDown) {
+//                drawSynth.noteOn(NoteD, gain);
+//                sDown = true;
+//            }
+//        }else if (key == 'd'){
+//            if (!dDown) {
+//                drawSynth.noteOn(NoteE, gain);
+//                dDown = true;
+//            }
+//        }else if (key == 'f'){
+//            if (!fDown) {
+//                drawSynth.noteOn(NoteF, gain);
+//                fDown = true;
+//            }
+//        }else if (key == 'g'){
+//            if (!gDown) {
+//                drawSynth.noteOn(NoteG, gain);
+//                gDown = true;
+//            }
+//        }else if(key == 'h'){
+//            if (!hDown) {
+//                drawSynth.noteOn(NoteA, gain);
+//                hDown = true;
+//            }
+//        }else if (key == 'j'){
+//            if (!jDown) {
+//                drawSynth.noteOn(NoteB, gain);
+//                jDown = true;
+//            }
+//
+//        }else if (key =='k'){
+//            if (!kDown) {
+//                drawSynth.noteOn(NoteC2, gain);
+//                kDown = true;
+//            }
+//        }else if (key == 'l'){
+//            if (!lDown) {
+//                drawSynth.noteOn(NoteD2, gain);
+//                lDown = true;
+//            }
+//        }
+//    }
+//
+//    //--------------------------------------------------------------
+//    void keyReleased(int key){
+//        switch (key) {
+//            case 'a':
+//                aDown = false;
+//                break;
+//            case 's':
+//                sDown = false;
+//                break;
+//            case 'd':
+//                dDown = false;
+//                break;
+//            case 'f':
+//                fDown = false;
+//                break;
+//            case 'g':
+//                gDown = false;
+//                break;
+//            case 'h':
+//                hDown = false;
+//                break;
+//            case 'j':
+//                jDown = false;
+//                break;
+//            case 'k':
+//                kDown = false;
+//                break;
+//            case 'l':
+//                lDown = false;
+//            default:
+//                break;
+//        }
+//
+//        // have to do this check to allow legato style playing
+//        if (noNotesDown()) {
+//            drawSynth.noteOff(.5);
+//        }
+//    }
+//    bool noNotesDown() const{
+//        if (!(aDown || sDown || dDown || fDown || gDown || hDown || jDown || kDown || lDown)) {
+//            return true;
+//        }else{
+//            return false;
+//        }
+//    }
     void setup(){
         handsline.assign(11, ofVec3f());
         
@@ -201,17 +201,17 @@ public:
     };
     
     void audioOut(float * output, int bufferSize, int nChannels){
-        for (int i = 0; i < bufferSize; i++) {
-            float value = drawSynth.tick();
-            output[2*i] = value;
-            output[2*i+1] = value;
-        }
-//        if (vnum == 0) return;
-//
 //        for (int i = 0; i < bufferSize; i++) {
-//            output[i * nChannels] = soundline[i % vnum].y * volume;
-//            output[i * nChannels + 1] = soundline[i % vnum].y * volume;
+//            float value = drawSynth.tick();
+//            output[2*i] = value;
+//            output[2*i+1] = value;
 //        }
+        if (vnum == 0) return;
+
+        for (int i = 0; i < bufferSize; i++) {
+            output[i * nChannels] = soundline[i % vnum].y * volume;
+            output[i * nChannels + 1] = soundline[i % vnum].y * volume;
+        }
         
     };
     string getName() const { return "MakeSound"; }
