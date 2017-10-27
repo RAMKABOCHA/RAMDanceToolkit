@@ -21,6 +21,11 @@ public:
         int n = actor1.getNumNode();
         if (n != actor2.getNumNode()) return;
         
+        rdtk::BeginCamera();
+        ofPushStyle();
+        
+        ofSetColor(255, 50);
+        glBegin(GL_LINES);
         for (int i = 0; i < n; i++) {
             
             ofMatrix4x4 m1 = actor1.getNode(i).getGlobalTransformMatrix();
@@ -33,11 +38,17 @@ public:
             na.getNode(i).setGlobalOrientation(rot);
             
             ofVec3f p1 = m1.getTranslation(), p2 = m2.getTranslation();
-            na.getNode(i).setGlobalPosition(p1.interpolate(p2,value));
+            ofVec3f p = p1.getInterpolated(p2,value);
+            na.getNode(i).setGlobalPosition(p);
+            
+            glVertex3f(p1.x, p1.y, p1.z);
+            glVertex3f(p.x, p.y, p.z);
+            glVertex3f(p.x, p.y, p.z);
+            glVertex3f(p2.x, p2.y, p2.z);
         }
-        rdtk::BeginCamera();
-        ofPushStyle();
-        ofSetColor(rdtk::Color::BLUE_DEEP);
+        glEnd();
+
+        ofSetColor(rdtk::Color::BLUE_LIGHT);
         rdtk::DrawBasicActor(na);
         ofPopStyle();
         rdtk::EndCamera();
