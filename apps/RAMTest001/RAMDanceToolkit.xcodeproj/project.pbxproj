@@ -83,7 +83,6 @@
 		1A4B890E1FA2CF150066A400 /* Whistle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87F61FA2CF140066A400 /* Whistle.cpp */; };
 		1A4B890F1FA2CF150066A400 /* Envelope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87F71FA2CF140066A400 /* Envelope.cpp */; };
 		1A4B89101FA2CF150066A400 /* SineWave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B87F81FA2CF140066A400 /* SineWave.cpp */; };
-		1A4B89331FA2D2800066A400 /* DrawSynth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B89311FA2D2800066A400 /* DrawSynth.cpp */; };
 		1AD88AD91FA3125100BE92CB /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AD88AD71FA3125100BE92CB /* Character.cpp */; };
 		270D2D9C16E4760700D5F750 /* icon.icns in CopyFiles */ = {isa = PBXBuildFile; fileRef = 270D2D9916E475D800D5F750 /* icon.icns */; };
 		601900591644E31F001930AA /* libram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B90AB31644E21400AF2156 /* libram.a */; };
@@ -332,8 +331,6 @@
 		1A4B87F71FA2CF140066A400 /* Envelope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Envelope.cpp; sourceTree = "<group>"; };
 		1A4B87F81FA2CF140066A400 /* SineWave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SineWave.cpp; sourceTree = "<group>"; };
 		1A4B88A71FA2CF140066A400 /* ofxStk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxStk.h; sourceTree = "<group>"; };
-		1A4B89311FA2D2800066A400 /* DrawSynth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DrawSynth.cpp; path = scenes/DrawSynth.cpp; sourceTree = "<group>"; };
-		1A4B89321FA2D2800066A400 /* DrawSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawSynth.h; path = scenes/DrawSynth.h; sourceTree = "<group>"; };
 		1A4B893D1FA2E7750066A400 /* Moji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moji.h; sourceTree = "<group>"; };
 		1AD88AD71FA3125100BE92CB /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
 		1AD88AD81FA3125100BE92CB /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
@@ -737,8 +734,6 @@
 				5A609DDA1FA0D218000F59DF /* Interp.hpp */,
 				5A609DDD1FA0E79B000F59DF /* Lines.hpp */,
 				5A7DEF581FA19BC0002FD999 /* MakeSound.hpp */,
-				1A4B89311FA2D2800066A400 /* DrawSynth.cpp */,
-				1A4B89321FA2D2800066A400 /* DrawSynth.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -866,7 +861,6 @@
 				1A4B88D71FA2CF150066A400 /* Iir.cpp in Sources */,
 				1A4B890E1FA2CF150066A400 /* Whistle.cpp in Sources */,
 				1A4B88F31FA2CF150066A400 /* FMVoices.cpp in Sources */,
-				1A4B89331FA2D2800066A400 /* DrawSynth.cpp in Sources */,
 				1A4B88E01FA2CF150066A400 /* PoleZero.cpp in Sources */,
 				1A4B88E71FA2CF150066A400 /* Noise.cpp in Sources */,
 				1A4B88D61FA2CF150066A400 /* Messager.cpp in Sources */,
