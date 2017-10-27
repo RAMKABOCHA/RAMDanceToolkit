@@ -93,7 +93,9 @@ void Character::onPanelChanged(ofxUIEventArgs& e){
     
 }
 void Character::drawImGui(){
-    
+    if (ImGui::Button("Reset")) {
+        reset();
+    }
 }
 void Character::update(){
     

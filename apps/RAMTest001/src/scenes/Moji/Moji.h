@@ -174,7 +174,7 @@ class Moji : public rdtk::BaseScene
                     }
                     
                     
-                    font.drawString(text,0,0);
+                    font.drawStringAsShapes(text,0,0);
                     
 //                    node.endTransform();
                     
