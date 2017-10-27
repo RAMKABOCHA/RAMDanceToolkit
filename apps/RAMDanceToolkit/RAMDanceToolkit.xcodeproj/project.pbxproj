@@ -98,6 +98,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1AE74E001FA1D57E00C88235 /* Moji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Moji.h; sourceTree = "<group>"; };
 		270D2D9916E475D800D5F750 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../../resources/Icons/icon.icns; sourceTree = "<group>"; };
 		275C7EB116D644FD00024334 /* Notation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notation.h; sourceTree = "<group>"; };
 		27B8489116D34A02000D321D /* ColorGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGrid.h; sourceTree = "<group>"; };
@@ -199,6 +200,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1AE74DFE1FA1D54400C88235 /* Moji */ = {
+			isa = PBXGroup;
+			children = (
+				1AE74E001FA1D57E00C88235 /* Moji.h */,
+			);
+			path = Moji;
+			sourceTree = "<group>";
+		};
 		276D281F16D4C640005153ED /* Notation */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +293,7 @@
 		9A1DE6D516AA666100A10E3F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				1AE74DFE1FA1D54400C88235 /* Moji */,
 				C64C5C121F99AEC500EA4A4E /* Extractor */,
 				9AD1DE1D17269E2100C97F20 /* Helper */,
 				9A778459171847F0004ED621 /* MovingCam */,

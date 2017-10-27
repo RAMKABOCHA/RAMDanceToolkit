@@ -34,6 +34,8 @@ void ofApp::setup()
     sceneManager.addScene<Interp>();
 	sceneManager.addScene<Lines>();
     sceneManager.addScene<MakeSound>();
+    sceneManager.addScene<Moji>();
+    sceneManager.addScene<Character>();
     
     soundScene = (MakeSound*)(sceneManager.getScene(3).get());
     ofSoundStreamSetup(2, 0);

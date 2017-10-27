@@ -23,7 +23,7 @@ void ofApp::setup()
 {
 	ofSetFrameRate(60);
 	ofSetVerticalSync(true);
-	
+    ofLogLevel(OF_LOG_VERBOSE);
 	/// ram setup
 	// ------------------
 	rdtk::Initialize(10000, true);
@@ -58,6 +58,7 @@ void ofApp::setup()
     sceneManager.addScene<Kepler>();
     sceneManager.addScene<Chain>();
 #endif
+    sceneManager.addScene<Moji>();
 	
 }
 

@@ -1,5 +1,4 @@
 #pragma once
-
 class MakeSound : public rdtk::BaseScene {
 public:
     void drawImGui(){
@@ -9,9 +8,10 @@ public:
         ImGui::SliderFloat("frequency ratio", &frequency, 0., 5.);
         ImGui::SliderFloat("phase", &phaseAdder, 0.01, 0.05);
         ImGui::Checkbox("head synth", &isHeadSynth);
-    };
+    }
     void setup(){
         handsline.assign(11, ofVec3f());
+        
     };
     void update(){
         
@@ -108,11 +108,13 @@ public:
     };
     
     void audioOut(float * output, int bufferSize, int nChannels){
+        if (vnum == 0) return;
+        if (!isSound) return;
+        
         while (phase > TWO_PI){
             phase -= TWO_PI;
         }
-        if (vnum == 0) return;
-        if (!isSound) return;
+        
         for (int i = 0; i < bufferSize; i++) {
             output[i * nChannels] = soundBuffer[i] * sin(phase);
             output[i * nChannels + 1] = soundBuffer[i] * sin(phase);

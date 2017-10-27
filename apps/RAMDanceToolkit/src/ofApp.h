@@ -48,6 +48,8 @@
 
 #include "Extractor.h"
 
+#include "Moji.h"
+
 class ofApp : public rdtk::BaseApp
 {
 public:
