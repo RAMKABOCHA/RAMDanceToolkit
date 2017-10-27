@@ -18,11 +18,16 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ramConstants.h"
 
-class ramControllable
-{
-public:
-	virtual ~ramControllable() {}
-	virtual string getName() const = 0;
-	virtual void setupControlPanel() {}
-};
+namespace rdtk{
+	class Controllable
+	{
+	public:
+		virtual ~Controllable() {}
+		virtual string getName() const = 0;
+		virtual void setupControlPanel() {}
+	};
+}
+
+using RAMDEPRECATED(ramControllable) = rdtk::Controllable;

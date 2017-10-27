@@ -19,7 +19,7 @@
 
 #include "ramMain.h"
 
-class ColorGrid : public ramBaseScene
+class ColorGrid : public rdtk::BaseScene
 {
 public:
 	
@@ -32,8 +32,14 @@ public:
 		useRgb = true;
 		bufferSize = 1024;
 		
-		ramGetGUI().addToggle("Use RGB/HSB", &useRgb);
-		ramGetGUI().addSlider("Buffer size", 128, 2048, &bufferSize);
+		rdtk::GetGUI().addToggle("Use RGB/HSB", &useRgb);
+		rdtk::GetGUI().addSlider("Buffer size", 128, 2048, &bufferSize);
+	}
+	
+	void drawImGui()
+	{
+		ImGui::Checkbox("Use RGB/HSB", &useRgb);
+		ImGui::DragFloat("Buffer size", &bufferSize, 1, 128, 2048);
 	}
 	
 	void setup()
@@ -45,8 +51,8 @@ public:
 		bufferSize = (int) bufferSize;
 		if(bufferSize != img.getWidth())
 		{
-			img.allocate((int) bufferSize, ramActor::NUM_JOINTS, OF_IMAGE_COLOR);
-			for(int y = 0; y < ramActor::NUM_JOINTS; y++) {
+			img.allocate((int) bufferSize, rdtk::Actor::NUM_JOINTS, OF_IMAGE_COLOR);
+			for(int y = 0; y < rdtk::Actor::NUM_JOINTS; y++) {
 				for(int x = 0; x < bufferSize; x++) {
 					img.setColor(x, y, ofColor(0));
 				}
@@ -59,12 +65,12 @@ public:
 	void drawHUD()
 	{	
 		ofSetColor(255);
-		ofSetMinMagFilters(GL_NEAREST, GL_NEAREST);
+		img.getTexture().setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
 		img.draw(0, 0, ofGetViewportWidth(), ofGetViewportHeight());
 	}
 	
 	//--------------------------------------------------------------
-	void drawActor(const ramActor &actor)
+	void drawActor(const rdtk::Actor &actor)
 	{
 		for(int y = 0; y < img.getHeight(); y++) {
 			for(int x = 0; x < img.getWidth() - 1; x++) {
@@ -74,8 +80,8 @@ public:
 		
 		for (int i=0; i<actor.getNumNode(); i++)
 		{
-			if(i < ramActor::NUM_JOINTS) {
-				const ramNode &node = actor.getNode(i);
+			if(i < rdtk::Actor::NUM_JOINTS) {
+				const rdtk::Node &node = actor.getNode(i);
 				ofColor cur;
 				if(useRgb) {
 					ofVec3f base = ofVec3f(1, 0, 0) * node.getOrientationQuat();
@@ -94,22 +100,22 @@ public:
 //				ofPushMatrix();
 //				node.beginTransform();
 //				ofFill();
-//				ofBox((i==ramActor::JOINT_HEAD) ? 6 : 3);
+//				ofDrawBox((i==rdtk::Actor::JOINT_HEAD) ? 6 : 3);
 //				ofSetColor(cur);
 //				node.endTransform();
 //				ofPopMatrix();
 //				
 //				if (node.hasParent())
 //				{
-//					ramNode* parent = node.getParent();
-//					ofLine(node, *parent);
+//					rdtk::Node* parent = node.getParent();
+//					ofDrawLine(node, *parent);
 //				}
 			}
 		}
 	}
 	
 	//--------------------------------------------------------------
-	void drawRigid(const ramRigidBody &rigid)
+	void drawRigid(const rdtk::RigidBody &rigid)
 	{
 	}
 	

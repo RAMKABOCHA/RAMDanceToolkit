@@ -19,11 +19,11 @@
 
 #include "ramMain.h"
 
-class HastyChase : public ramBaseScene
+class HastyChase : public rdtk::BaseScene
 {
 public:
 	
-	map<string, ramTimeShifter> time_shifters;
+	map<string, rdtk::TimeShifter> time_shifters;
 	float buffer_time;
 	float rate;
 	bool draw_line;
@@ -42,13 +42,25 @@ public:
 		showBoxToggle = new ofxUIToggle("show box", &show_box, 20, 20);
 		fillChaserToggle = new ofxUIToggle("fill chaser", &fill_chaser, 20, 20);
 		
-		ramGetGUI().addSlider("buffer_time", 1, 10000, &buffer_time);
-		ramGetGUI().addSlider("rate", -2, 3, &rate);
+		rdtk::GetGUI().addSlider("buffer_time", 1, 10000, &buffer_time);
+		rdtk::GetGUI().addSlider("rate", -2, 3, &rate);
 		
-		ramGetGUI().getCurrentUIContext()->addWidgetDown(drawLineToggle);
-		ramGetGUI().getCurrentUIContext()->addWidgetDown(showBoxToggle);
-		ramGetGUI().getCurrentUIContext()->addWidgetDown(fillChaserToggle);
-		ramGetGUI().addColorSelector("chaser color", &joint_color);
+		rdtk::GetGUI().getCurrentUIContext()->addWidgetDown(drawLineToggle);
+		rdtk::GetGUI().getCurrentUIContext()->addWidgetDown(showBoxToggle);
+		rdtk::GetGUI().getCurrentUIContext()->addWidgetDown(fillChaserToggle);
+		rdtk::GetGUI().addColorSelector("chaser color", &joint_color);
+	}
+	
+	void drawImGui()
+	{
+		ImGui::DragFloat("buffer time", &buffer_time, 10, 1, 10000);
+		ImGui::DragFloat("rate", &rate, 0.05, -2, 3);
+		
+		ImGui::Checkbox("draw line", &draw_line);
+		ImGui::Checkbox("show box", &show_box);
+		ImGui::Checkbox("fill chaser", &fill_chaser);
+
+		ImGui::ColorEdit3("chaser color", &joint_color[0]);
 	}
 	
 	void setup()
@@ -57,12 +69,12 @@ public:
 		rate = 1.5;
 		show_box = false;
 		fill_chaser = false;
-		joint_color = ramColor::BLUE_NORMAL;
+		joint_color = rdtk::Color::BLUE_NORMAL;
 	}
 	
-	void drawActor(const ramActor& actor)
+	void drawActor(const rdtk::Actor& actor)
 	{
-		ramTimeShifter &TS = time_shifters[actor.getName()];
+		rdtk::TimeShifter &TS = time_shifters[actor.getName()];
 		TS.setNumBufferFrame(buffer_time);
 		TS.setRate(rate);
 
@@ -75,13 +87,13 @@ public:
 			ofNoFill();
 		}
 		
-		const ramActor &chaser = TS.update(actor);
+		const rdtk::Actor &chaser = TS.update(actor);
 		
 		ofSetColor(joint_color);
-		ramDrawBasicActor(chaser);
+		rdtk::DrawBasicActor(chaser);
 		
 		if (draw_line)
-			ramDrawNodeCorresponds(actor, chaser);
+			rdtk::DrawNodeCorresponds(actor, chaser);
 		
 		if (show_box)
 		{
@@ -91,8 +103,8 @@ public:
 			
 			for (int i = 0; i < chaser.getNumNode(); i++)
 			{
-				const ramNode &node = chaser.getNode(i);
-				ramBox(node, node.getVelocity().length() * 2);
+				const rdtk::Node &node = chaser.getNode(i);
+				rdtk::Box(node, node.getVelocity().length() * 2);
 			}
 		}
 		ofPopStyle();

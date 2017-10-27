@@ -26,12 +26,12 @@ static const ofColor cyanPrint = ofColor::fromHex(0x00abec);
 static const ofColor magentaPrint = ofColor::fromHex(0xec008c);
 static const ofColor yellowPrint = ofColor::fromHex(0xffee00);
 
-class ThreePoints : public ramBaseScene
+class ThreePoints : public rdtk::BaseScene
 {
 public:
 	
-	ofxUIToggle *mToggles[ramActor::NUM_JOINTS];
-	bool mNodeVisibility[ramActor::NUM_JOINTS];
+	ofxUIToggle *mToggles[rdtk::Actor::NUM_JOINTS];
+	bool mNodeVisibility[rdtk::Actor::NUM_JOINTS];
 	
 	bool showRects, showCircle, showSpheres, invertSpheres, showCircleBisector, showCenterCircles;
 	float pointSize, crossLength, rectRadius, maxInvertRadius, circleResolution;
@@ -41,7 +41,7 @@ public:
 		
 #ifdef RAM_GUI_SYSTEM_OFXUI
 		
-		ofxUICanvas* panel = ramGetGUI().getCurrentUIContext();
+		ofxUICanvas* panel = rdtk::GetGUI().getCurrentUIContext();
 
 		showRects = false;
 		showSpheres = false;
@@ -54,25 +54,49 @@ public:
 		maxInvertRadius = 2000;
 		circleResolution = 30;
 		
-		ramGetGUI().addToggle("Show spheres", &showSpheres);
-		ramGetGUI().addToggle("Show rects", &showRects);
-		ramGetGUI().addToggle("Show circle", &showCircle);
-		ramGetGUI().addToggle("Inverted spheres", &invertSpheres);
-		ramGetGUI().addToggle("Show circle bisector", &showCircleBisector);
-		ramGetGUI().addToggle("Show center circles", &showCenterCircles);
-		ramGetGUI().addSlider("Point size", 1, 10, &pointSize);
-		ramGetGUI().addSlider("Cross length", 1, 1000, &crossLength);
-		ramGetGUI().addSlider("Rect radius", 1, 1000, &rectRadius);
-		ramGetGUI().addSlider("Max invert radius", 1, 10000, &maxInvertRadius);
-		ramGetGUI().addSlider("Circle resolution", 3, 30, &circleResolution);
+		rdtk::GetGUI().addToggle("Show spheres", &showSpheres);
+		rdtk::GetGUI().addToggle("Show rects", &showRects);
+		rdtk::GetGUI().addToggle("Show circle", &showCircle);
+		rdtk::GetGUI().addToggle("Inverted spheres", &invertSpheres);
+		rdtk::GetGUI().addToggle("Show circle bisector", &showCircleBisector);
+		rdtk::GetGUI().addToggle("Show center circles", &showCenterCircles);
+		rdtk::GetGUI().addSlider("Point size", 1, 10, &pointSize);
+		rdtk::GetGUI().addSlider("Cross length", 1, 1000, &crossLength);
+		rdtk::GetGUI().addSlider("Rect radius", 1, 1000, &rectRadius);
+		rdtk::GetGUI().addSlider("Max invert radius", 1, 10000, &maxInvertRadius);
+		rdtk::GetGUI().addSlider("Circle resolution", 3, 30, &circleResolution);
 		
-		for (int i=0; i<ramActor::NUM_JOINTS; i++)
+		for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++)
 		{
-			mNodeVisibility[i] = (i == ramActor::JOINT_LEFT_TOE || i == ramActor::JOINT_RIGHT_TOE);
-			mToggles[i] = panel->addToggle(ramActor::getJointName(i), &mNodeVisibility[i], 8, 8);
+			mNodeVisibility[i] = (i == rdtk::Actor::JOINT_LEFT_TOE || i == rdtk::Actor::JOINT_RIGHT_TOE);
+			mToggles[i] = panel->addToggle(rdtk::Actor::getJointName(i), &mNodeVisibility[i], 8, 8);
 		}
 		
 #endif
+	}
+	
+	void drawImGui()
+	{
+		ImGui::Checkbox("Show spheres", &showSpheres);
+		ImGui::Checkbox("Show rects", &showRects);
+		ImGui::Checkbox("Show circles", &showCircle);
+		ImGui::Checkbox("Inverted spheres", &invertSpheres);
+		ImGui::Checkbox("Show circle bisector", &showCircleBisector);
+		ImGui::Checkbox("Show center circles", &showCenterCircles);
+		ImGui::DragFloat("Point size", &pointSize, 1, 1, 10);
+		ImGui::DragFloat("Cross length", &crossLength, 1, 1, 1000);
+		ImGui::DragFloat("Rect radius", &rectRadius, 1, 1, 1000);
+		ImGui::DragFloat("Max invert radius", &maxInvertRadius, 10, 1, 10000);
+		ImGui::DragFloat("Circle resolution", &circleResolution);
+		
+		ImGui::Spacing();
+		ImGui::Columns(3, NULL, true);
+		for (int i = 0;i < rdtk::Actor::NUM_JOINTS; i++)
+		{
+			ImGui::Checkbox(rdtk::Actor::getJointName(i).c_str(), &mNodeVisibility[i]);
+			ImGui::NextColumn();
+		}
+		ImGui::Columns(1);
 	}
 	
 	void setup()
@@ -90,7 +114,7 @@ public:
 	}
 	
 	//--------------------------------------------------------------
-	void drawActor(const ramActor &actor)
+	void drawActor(const rdtk::Actor &actor)
 	{		
 		// maybe this is slow...? need a better way to do point size/depth testing.
 		glPushAttrib(GL_ALL_ATTRIB_BITS);
@@ -106,7 +130,7 @@ public:
 		
 		for (int i=0; i<actor.getNumNode(); i++)
 		{
-			const ramNode &node = actor.getNode(i);
+			const rdtk::Node &node = actor.getNode(i);
 			
 			ofPushMatrix();
 			node.beginTransform();
@@ -116,7 +140,7 @@ public:
 				ofPushStyle();
 				ofFill();
 				ofSetColor(255, 128);
-				ofRect(0, 0, 100, 30);
+				ofDrawRectangle(0, 0, 100, 30);
 				ofPopStyle();
 			}
 			
@@ -126,16 +150,16 @@ public:
 			
 			if (node.hasParent())
 			{
-				ramNode* parent = node.getParent();
+				rdtk::Node* parent = node.getParent();
 				
 				if(parent->hasParent() && mToggles[i]->getValue())
 				{
-					ramNode* grandparent = parent->getParent();
+					rdtk::Node* grandparent = parent->getParent();
 					ofVec3f a = node, b = *parent, c = *grandparent;
 					ofVec3f normal = (a - b).cross(c - b);
 					normal.normalize();
 					ofSetColor(magentaPrint);
-					ofLine(b - normal * crossLength, b + normal * crossLength);
+					ofDrawLine(b - normal * crossLength, b + normal * crossLength);
 					
 					ofVec3f center;
 					float radius;
@@ -149,25 +173,25 @@ public:
 					}
 					ofSetColor(yellowPrint);
 					if(showCircle) {
-						ofCircle(0, 0, radius);
+						ofDrawCircle(0, 0, radius);
 					}
 					ofPopMatrix();
 					if(showCircleBisector) {
-						ofLine(b, b + (center - b) * 2);
+						ofDrawLine(b, b + (center - b) * 2);
 					}
 					
 					ofPushMatrix();
 					ofTranslate(b);
 					rotateToNormal(normal);
 					ofSetColor(cyanPrint);
-					ofRect(-rectRadius, -rectRadius, 2*rectRadius, 2*rectRadius);
+					ofDrawRectangle(-rectRadius, -rectRadius, 2*rectRadius, 2*rectRadius);
 					if(invertSpheres) {
 						ofSetColor(255, 32);
 						ofIcoSphere(ofVec3f(), maxInvertRadius / radius);
 					}
 					if(showCenterCircles) {
 						ofSetColor(yellowPrint);
-						ofCircle(0, 0, radius);
+						ofDrawCircle(0, 0, radius);
 					}
 					ofPopMatrix();
 				}
@@ -179,7 +203,7 @@ public:
 	}
 	
 	//--------------------------------------------------------------
-	void drawRigid(const ramRigidBody &rigid)
+	void drawRigid(const rdtk::RigidBody &rigid)
 	{
 	}
 	

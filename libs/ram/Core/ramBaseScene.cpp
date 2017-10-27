@@ -17,33 +17,23 @@
 
 #include "ramBaseScene.h"
 
+using namespace rdtk;
 
+BaseScene::BaseScene() {}
+BaseScene::~BaseScene() {}
 
-ramBaseScene::ramBaseScene() {}
-ramBaseScene::~ramBaseScene() {}
-
-
-void ramBaseScene::setupControlPanel() {}
-void ramBaseScene::setup() {}
-void ramBaseScene::update() {}
-void ramBaseScene::draw() {}
-void ramBaseScene::drawActor(const ramActor &actor) {}
-void ramBaseScene::drawRigid(const ramRigidBody &rigid) {}
-void ramBaseScene::drawHUD() {}
-void ramBaseScene::exit() {}
+void BaseScene::setupControlPanel() {}
+void BaseScene::setup() {}
+void BaseScene::update() {}
+void BaseScene::draw() {}
+void BaseScene::drawActor(const Actor &actor) {}
+void BaseScene::drawRigid(const RigidBody &rigid) {}
+void BaseScene::drawHUD() {}
+void BaseScene::exit() {}
 
 
 // nodeArray events
-void ramBaseScene::onActorSetup(const ramActor &actor) {}
-void ramBaseScene::onActorExit(const ramActor &actor) {}
-void ramBaseScene::onRigidSetup(const ramRigidBody &rigid) {}
-void ramBaseScene::onRigidExit(const ramRigidBody &rigid) {}
-
-
-
-ramBaseScene* ramBaseScene::getPtr()
-{
-	return this;
-}
-
-
+void BaseScene::onActorSetup(const Actor &actor) {}
+void BaseScene::onActorExit(const Actor &actor) {}
+void BaseScene::onRigidSetup(const RigidBody &rigid) {}
+void BaseScene::onRigidExit(const RigidBody &rigid) {}

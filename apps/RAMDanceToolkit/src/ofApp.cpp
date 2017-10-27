@@ -1,5 +1,5 @@
 // 
-// testApp.cpp - RAMDanceToolkit
+// ofApp.cpp - RAMDanceToolkit
 // 
 // Copyright 2012-2013 YCAM InterLab, Yoshito Onishi, Satoru Higa, Motoi Shimizu, and Kyle McDonald
 // 
@@ -15,58 +15,61 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "testApp.h"
+#include "ofApp.h"
 
 #pragma mark - oF methods
 //--------------------------------------------------------------
-void testApp::setup()
+void ofApp::setup()
 {
 	ofSetFrameRate(60);
 	ofSetVerticalSync(true);
-	
+    ofLogLevel(OF_LOG_VERBOSE);
 	/// ram setup
 	// ------------------
-	ramInitialize(10000, true);
+	rdtk::Initialize(10000, true);
 	
 	/// scenes setup
 	// ------------------
-	ramSceneManager& sceneManager = ramSceneManager::instance();
-	sceneManager.addScene( &movingCam );
-	sceneManager.addScene( &drawLines );
-	sceneManager.addScene( &bigbox );
-	sceneManager.addScene( &future );
-	sceneManager.addScene( &donuts );
-	sceneManager.addScene( &stamp );
-	sceneManager.addScene( &expansion );
+	rdtk::SceneManager& sceneManager = rdtk::SceneManager::instance();
+
+	sceneManager.addScene<Extractor>();
+	sceneManager.addScene<MovingCam>();
+	sceneManager.addScene<LineDrawing>();
+	sceneManager.addScene<BigBox>();
+	sceneManager.addScene<Future>();
+	sceneManager.addScene<Donuts>();
+	sceneManager.addScene<Stamp>();
+	sceneManager.addScene<Expansion>();
 // ignore win32
 #ifndef TARGET_WIN32
-	sceneManager.addScene( &particles );
+	sceneManager.addScene<Particles>();
 #endif
-    sceneManager.addScene( &abacus );
-	sceneManager.addScene( &soundcube );
-	sceneManager.addScene( &upsideDown );
+	sceneManager.addScene<Abacus>();
+	sceneManager.addScene<SoundCube>();
+	sceneManager.addScene<UpsideDown>();
+	sceneManager.addScene<HastyChase>();
+	sceneManager.addScene<ColorGrid>();
+	sceneManager.addScene<ThreePoints>();
+	sceneManager.addScene<FourPoints>();
+	sceneManager.addScene<Monster>();
+	sceneManager.addScene<Laban>();
+	sceneManager.addScene<Notation>();
 #if !defined (DEBUG) && !defined (_DEBUG) // exclude from debug build
-    sceneManager.addScene( &kepler );
-    sceneManager.addScene( &chain );
+    sceneManager.addScene<Kepler>();
+    sceneManager.addScene<Chain>();
 #endif
-	sceneManager.addScene( &hastyChase );
-	sceneManager.addScene( &colorGrid );
-	sceneManager.addScene( &threePoints );
-	sceneManager.addScene( &fourPoints );
-	sceneManager.addScene( &monster );
-	sceneManager.addScene( &laban );
-	sceneManager.addScene( &notation );
+    sceneManager.addScene<Moji>();
 	
 }
 
 //--------------------------------------------------------------
-void testApp::update()
+void ofApp::update()
 {
-
+	
 }
 
 //--------------------------------------------------------------
-void testApp::draw()
+void ofApp::draw()
 {
 	
 }
@@ -75,40 +78,39 @@ void testApp::draw()
 
 #pragma mark - ram methods
 //--------------------------------------------------------------
-void testApp::drawActor(const ramActor &actor)
+void ofApp::drawActor(const rdtk::Actor &actor)
 {
 	
 }
 
 //--------------------------------------------------------------
-void testApp::drawRigid(const ramRigidBody &rigid)
+void ofApp::drawRigid(const rdtk::RigidBody &rigid)
 {
 	
 }
-
 
 #pragma mark - ram Events
 
 //--------------------------------------------------------------
-void testApp::onActorSetup(const ramActor &actor)
+void ofApp::onActorSetup(const rdtk::Actor &actor)
+{
+	
+}
+
+//--------------------------------------------------------------
+void ofApp::onActorExit(const rdtk::Actor &actor)
 {
 
 }
 
 //--------------------------------------------------------------
-void testApp::onActorExit(const ramActor &actor)
+void ofApp::onRigidSetup(const rdtk::RigidBody &rigid)
 {
 
 }
 
 //--------------------------------------------------------------
-void testApp::onRigidSetup(const ramRigidBody &rigid)
-{
-
-}
-
-//--------------------------------------------------------------
-void testApp::onRigidExit(const ramRigidBody &rigid)
+void ofApp::onRigidExit(const rdtk::RigidBody &rigid)
 {
 
 }
@@ -117,55 +119,55 @@ void testApp::onRigidExit(const ramRigidBody &rigid)
 
 #pragma mark - of Event
 //--------------------------------------------------------------
-void testApp::keyPressed(int key)
+void ofApp::keyPressed(int key)
 {
     
 }
 
 //--------------------------------------------------------------
-void testApp::keyReleased(int key)
+void ofApp::keyReleased(int key)
 {
     
 }
 
 //--------------------------------------------------------------
-void testApp::mouseMoved(int x, int y)
+void ofApp::mouseMoved(int x, int y)
 {
     
 }
 
 //--------------------------------------------------------------
-void testApp::mouseDragged(int x, int y, int button)
+void ofApp::mouseDragged(int x, int y, int button)
 {
     
 }
 
 //--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int button)
+void ofApp::mousePressed(int x, int y, int button)
 {
     
 }
 
 //--------------------------------------------------------------
-void testApp::mouseReleased(int x, int y, int button)
+void ofApp::mouseReleased(int x, int y, int button)
 {
     
 }
 
 //--------------------------------------------------------------
-void testApp::windowResized(int w, int h)
+void ofApp::windowResized(int w, int h)
 {
     
 }
 
 //--------------------------------------------------------------
-void testApp::gotMessage(ofMessage msg)
+void ofApp::gotMessage(ofMessage msg)
 {
     
 }
 
 //--------------------------------------------------------------
-void testApp::dragEvent(ofDragInfo dragInfo)
+void ofApp::dragEvent(ofDragInfo dragInfo)
 {
 	
 }

@@ -18,24 +18,30 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ramConstants.h"
 
-class ramBaseHasFbo {
-public:
-    ramBaseHasFbo();
-    virtual ~ramBaseHasFbo();
-    
-    virtual void allocateFbo(int w = 0, int h = 0);
-    virtual void deallocateFbo();
-    
-    ofPtr<ofFbo> getFbo() { return mFbo; }
-    ofFbo::Settings getFboSettings() { return mFboSettings; }
-    const ofFbo::Settings getFboSettings() const { return mFboSettings; }
-    
-    bool isAllocatedFbo() const { return mAllocated; }
-    
-private:
-    ofPtr<ofFbo> mFbo;
-    ofFbo::Settings mFboSettings;
-    bool mAllocated;
-    
-};
+namespace rdtk{
+	class BaseHasFbo {
+	public:
+		BaseHasFbo();
+		virtual ~BaseHasFbo();
+		
+		virtual void allocateFbo(int w = 0, int h = 0);
+		virtual void deallocateFbo();
+		
+		ofPtr<ofFbo> getFbo() { return mFbo; }
+		ofFbo::Settings getFboSettings() { return mFboSettings; }
+		const ofFbo::Settings getFboSettings() const { return mFboSettings; }
+		
+		bool isAllocatedFbo() const { return mAllocated; }
+		
+	private:
+		ofPtr<ofFbo> mFbo;
+		ofFbo::Settings mFboSettings;
+		bool mAllocated;
+		
+	};
+
+}
+
+typedef rdtk::BaseHasFbo RAMDEPRECATED(ramBaseHasFbo);

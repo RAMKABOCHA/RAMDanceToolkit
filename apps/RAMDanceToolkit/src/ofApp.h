@@ -1,5 +1,5 @@
 // 
-// testApp.h - RAMDanceToolkit
+// ofApp.h - RAMDanceToolkit
 // 
 // Copyright 2012-2013 YCAM InterLab, Yoshito Onishi, Satoru Higa, Motoi Shimizu, and Kyle McDonald
 // 
@@ -46,7 +46,11 @@
 #include "Laban.h"
 #include "Notation.h"
 
-class testApp : public ramBaseApp
+#include "Extractor.h"
+
+#include "Moji.h"
+
+class ofApp : public rdtk::BaseApp
 {
 public:
 	
@@ -68,37 +72,11 @@ public:
 	
 	// ram methods
 	// ------------------------
-	void drawActor(const ramActor &actor);
-	void drawRigid(const ramRigidBody &rigid);
-	void onActorSetup(const ramActor &actor);
-	void onActorExit(const ramActor &actor);
-	void onRigidSetup(const ramRigidBody &rigid);
-	void onRigidExit(const ramRigidBody &rigid);
-    
-    // scenes
-    // ------------------------
-    MovingCam movingCam;
-    LineDrawing drawLines;
-    BigBox bigbox;
-    Future future;
-    Donuts donuts;
-    Stamp stamp;
-    Expansion expansion;
-    Particles particles;
-    Abacus abacus;
-    SoundCube soundcube;
-    UpsideDown upsideDown;
-    HastyChase hastyChase;
-    ColorGrid colorGrid;
-    ThreePoints threePoints;
-    FourPoints fourPoints;
-    Monster monster;
-    Laban laban;
-    Notation notation;
-    
-#if !defined (DEBUG) && !defined (_DEBUG) // exclude from debug build
-    Kepler kepler;
-    Chain chain;
-#endif
+	void drawActor(const rdtk::Actor &actor);
+	void drawRigid(const rdtk::RigidBody &rigid);
+	void onActorSetup(const rdtk::Actor &actor);
+	void onActorExit(const rdtk::Actor &actor);
+	void onRigidSetup(const rdtk::RigidBody &rigid);
+	void onRigidExit(const rdtk::RigidBody &rigid);
 
 };

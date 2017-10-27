@@ -19,7 +19,7 @@
 
 #include "ramMain.h"
 
-class SoundCube : public ramBaseScene
+class SoundCube : public rdtk::BaseScene
 {
 public:
 	
@@ -32,7 +32,7 @@ public:
 		bool trigger_mode;
 		bool visible;
 		
-		ramCollisionEvent event;
+		rdtk::CollisionEvent event;
 		
 		Shape() : id(-1), obj(NULL), alpha(0), player(NULL), trigger_mode(false), visible(true) {}
 		
@@ -50,7 +50,7 @@ public:
 			}
 		}
 		
-		void set(int id, ramPrimitive *obj)
+		void set(int id, rdtk::Primitive *obj)
 		{
 			this->id = id;
 			this->obj = obj;
@@ -63,7 +63,7 @@ public:
 			if (player) delete player;
 			
 			player = new ofSoundPlayer;
-			player->loadSound(path);
+			player->load(path);
 			player->setLoop(loop ? OF_LOOP_NORMAL : OF_LOOP_NONE);
 			trigger_mode = trigger;
 			
@@ -71,7 +71,7 @@ public:
 			
 			player->play();
 			
-			event.setTrigger(RAM_TRIGGER_BOTH);
+			event.setTrigger(rdtk::RAM_TRIGGER_BOTH);
 		}
 		
 		void draw(float fade = 0.1)
@@ -121,7 +121,7 @@ public:
 	private:
 		
 		int id;
-		ramPrimitive *obj;
+		rdtk::Primitive *obj;
 		
 		float alpha;
 		float volume, volume_t;
@@ -139,9 +139,16 @@ public:
 	{
 		fade = 0.5;
 		
-		ramGetGUI().addSlider("line width", 0, 10, &line_width);
-		ramGetGUI().addSlider("fade", 0, 1, &fade);
-		ramGetGUI().addToggle("show box", &show_box);
+		rdtk::GetGUI().addSlider("line width", 0, 10, &line_width);
+		rdtk::GetGUI().addSlider("fade", 0, 1, &fade);
+		rdtk::GetGUI().addToggle("show box", &show_box);
+	}
+	
+	void drawImGui()
+	{
+		ImGui::DragFloat("line width", &line_width, 0.1, 0, 10);
+		ImGui::DragFloat("fade", &fade, 0.01, 0, 1);
+		ImGui::Checkbox("show box", &show_box);
 	}
 	
 	void setup()
@@ -174,7 +181,7 @@ public:
 	
 	void draw()
 	{
-		ramBeginCamera();
+		rdtk::BeginCamera();
 		
 		ofNoFill();
 		ofPushStyle();
@@ -187,7 +194,7 @@ public:
 		}
 		
 		ofPopStyle();
-		ramEndCamera();
+		rdtk::EndCamera();
 	}
 	
 	void loadXML()
@@ -198,10 +205,10 @@ public:
 		
 		string default_xml = _S(
 <scene>
-<shape type="cube" x="-100" y="50" z="0" rx="0" ry="90" rz="0" sx="200" sy="100" sz="100" color="FFFFFF" sound="../../../../resources/Sounds/1.aif" trigger="off" loop="on"/>
-<shape type="cube" x="200" y="50" z="0" rx="0" ry="0" rz="0" sx="100" sy="100" sz="100" color="FFFFFF" sound="../../../../resources/Sounds/2.aif" trigger="on" loop="on"/>
-<shape type="cube" x="200" y="50" z="200" rx="0" ry="0" rz="0" sx="100" sy="100" sz="100" color="FFFFFF" sound="../../../../resources/Sounds/3.aif" trigger="off" loop="on"/>
-<shape type="cube" x="200" y="50" z="-200" rx="0" ry="0" rz="0" sx="100" sy="100" sz="100" color="FFFFFF" sound="../../../../resources/Sounds/4.aif" trigger="on" loop="on"/>
+<shape type="cube" x="-100" y="50" z="0" rx="0" ry="90" rz="0" sx="200" sy="100" sz="100" color="FFFFFF" sound="Sounds/1.aif" trigger="off" loop="on"/>
+<shape type="cube" x="200" y="50" z="0" rx="0" ry="0" rz="0" sx="100" sy="100" sz="100" color="FFFFFF" sound="Sounds/2.aif" trigger="on" loop="on"/>
+<shape type="cube" x="200" y="50" z="200" rx="0" ry="0" rz="0" sx="100" sy="100" sz="100" color="FFFFFF" sound="Sounds/3.aif" trigger="off" loop="on"/>
+<shape type="cube" x="200" y="50" z="-200" rx="0" ry="0" rz="0" sx="100" sy="100" sz="100" color="FFFFFF" sound="Sounds/4.aif" trigger="on" loop="on"/>
 </scene>
 		);
 
@@ -246,19 +253,19 @@ public:
 			
 			if (type != "")
 			{
-				ramPrimitive *s;
+				rdtk::Primitive *s;
 				
 				if (type == "cube")
 				{
-					s = new ramBoxPrimitive(size);
+					s = new rdtk::BoxPrimitive(size);
 				}
 				else if (type == "pyramid")
 				{
-					s = new ramPyramidPrimitive(size.x);
+					s = new rdtk::PyramidPrimitive(size.x);
 				}
 				else if (type == "sphere")
 				{
-					s = new ramSpherePrimitive(size.x);
+					s = new rdtk::SpherePrimitive(size.x);
 				}
 				else
 				{
@@ -282,7 +289,7 @@ public:
 				
 				if (sound != "")
 				{
-					o->loadSound(ramToResourcePath(sound), toggle_mode, loop);
+					o->loadSound(rdtk::ToResourcePath(sound), toggle_mode, loop);
 				}
 				
 				cout << type << " loaded." << endl;

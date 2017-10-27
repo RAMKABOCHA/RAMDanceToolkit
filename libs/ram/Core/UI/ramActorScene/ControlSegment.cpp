@@ -20,15 +20,17 @@
 #pragma mark -
 #pragma mark constructor, destructor
 
+using namespace rdtk;
+
 ControlSegment::ControlSegment(const string& segmentName)
 {
     name = segmentName;
     
 	init();
 	
-	btnHideActor = new ofxUIImageToggle(32, 32, &bHideActor, ramToResourcePath("Images/show.png"),"show");
-	btnResetActor = new ofxUIImageButton(32, 32, &bNeedsResetPos, ramToResourcePath("Images/reset.png"),"reset");
-	btnRecordActor = new ofxUIImageToggle(32, 32, &bRecording, ramToResourcePath("Images/record.png"),"record");
+	btnHideActor = new ofxUIImageToggle(32, 32, &bHideActor, ToResourcePath("Images/show.png"),"show");
+	btnResetActor = new ofxUIImageButton(32, 32, &bNeedsResetPos, ToResourcePath("Images/reset.png"),"reset");
+	btnRecordActor = new ofxUIImageToggle(32, 32, &bRecording, ToResourcePath("Images/record.png"),"record");
 }
 
 ControlSegment::~ControlSegment()
@@ -39,21 +41,19 @@ ControlSegment::~ControlSegment()
 }
 
 
-
-
 #pragma mark -
 #pragma mark public methods
 
-ramActorUISegmentType ControlSegment::getType() const
+ActorUISegmentType ControlSegment::getType() const
 {
     return RAM_UI_SEGMENT_TYPE_CONTROL;
 }
 
 ofxUICanvasPlus* ControlSegment::createPanel(const string& targetName)
 {
-	const float width = ramGetGUI().kLength;
-	const float height = ramGetGUI().kDim+3;
-    const float padding = ramGetGUI().kXInit*2;
+	const float width = GetGUI().kLength;
+	const float height = GetGUI().kDim+3;
+    const float padding = GetGUI().kXInit*2;
 	
 	
 	ofxUICanvasPlus *child = new ofxUICanvasPlus();
@@ -72,7 +72,7 @@ ofxUICanvasPlus* ControlSegment::createPanel(const string& targetName)
 	child->addWidgetDown(btnHideActor);
 	child->addWidgetRight(btnResetActor);
 	child->addWidgetRight(btnRecordActor);
-	btnHideActor->setValue(!ramShowActorsEnabled());
+	btnHideActor->setValue(!ShowActorsEnabled());
 	
     
 	/// actor color
@@ -209,7 +209,53 @@ void ControlSegment::onValueChanged(ofxUIEventArgs& e)
 	}
 }
 
+void ControlSegment::drawImGui()
+{
+	ImGui::PushID(getName().c_str());
+	ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(jointColor));
+	if (ImGui::CollapsingHeader(("Actor - " + getName()).c_str()))
+	{
+		if (ImGui::Checkbox("Visible", &bHideActor)) saveCache();
+		ImGui::SameLine();
+		if (ImGui::Checkbox("Fix", &bFixActor)) saveCache();
+		ImGui::SameLine();
+		if (ImGui::Checkbox("ResetPos", &bNeedsResetPos)) saveCache();
+		ImGui::SameLine();
+		if (ImGui::Checkbox("Record", &bRecording)) toggleRecording(bRecording);
+		
+		ImGui::ColorEdit3("Color", &jointColor[0]);
 
+		float range = 300;
+		if (ImGui::SliderFloat2("Position", &position[0], -range, range)) saveCache();
+		
+		ofRectangle rct;
+		ImGui::BeginChild(getName().c_str(), ImVec2(0,100), false, ImGuiWindowFlags_NoScrollWithMouse);
+		{
+			rct.x = ImGui::GetWindowPos().x;
+			rct.y = ImGui::GetWindowPos().y;
+			rct.width = ImGui::GetWindowSize().x;
+			rct.height = ImGui::GetWindowSize().y;
+			
+			if (ImGui::IsWindowHovered())
+			{
+				CameraManager::instance().setEnableInteractiveCamera(false);
+				if (ofGetMousePressed())
+				{
+					position.set(ofMap(ofGetMouseX(), rct.x, rct.x + rct.width, -range, range, true),
+								 ofMap(ofGetMouseY(), rct.y, rct.y + rct.height, -range, range, true));
+				}
+			}
+		}
+		ImGui::EndChild();
+		ofSetColor(255);
+		ofDrawLine(rct.x + ofMap(position.x, -range, range, 0, rct.width), rct.y,
+				   rct.x + ofMap(position.x, -range, range, 0, rct.width), rct.y + rct.height);
+		ofDrawLine(rct.x, rct.y + ofMap(position.y, -range, range, 0, rct.height),
+				   rct.x + rct.width, rct.y + ofMap(position.y, -range, range, 0, rct.height));
+	}
+	ImGui::PopStyleColor();
+	ImGui::PopID();
+}
 
 
 #pragma mark -

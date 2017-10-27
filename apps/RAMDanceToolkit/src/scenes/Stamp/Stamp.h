@@ -17,10 +17,10 @@
 
 #pragma once
 
-class Stamp : public ramBaseScene
+class Stamp : public rdtk::BaseScene
 {
 	
-	ramStamp mStamp;
+	rdtk::Stamp mStamp;
 	bool mShowActor;
 	bool mShowBox;
 	
@@ -44,14 +44,23 @@ public:
 		idleTimerToggle = new ofxUIToggle("Idle Timer", &use_idle_timer, 30, 30);
 		showActorToggle = new ofxUIToggle("Show Actor", &mShowActor, 30, 30);
 		
-		ramGetGUI().getCurrentUIContext()->addWidgetDown(idleTimerToggle);
+		rdtk::GetGUI().getCurrentUIContext()->addWidgetDown(idleTimerToggle);
 		
 		mStamp.setupControlPanel();
-        ramGetGUI().addSeparator();
-		ramGetGUI().getCurrentUIContext()->addWidgetDown(showActorToggle);
-		ramGetGUI().addColorSelector("Box line color", &color);
-		ramGetGUI().addSlider("Line width", 0, 6, &line_width);
+        rdtk::GetGUI().addSeparator();
+		rdtk::GetGUI().getCurrentUIContext()->addWidgetDown(showActorToggle);
+		rdtk::GetGUI().addColorSelector("Box line color", &color);
+		rdtk::GetGUI().addSlider("Line width", 0, 6, &line_width);
     }
+	
+	void drawImGui()
+	{
+		ImGui::Checkbox("Idle Timer", &use_idle_timer);
+		mStamp.drawImGui();
+		ImGui::Checkbox("Show Actor", &mShowActor);
+		ImGui::ColorEdit3("Box line color", &color[0]);
+		ImGui::DragFloat("Line Width", &line_width, 0.1, 0, 6);
+	}
 	
 	void setup()
 	{
@@ -71,15 +80,15 @@ public:
 	
 	void draw()
 	{
-		ramBeginCamera();
+		rdtk::BeginCamera();
 		
 		for (int i=0; i<mStamp.getSize(); i++)
 		{
-			ramNodeArray& nodeArray = mStamp.getStamp(i);
+			rdtk::NodeArray& nodeArray = mStamp.getStamp(i);
 			
 			if (mShowActor)
 			{
-				ramDrawNodes(nodeArray);
+				rdtk::DrawNodes(nodeArray);
 			}
 			
 			if (color.a > 0)
@@ -87,12 +96,12 @@ public:
 				ofPushStyle();
 				ofSetColor(color);
 				ofSetLineWidth(line_width);
-				ramDrawActorCube(nodeArray);
+				rdtk::DrawActorCube(nodeArray);
 				ofPopStyle();
 			}
 		}
 		
-		ramEndCamera();
+		rdtk::EndCamera();
 	}
 	
 	void loadPreset(size_t preset_id=0)

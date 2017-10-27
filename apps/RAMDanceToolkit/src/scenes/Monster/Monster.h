@@ -19,13 +19,15 @@
 
 #include "ramMain.h"
 
-class Monster : public ramBaseScene
+class Monster : public rdtk::BaseScene
 {
 public:
 	
-	vector<int> treeBase, treeSwap;
+	vector<int> treeBase, treeSwap, treeSwap1, treeSwap2;
 	vector<float> lengthScale;
-	ramNodeArray monsterArray;
+	rdtk::NodeArray monsterArray;
+    rdtk::NodeArray monsterArray1;
+    rdtk::NodeArray monsterArray2;
 	float minScale, maxScale, randomizationAmount;
 	bool needToReset, randomLine, randomizeTopology, randomizeGeometry;
 		
@@ -40,7 +42,7 @@ public:
 		minScale = .5;
 		maxScale = 2;
 		randomizationAmount = .5;
-		ofxUICanvas* panel = ramGetGUI().getCurrentUIContext();
+		ofxUICanvas* panel = rdtk::GetGUI().getCurrentUIContext();
 		panel->addButton("Reset", &needToReset, 20, 20);
 		panel->addButton("Random Line", &randomLine, 20, 20);
 		panel->addButton("Randomize Topology", &randomizeTopology, 20, 20);
@@ -52,35 +54,47 @@ public:
 #endif
 	}
 	
+	void drawImGui()
+	{
+		if (ImGui::Button("Reset")) needToReset = true;
+		if (ImGui::Button("Random Line")) randomLine = true;
+		if (ImGui::Button("Randomize Topology")) randomizeTopology = true;
+		if (ImGui::Button("Randomize Geometry")) randomizeGeometry = true;
+		
+		ImGui::SliderFloat("Min scale", &minScale, 0.0, 4.0);
+		ImGui::SliderFloat("Max scale", &maxScale, 0.0, 4.0);
+		ImGui::SliderFloat("Randomization amount", &randomizationAmount, 0, 1);
+	}
+	
 	void setup()
 	{
 		int treeArray[] = {
 			-1,
-			ramActor::JOINT_HIPS,
-			ramActor::JOINT_ABDOMEN,
-			ramActor::JOINT_CHEST,
-			ramActor::JOINT_NECK,
-			ramActor::JOINT_HIPS,
-			ramActor::JOINT_LEFT_HIP,
-			ramActor::JOINT_LEFT_KNEE,
-			ramActor::JOINT_LEFT_ANKLE,
-			ramActor::JOINT_HIPS,
-			ramActor::JOINT_RIGHT_HIP,
-			ramActor::JOINT_RIGHT_KNEE,
-			ramActor::JOINT_RIGHT_ANKLE,
-			ramActor::JOINT_CHEST,
-			ramActor::JOINT_LEFT_COLLAR,
-			ramActor::JOINT_LEFT_SHOULDER,
-			ramActor::JOINT_LEFT_ELBOW,
-			ramActor::JOINT_LEFT_WRIST,
-			ramActor::JOINT_CHEST,
-			ramActor::JOINT_RIGHT_COLLAR,
-			ramActor::JOINT_RIGHT_SHOULDER,
-			ramActor::JOINT_RIGHT_ELBOW,
-			ramActor::JOINT_RIGHT_WRIST
+			rdtk::Actor::JOINT_HIPS,
+			rdtk::Actor::JOINT_ABDOMEN,
+			rdtk::Actor::JOINT_CHEST,
+			rdtk::Actor::JOINT_NECK,
+			rdtk::Actor::JOINT_HIPS,
+			rdtk::Actor::JOINT_LEFT_HIP,
+			rdtk::Actor::JOINT_LEFT_KNEE,
+			rdtk::Actor::JOINT_LEFT_ANKLE,
+			rdtk::Actor::JOINT_HIPS,
+			rdtk::Actor::JOINT_RIGHT_HIP,
+			rdtk::Actor::JOINT_RIGHT_KNEE,
+			rdtk::Actor::JOINT_RIGHT_ANKLE,
+			rdtk::Actor::JOINT_CHEST,
+			rdtk::Actor::JOINT_LEFT_COLLAR,
+			rdtk::Actor::JOINT_LEFT_SHOULDER,
+			rdtk::Actor::JOINT_LEFT_ELBOW,
+			rdtk::Actor::JOINT_LEFT_WRIST,
+			rdtk::Actor::JOINT_CHEST,
+			rdtk::Actor::JOINT_RIGHT_COLLAR,
+			rdtk::Actor::JOINT_RIGHT_SHOULDER,
+			rdtk::Actor::JOINT_RIGHT_ELBOW,
+			rdtk::Actor::JOINT_RIGHT_WRIST
 		};
-		treeBase.resize(ramActor::NUM_JOINTS);
-		lengthScale.resize(ramActor::NUM_JOINTS, 1);
+		treeBase.resize(rdtk::Actor::NUM_JOINTS);
+		lengthScale.resize(rdtk::Actor::NUM_JOINTS, 1);
 		for(int i = 0; i < treeBase.size(); i++) {
 			treeBase[i] = treeArray[i];
 		}
@@ -91,7 +105,8 @@ public:
 	{
 		treeSwap = treeBase;
 		lengthScale.clear();
-		lengthScale.resize(ramActor::NUM_JOINTS, 1);
+		lengthScale.resize(rdtk::Actor::NUM_JOINTS, 1);
+        
 	}
 	
 	bool isAncestor(int ancestor, int child) {
@@ -110,7 +125,7 @@ public:
 	vector<int> getNonChildren(int ancestor)
 	{
 		vector<int> nonchildren;
-		int n = ramActor::NUM_JOINTS;
+		int n = rdtk::Actor::NUM_JOINTS;
 		for(int child = 0; child < n; child++)
 		{
 			if(!isAncestor(ancestor, child))
@@ -131,6 +146,7 @@ public:
 	void attach(int child, int parent)
 	{
 		treeSwap[child] = parent;
+        
 	}
 	
 	void update()
@@ -138,6 +154,7 @@ public:
 		if(needToReset)
 		{
 			reset();
+			needToReset = false;
 		}
 		if(randomizeTopology) 
 		{
@@ -150,6 +167,7 @@ public:
 					treeSwap[i] = getRandomNonChild(i);
 				}
 			}
+			randomizeTopology = false;
 		}
 		if(randomizeGeometry) 
 		{
@@ -163,21 +181,23 @@ public:
 					lengthScale[i] = 1;
 				}
 			}
+			randomizeGeometry = false;
 		}
 		if(randomLine)
 		{
 			reset();
 			vector<int> all;
-			for(int i = 1; i < ramActor::NUM_JOINTS; i++) 
+			for(int i = 1; i < rdtk::Actor::NUM_JOINTS; i++) 
 			{
 				all.push_back(i);
 			}
 			ofRandomize(all);
-			attach(all[0], ramActor::JOINT_HIPS);
+			attach(all[0], rdtk::Actor::JOINT_HIPS);
 			for(int i = 1; i < all.size(); i++)
 			{
 				attach(all[i], all[i - 1]);
 			}
+			randomLine = false;
 		}
 	}
 	
@@ -185,36 +205,51 @@ public:
 	{	
 	}
 	
-	void drawActor(const ramActor &actor)
+	void drawActor(const rdtk::Actor &actor)
 	{	
 		
 		monsterArray = actor;
+//        monsterArray2 = actor;
+//        monsterArray3 = actor;
 		
-		for (int i=0; i < treeSwap.size(); i++)
-		{
-			if(treeSwap[i] != -1)
-			{
-				monsterArray.getNode(i).setParent(monsterArray.getNode(treeSwap[i]));
-				monsterArray.getNode(i).setScale(lengthScale[i]);
-			}
-		}
+        for (int i=0; i < treeSwap.size(); i++)
+        {
+            if(treeSwap[i] != -1)
+            {
+                monsterArray.getNode(i).setParent(monsterArray.getNode(treeSwap[i]));
+                monsterArray.getNode(i).setScale(lengthScale[i]);
+            }
+        }
+
+        for (int i=0; i<actor.getNumNode(); i++)
+        {
+
+            const rdtk::Node &node = actor.getNode(i);
+            ofSetColor(255);
+            ofSetLineWidth(5);
+            if(node.hasParent())
+            {
+                node.drawNodeName(10);
+            }
+        }
 		
 		ofPushStyle();
 		ofNoFill();
 		for (int i=0; i<monsterArray.getNumNode(); i++)
 		{
-			ramNode &node = monsterArray.getNode(i);
+			rdtk::Node &node = monsterArray.getNode(i);
 			ofSetColor(255);
 			ofSetLineWidth(2);
+            
 			if(node.hasParent())
 			{
-				ofLine(node, *node.getParent());
+				ofDrawLine(node, *node.getParent());
 			}
 		}
 		ofPopStyle();
 	}
 	
-	void drawRigid(const ramRigidBody &rigid)
+	void drawRigid(const rdtk::RigidBody &rigid)
 	{
 	}
 	

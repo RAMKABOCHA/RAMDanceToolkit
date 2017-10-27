@@ -20,31 +20,36 @@
 #include "ramUnit.h"
 #include "ramControlPanel.h"
 #include "ramBaseHasFbo.h"
+#include "ramImGuiPanel.h"
 
-class ramBaseScene : public ramUnit, public ramBaseHasFbo
-{
-public:
-
-	ramBaseScene();
-	virtual ~ramBaseScene();
+namespace rdtk{
 	
-	virtual void setupControlPanel();
-	
-	virtual void setup();
-	virtual void update();
-	virtual void draw();
-	virtual void drawHUD();
-	virtual void exit();
-	
-	virtual void drawActor(const ramActor &actor);
-	virtual void drawRigid(const ramRigidBody &rigid);
+	class BaseScene : public BaseHasFbo, public SceneGui
+	{
+	public:
+		
+		BaseScene();
+		virtual ~BaseScene();
+		
+		virtual void setupControlPanel();
+		
+		virtual void setup();
+		virtual void update();
+		virtual void draw();
+		virtual void drawHUD();
+		virtual void exit();
+		
+		virtual void drawActor(const Actor &actor);
+		virtual void drawRigid(const RigidBody &rigid);
+		
+		// nodeArray events
+		virtual void onActorSetup(const Actor &actor);
+		virtual void onActorExit(const Actor &actor);
+		virtual void onRigidSetup(const RigidBody &rigid);
+		virtual void onRigidExit(const RigidBody &rigid);
+		
+	};
+}
 
-	// nodeArray events
-	virtual void onActorSetup(const ramActor &actor);
-	virtual void onActorExit(const ramActor &actor);
-	virtual void onRigidSetup(const ramRigidBody &rigid);
-	virtual void onRigidExit(const ramRigidBody &rigid);
 
-	ramBaseScene* getPtr();
-
-};
+typedef rdtk::BaseScene RAMDEPRECATED(ramBaseScene);

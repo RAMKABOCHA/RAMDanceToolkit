@@ -8,19 +8,21 @@
 
 #include "ramOscManager.h"
 
-ramOscManager* ramOscManager::__instance = NULL;
+using namespace rdtk;
 
-void ramOscManager::setup(int receivePort){
+OscManager* OscManager::__instance = NULL;
+
+void OscManager::setup(int receivePort){
 
 	receiver.setup(receivePort);
 
 }
 
-void ramOscManager::update(){
+void OscManager::update(){
 
 	while (receiver.hasWaitingMessages()){
 		ofxOscMessage m;
-		receiver.getNextMessage(&m);
+		receiver.getNextMessage(m);
 
 		for (int i = 0;i < receiverList.size();i++){
 
@@ -37,7 +39,7 @@ void ramOscManager::update(){
 	}
 }
 
-void ramOscManager::addReceiverTag(ramOscReceiveTag* ptr){
+void OscManager::addReceiverTag(OscReceiveTag* ptr){
     
     receiverList.push_back(ptr);
     

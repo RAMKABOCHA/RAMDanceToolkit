@@ -33,7 +33,7 @@ void Laban::setupControlPanel()
     showLines = true;
     showPlanes = false;
     onlyLimbs = true;
-    ofxUICanvas* panel = ramGetGUI().getCurrentUIContext();
+    ofxUICanvas* panel = rdtk::GetGUI().getCurrentUIContext();
     panel->addSlider("Fade out", 0, 2, &maxLabanMomentLife, 300, 20);
     panel->addToggle("Only Limbs", &onlyLimbs, 20, 20);
     panel->addSlider("Threshold", 0, .5, &threshold, 300, 20);
@@ -43,6 +43,19 @@ void Laban::setupControlPanel()
     panel->addToggle("Show planes", &showPlanes, 20, 20);
     panel->addSlider("Scale", 0, 1000, &scale, 300, 20);
     panel->addSlider("Ticks", 0, 10, &ticks, 300, 20);
+}
+
+void Laban::drawImGui()
+{
+	ImGui::DragFloat("Fade out", &maxLabanMomentLife, 0.1, 0.0, 2.0);
+	ImGui::Checkbox("Only Limbs", &onlyLimbs);
+	ImGui::DragFloat("Threshold", &threshold, 0.1, 0.0, 0.5);
+	ImGui::Checkbox("Show Lines", &showLines);
+	ImGui::DragFloat("Line width", &lineWidth, 0.1, 0, 10);
+	ImGui::DragFloat("Line Length", &lineLength, 1, 0, 1000);
+	ImGui::Checkbox("Show planes", &showPlanes);
+	ImGui::DragFloat("Scale", &scale, 1, 0, 3000);
+	ImGui::DragFloat("Ticks", &ticks, 1, 0, 10);
 }
 
 void Laban::setup()
@@ -75,7 +88,7 @@ void Laban::update()
 
 void Laban::draw()
 {
-    ramBeginCamera();
+    rdtk::BeginCamera();
     ofEnableAlphaBlending();
     glDisable(GL_DEPTH_TEST);
     list<LabanMoment>::iterator itr;
@@ -85,29 +98,29 @@ void Laban::draw()
         ofPushStyle();
         float alpha = cur.getLife(maxLabanMomentLife);
         ofSetColor(255, 64 * alpha);
-        ofLine(cur.start, cur.start + cur.direction * lineLength);
+        ofDrawLine(cur.start, cur.start + cur.direction * lineLength);
         ofSetColor(labanColors[cur.choice], 255 * alpha);
-        ofLine(cur.start, cur.start + labanDirections[cur.choice] * lineLength);
+        ofDrawLine(cur.start, cur.start + labanDirections[cur.choice] * lineLength);
         ofPopStyle();
     }
-    ramEndCamera();
+    rdtk::EndCamera();
 }
 
-void Laban::drawActor(const ramActor &actor)
+void Laban::drawActor(const rdtk::Actor &actor)
 {
     for (int i=0; i<actor.getNumNode(); i++)
     {
         if(onlyLimbs)
         {
-            if(i != ramActor::JOINT_LEFT_ANKLE &&
-               i != ramActor::JOINT_RIGHT_ANKLE &&
-               i != ramActor::JOINT_LEFT_WRIST &&
-               i != ramActor::JOINT_RIGHT_WRIST)
+            if(i != rdtk::Actor::JOINT_LEFT_ANKLE &&
+               i != rdtk::Actor::JOINT_RIGHT_ANKLE &&
+               i != rdtk::Actor::JOINT_LEFT_WRIST &&
+               i != rdtk::Actor::JOINT_RIGHT_WRIST)
             {
                 continue;
             }
         }
-        const ramNode &node = actor.getNode(i);
+        const rdtk::Node &node = actor.getNode(i);
         ofSetColor(255);
         ofSetLineWidth(lineWidth);
         if(node.hasParent())
@@ -162,6 +175,6 @@ void Laban::drawActor(const ramActor &actor)
     }
 }
 
-void Laban::drawRigid(ramRigidBody &rigid)
+void Laban::drawRigid(rdtk::RigidBody &rigid)
 {
 }

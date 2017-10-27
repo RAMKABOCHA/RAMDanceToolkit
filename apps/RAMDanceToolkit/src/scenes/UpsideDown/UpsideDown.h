@@ -17,14 +17,14 @@
 
 #pragma once
 
-class UpsideDown : public ramBaseScene
+class UpsideDown : public rdtk::BaseScene
 {
 	
 public:
     
     ofVec3f mEuler;
     ofQuaternion mRotation;
-    ramFilterEach<ramUpsideDown> mUpsideDown;
+    ramFilterEach<rdtk::UpsideDown> mUpsideDown;
     
     float mOffset;
     
@@ -36,7 +36,7 @@ public:
 #ifdef RAM_GUI_SYSTEM_OFXUI
 		
 		
-		ofxUICanvas* panel = ramGetGUI().getCurrentUIContext();
+		ofxUICanvas* panel = rdtk::GetGUI().getCurrentUIContext();
 		
 		ofAddListener(panel->newGUIEvent, this, &UpsideDown::onValueChanged);
         
@@ -66,7 +66,29 @@ public:
 		
 #endif
 	}
-    
+	
+	void drawImGui()
+	{
+		ImGui::DragFloat("Angle X", &mEuler.x, 1, 0.0, 360);
+		ImGui::DragFloat("Angle Y", &mEuler.y, 1, 0.0, 360);
+		ImGui::DragFloat("Angle Z", &mEuler.z, 1, 0.0, 360);
+		
+		ImGui::Checkbox("Auto rotate X", &mAutoRotate.x);
+		ImGui::Checkbox("Auto rotate Y", &mAutoRotate.y);
+		ImGui::Checkbox("Auto rotate Z", &mAutoRotate.z);
+		
+		ImGui::DragFloat("Offset", &mOffset, 1, -300, 300);
+		
+		if (ImGui::Button("Reset"))
+		{
+			mAutoRotate.x = mAutoRotate.y = mAutoRotate.z = 0.0f;
+			mEuler.set(0.0f);
+			mAutoRotateSpeed.set(1.0f);
+			mOffset = -3.0f;
+		}
+		
+	}
+	
 	void setup()
 	{
         mAutoRotateSpeed.set(1.0f);
@@ -109,31 +131,31 @@ public:
 	
 	void draw()
 	{
-        vector<ramNodeArray> NAs;
+        vector<rdtk::NodeArray> NAs;
         for (int i=0; i<getNumNodeArray(); i++)
         {
-            ramNodeArray tmpActor = getNodeArray(i);
-            ofQuaternion base = tmpActor.getNode(ramActor::JOINT_HIPS).getOrientationQuat();
+            rdtk::NodeArray tmpActor = getNodeArray(i);
+            ofQuaternion base = tmpActor.getNode(rdtk::Actor::JOINT_HIPS).getOrientationQuat();
             ofQuaternion rotated = base * mRotation;
-            tmpActor.getNode(ramActor::JOINT_HIPS).setOrientation(rotated);
+            tmpActor.getNode(rdtk::Actor::JOINT_HIPS).setOrientation(rotated);
             
             NAs.push_back(tmpActor);
         }
         
-        vector<ramNodeArray> filterdNAs = mUpsideDown.update(NAs);
+        vector<rdtk::NodeArray> filterdNAs = mUpsideDown.update(NAs);
         
-        ramBeginCamera();
+        rdtk::BeginCamera();
         
         ofPushStyle();
         for (int i=0; i<NAs.size(); i++)
         {
-            ramNodeArray &NA = filterdNAs[i];
-            ofSetColor(ramColor::RED_DEEP);
-            ramDrawBasicActor(NA);
+            rdtk::NodeArray &NA = filterdNAs[i];
+            ofSetColor(rdtk::Color::RED_DEEP);
+            rdtk::DrawBasicActor(NA);
         }
         ofPopStyle();
         
-        ramEndCamera();
+        rdtk::EndCamera();
 	}
 	
 	

@@ -17,7 +17,7 @@
 
 #pragma once
 
-class BasicActor : public ramBaseScene
+class BasicActor : public rdtk::BaseScene
 {
 	
 	struct ControlSegment
@@ -60,7 +60,7 @@ public:
 	
 	void setupControlPanel()
 	{
-		ramControlPanel &gui = ramGetGUI();
+		ramControlPanel &gui = rdtk::GetGUI();
 		
 		gui.addToggle("Enable light", &enableLight);
 		
@@ -82,9 +82,9 @@ public:
 		mControlSegments.clear();
 	}
 	
-	void addEntityControl(const ramNodeArray &nodeArray)
+	void addEntityControl(const rdtk::NodeArray &nodeArray)
 	{
-		ramControlPanel &gui = ramGetGUI();
+		ramControlPanel &gui = rdtk::GetGUI();
 		
 #ifdef RAM_GUI_SYSTEM_OFXUI
 		
@@ -128,7 +128,7 @@ public:
 		{
 			for (int i=numSegments; i<numActor; i++)
 			{
-				const ramNodeArray copy = getNodeArray(i);
+				const rdtk::NodeArray copy = getNodeArray(i);
 				addEntityControl( copy );
 			}
 		}
@@ -138,11 +138,11 @@ public:
 	{
 		if (enableLight) light.enable();
 		
-		ramBeginCamera();
+		rdtk::BeginCamera();
 		for (int i=0; i<getNumNodeArray(); i++)
 		{
             
-			ramNodeArray &array = getNodeArray(i);
+			rdtk::NodeArray &array = getNodeArray(i);
             
             ControlSegment &segment = mControlSegments[array.getName()];
 			
@@ -156,16 +156,16 @@ public:
 				if (use_new_actor)
 					drawNodes(array);
 				else
-					ramDrawNodes(array);
+					rdtk::DrawNodes(array);
 			}
 			glPopMatrix();
 		}
-		ramEndCamera();
+		rdtk::EndCamera();
 		
 		if (enableLight) light.disable();
 	}
 	
-	void drawNodes(const ramNodeArray &actor)
+	void drawNodes(const rdtk::NodeArray &actor)
 	{
 		ofPushStyle();
 		
@@ -182,8 +182,8 @@ public:
 		{
 			ofSetColor(front_color);
 			
-			const ramNode &node = actor.getNode(i);
-			const ramNode *parent = node.getParent();
+			const rdtk::Node &node = actor.getNode(i);
+			const rdtk::Node *parent = node.getParent();
 			if (parent == NULL) continue;
 			
 			ramBox(node, 2);
@@ -203,7 +203,7 @@ public:
 			int num = 4;
 			
 			glNormal3f(0, 0, 0);
-			ofLine(ofVec3f(0), ofVec3f(0, 0, -dist));
+			ofDrawLine(ofVec3f(0), ofVec3f(0, 0, -dist));
 			
 			if (i < 4)
 				glScalef(1., 1.8, 1);

@@ -19,7 +19,7 @@
 
 #include "ParticleEngine.h"
 
-class Particles : public ramBaseScene
+class Particles : public rdtk::BaseScene
 {
 	
 	ParticleEngine pe;
@@ -28,7 +28,7 @@ class Particles : public ramBaseScene
 	
 	float particle_amount;
 	
-	ramFilterEach<ramGhost> ghostFilters;
+	ramFilterEach<rdtk::Ghost> ghostFilters;
     bool useGhost;
 	
 public:
@@ -37,11 +37,20 @@ public:
 	
 	void setupControlPanel()
 	{
-        ramGetGUI().addToggle("Change emit position", &useGhost);
-		ramGetGUI().addSlider("Amount", 1.0, 15.0, &particle_amount);
-		ramGetGUI().addSlider("Life", 0.1, 10.0, &pe.particle_life);
-		ramGetGUI().addSlider("Velocity", 0.1, 5, &pe.particle_velocity);
-		ramGetGUI().addSlider("Gravity", -0.1, 0.1, &gravity->force);
+        rdtk::GetGUI().addToggle("Change emit position", &useGhost);
+		rdtk::GetGUI().addSlider("Amount", 1.0, 15.0, &particle_amount);
+		rdtk::GetGUI().addSlider("Life", 0.1, 10.0, &pe.particle_life);
+		rdtk::GetGUI().addSlider("Velocity", 0.1, 5, &pe.particle_velocity);
+		rdtk::GetGUI().addSlider("Gravity", -0.1, 0.1, &gravity->force);
+	}
+	
+	void drawImGui()
+	{
+		ImGui::Checkbox("Change emit position", &useGhost);
+		ImGui::DragFloat("Amount", &particle_amount, 0.5, 1.0, 15.0);
+		ImGui::DragFloat("Life", &pe.particle_life, 0.1, 0.1, 10.0);
+		ImGui::DragFloat("Velocity", &pe.particle_velocity, 0.1, 0.1, 5.0);
+		ImGui::DragFloat("Gravity", &gravity->force, 0.005, -0.1, 0.1);
 	}
 	
 	void setup()
@@ -58,15 +67,15 @@ public:
 	void update()
 	{
         
-		const vector<ramNodeArray>& NAs = useGhost ? ghostFilters.update(getAllNodeArrays()) : getAllNodeArrays();
+		const vector<rdtk::NodeArray>& NAs = useGhost ? ghostFilters.update(getAllNodeArrays()) : getAllNodeArrays();
         
 		for (int n = 0; n < NAs.size(); n++)
 		{
-			const ramNodeArray &NA = NAs[n];
+			const rdtk::NodeArray &NA = NAs[n];
 			
 			for (int i = 0; i < NA.getNumNode(); i++)
 			{
-				const ramNode &node = NA.getNode(i);
+				const rdtk::Node &node = NA.getNode(i);
 				
 				for(int j=0; j<particle_amount; j++)
 					pe.emit( node.getGlobalPosition() );
@@ -78,7 +87,7 @@ public:
 	
 	void draw()
 	{
-		ramBeginCamera();
+		rdtk::BeginCamera();
 		
 		glPushAttrib(GL_ALL_ATTRIB_BITS);
 		glEnable(GL_DEPTH_TEST);
@@ -91,7 +100,7 @@ public:
 		ofPopStyle();
 		glPopAttrib();
 		
-		ramEndCamera();
+		rdtk::EndCamera();
 	}
 	
 	void loadPreset(size_t preset_id=0)

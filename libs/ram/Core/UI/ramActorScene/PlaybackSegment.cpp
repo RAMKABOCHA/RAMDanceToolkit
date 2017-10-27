@@ -20,16 +20,18 @@
 #pragma mark -
 #pragma mark constructor, destructor
 
+using namespace rdtk;
+
 PlaybackSegment::PlaybackSegment(const string& segmentName)
 {
     name = segmentName;
     
 	init();
 	
-	btnHideActor = new ofxUIImageToggle(32, 32, &bHideActor, ramToResourcePath("Images/show.png"),"show");
-	btnPlayActor = new ofxUIImageToggle(32, 32, &bPaused, ramToResourcePath("Images/play.png"),"pause");
-	btnCueActor = new ofxUIImageButton(32, 32, &bNeedsResetPos, ramToResourcePath("Images/reset.png"),"resetPos");
-	btnDeleteActor = new ofxUIImageButton(32, 32, false, ramToResourcePath("Images/delete.png"),"delete");
+	btnHideActor = new ofxUIImageToggle(32, 32, &bHideActor, ToResourcePath("Images/show.png"),"show");
+	btnPlayActor = new ofxUIImageToggle(32, 32, &bPaused, ToResourcePath("Images/play.png"),"pause");
+	btnCueActor = new ofxUIImageButton(32, 32, &bNeedsResetPos, ToResourcePath("Images/reset.png"),"resetPos");
+	btnDeleteActor = new ofxUIImageButton(32, 32, false, ToResourcePath("Images/delete.png"),"delete");
 }
 
 PlaybackSegment::~PlaybackSegment()
@@ -45,7 +47,7 @@ PlaybackSegment::~PlaybackSegment()
 
 #pragma mark -
 #pragma mark public methods
-ramActorUISegmentType PlaybackSegment::getType() const
+ActorUISegmentType PlaybackSegment::getType() const
 {
     return RAM_UI_SEGMENT_TYPE_PLAYBACK;
 }
@@ -59,9 +61,9 @@ ofxUICanvasPlus* PlaybackSegment::createPanel(const string& targetName)
 {
     name = targetName;
     
-	const float width = ramGetGUI().kLength;
-	const float height = ramGetGUI().kDim+3;
-    const float padding = ramGetGUI().kXInit*2;
+	const float width = GetGUI().kLength;
+	const float height = GetGUI().kDim+3;
+    const float padding = GetGUI().kXInit*2;
 	
 	
 	ofxUICanvasPlus *child = new ofxUICanvasPlus();
@@ -208,7 +210,54 @@ void PlaybackSegment::onValueChanged(ofxUIEventArgs& e)
 	saveCache();
 }
 
-
+void PlaybackSegment::drawImGui()
+{
+	ImGui::PushID(getName().c_str());
+	ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(jointColor));
+	if (ImGui::CollapsingHeader(("Playback - " + getName()).c_str()))
+	{
+		if (ImGui::Checkbox("Visible", &bHideActor)) saveCache();
+		ImGui::SameLine();
+		if (ImGui::Checkbox("Fix", &bFixActor)) saveCache();
+		if (ImGui::Checkbox("ResetPos", &bNeedsResetPos)) saveCache();
+		ImGui::SameLine();
+		if (ImGui::Checkbox("Pause", &bPaused)) pause(bPaused);
+		ImGui::SameLine();
+		if (ImGui::Button("Delete")) deleteSelf();
+		
+		ImGui::ColorEdit3("Color", &jointColor[0]);
+		
+		float range = 300;
+		if (ImGui::SliderFloat2("Position", &position[0], -range, range)) saveCache();
+		
+		ofRectangle rct;
+		ImGui::BeginChild(getName().c_str(), ImVec2(0,100), false, ImGuiWindowFlags_NoScrollWithMouse);
+		{
+			rct.x = ImGui::GetWindowPos().x;
+			rct.y = ImGui::GetWindowPos().y;
+			rct.width = ImGui::GetWindowSize().x;
+			rct.height = ImGui::GetWindowSize().y;
+			
+			if (ImGui::IsWindowHovered())
+			{
+				CameraManager::instance().setEnableInteractiveCamera(false);
+				if (ofGetMousePressed())
+				{
+					position.set(ofMap(ofGetMouseX(), rct.x, rct.x + rct.width, -range, range, true),
+								 ofMap(ofGetMouseY(), rct.y, rct.y + rct.height, -range, range, true));
+				}
+			}
+		}
+		ImGui::EndChild();
+		ofSetColor(255);
+		ofDrawLine(rct.x + ofMap(position.x, -range, range, 0, rct.width), rct.y,
+				   rct.x + ofMap(position.x, -range, range, 0, rct.width), rct.y + rct.height);
+		ofDrawLine(rct.x, rct.y + ofMap(position.y, -range, range, 0, rct.height),
+				   rct.x + rct.width, rct.y + ofMap(position.y, -range, range, 0, rct.height));
+	}
+	ImGui::PopStyleColor();
+	ImGui::PopID();
+}
 
 
 #pragma mark -

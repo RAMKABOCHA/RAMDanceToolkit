@@ -19,11 +19,11 @@
 
 #include "ParticleEngine.h"
 
-class Future : public ramBaseScene
+class Future : public rdtk::BaseScene
 {
 	
-	ramFilterEach<ramGhost> ghostFilters;
-	ramFilterEach<ramLowPassFilter> lowPassFilters;
+	ramFilterEach<rdtk::Ghost> ghostFilters;
+	ramFilterEach<rdtk::LowPassFilter> lowPassFilters;
 	
 	float speed, distance;
 	
@@ -35,11 +35,11 @@ public:
 	
 	struct Preset
 	{
-		ramGhost *self;
+		rdtk::Ghost *self;
 		float distance;
 		float speed;
 		
-		Preset(ramGhost *self, float distance, float speed) : self(self), distance(distance), speed(speed) {}
+		Preset(rdtk::Ghost *self, float distance, float speed) : self(self), distance(distance), speed(speed) {}
 		void operator()()
 		{
 			self->setSpeed(speed);
@@ -50,31 +50,65 @@ public:
 	void setupControlPanel()
 	{
 		
-		ramGetGUI().addToggle("Draw line from actor to ghost", &draw_line);
+		rdtk::GetGUI().addToggle("Draw line from actor to ghost", &draw_line);
 		
-		ofAddListener(ramGetGUI().addButton("Speed: Ghost"), this, &Future::onPresetGhost);
-		ofAddListener(ramGetGUI().addButton("Speed: Slow"), this, &Future::onPresetSlow);
-		ofAddListener(ramGetGUI().addButton("Speed: Normal"), this, &Future::onPresetNormal);
-		ofAddListener(ramGetGUI().addButton("Speed: Fast"), this, &Future::onPresetFast);
+		ofAddListener(rdtk::GetGUI().addButton("Speed: Ghost"), this, &Future::onPresetGhost);
+		ofAddListener(rdtk::GetGUI().addButton("Speed: Slow"), this, &Future::onPresetSlow);
+		ofAddListener(rdtk::GetGUI().addButton("Speed: Normal"), this, &Future::onPresetNormal);
+		ofAddListener(rdtk::GetGUI().addButton("Speed: Fast"), this, &Future::onPresetFast);
 		
-		ramGetGUI().addSlider("Distance", 0.0, 255.0, &distance);
-		ramGetGUI().addSlider("Speed", 0.0, 255.0, &speed);
+		rdtk::GetGUI().addSlider("Distance", 0.0, 255.0, &distance);
+		rdtk::GetGUI().addSlider("Speed", 0.0, 255.0, &speed);
 		
-		ofAddListener(ramGetGUI().getCurrentUIContext()->newGUIEvent, this, &Future::onValueChanged);
+		ofAddListener(rdtk::GetGUI().getCurrentUIContext()->newGUIEvent, this, &Future::onValueChanged);
+	}
+	
+	void onValueChanged(ofxUIEventArgs &e)
+	{
+		updateFilters();
+	}
+	
+	void drawImGui()
+	{
+		ofEventArgs dummy;
+		if (ImGui::Checkbox("Draw line from actor to ghost", &draw_line)) updateFilters();
+		if (ImGui::Button("speed: Ghost"))
+		{
+			onPresetGhost(dummy);
+			updateFilters();
+		}
+		if (ImGui::Button("speed: Slow"))
+		{
+			onPresetSlow(dummy);
+			updateFilters();
+		}
+		if (ImGui::Button("speed: Normal"))
+		{
+			onPresetNormal(dummy);
+			updateFilters();
+		}
+		if (ImGui::Button("speed: Fast"))
+		{
+			onPresetFast(dummy);
+			updateFilters();
+		}
+		if (ImGui::DragFloat("Distance", &distance, 1, 0, 255)) updateFilters();
+		if (ImGui::DragFloat("Speed", &speed, 1, 0, 255)) updateFilters();
+		
 	}
 
 	void draw()
 	{
-		const vector<ramNodeArray>& NAs = ghostFilters.update(getAllNodeArrays());
-		const vector<ramNodeArray>& lowPassedNAs = lowPassFilters.update(NAs);
+		const vector<rdtk::NodeArray>& NAs = ghostFilters.update(getAllNodeArrays());
+		const vector<rdtk::NodeArray>& lowPassedNAs = lowPassFilters.update(NAs);
 		
-		ramBeginCamera();
+		rdtk::BeginCamera();
 		
 		for(int i=0; i<lowPassedNAs.size(); i++)
 		{
 			
-			const ramNodeArray &NA = getNodeArray(i);
-			const ramNodeArray &processedNA = lowPassedNAs[i];
+			const rdtk::NodeArray &NA = getNodeArray(i);
+			const rdtk::NodeArray &processedNA = lowPassedNAs[i];
 			
 			glPushAttrib(GL_ALL_ATTRIB_BITS);
 			glEnable(GL_DEPTH_TEST);
@@ -82,23 +116,23 @@ public:
 			ofNoFill();
 			
 			const ofColor gcolor =
-			i==0 ? ramColor::RED_LIGHT :
-			i==1 ? ramColor::YELLOW_DEEP : ramColor::BLUE_LIGHT;
+			i==0 ? rdtk::Color::RED_LIGHT :
+			i==1 ? rdtk::Color::YELLOW_DEEP : rdtk::Color::BLUE_LIGHT;
 			
 			ofSetColor(gcolor);
-			ramDrawNodes(processedNA);
+			rdtk::DrawNodes(processedNA);
 			
 			if (draw_line)
 			{
 				ofSetColor(gcolor);
-				ramDrawNodeCorresponds(NA, processedNA);
+				rdtk::DrawNodeCorresponds(NA, processedNA);
 			}
 			
 			ofPopStyle();
 			glPopAttrib();
 		}
 		
-		ramEndCamera();
+		rdtk::EndCamera();
 	}
 	
 	void onPresetGhost(ofEventArgs &e)
@@ -129,15 +163,10 @@ public:
 	{
 		for(int i=0; i<ghostFilters.getNumFilters(); i++)
 		{
-			ramGhost &filter = ghostFilters.getFilter(i);
+			rdtk::Ghost &filter = ghostFilters.getFilter(i);
 			filter.setDistance(distance);
 			filter.setSpeed(speed);
 		}
-	}
-	
-	void onValueChanged(ofxUIEventArgs &e)
-	{
-		updateFilters();
 	}
 	
 	void loadPreset(size_t preset_id=0)

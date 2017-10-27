@@ -20,7 +20,7 @@
 #include "ofxXmlSettings.h"
 #include "ramBaseScene.h"
 
-class MovingCam : public ramBaseScene
+class MovingCam : public rdtk::BaseScene
 {
     
     enum MovingState
@@ -51,9 +51,21 @@ class MovingCam : public ramBaseScene
     
 public:
 	
+	void drawImGui()
+	{
+		ImGui::Text("Press [u] to move up");
+		ImGui::Text("Press [d] to move down");
+		ImGui::Separator();
+		if (ImGui::Button("Start move up")) moveUp();
+		if (ImGui::Button("Start move down")) moveDown();
+		ImGui::Separator();
+		if (ImGui::Button("Reset & Reload XML")) resetCamera();
+		ImGui::Checkbox("Enable Camera", &is_camera_enabled);
+	}
+	
 	void setupControlPanel()
 	{
-		ofxUICanvas* panel = ramGetGUI().getCurrentUIContext();
+		ofxUICanvas* panel = rdtk::GetGUI().getCurrentUIContext();
         
         panel->addLabel("Press [u] to move up", OFX_UI_FONT_SMALL);
         panel->addLabel("Press [d] to move down", OFX_UI_FONT_SMALL);
@@ -108,14 +120,14 @@ public:
         if (is_camera_enabled)
             return;
         
-        ramBeginCamera();
+		rdtk::BeginCamera();
         
         ofPushStyle();
         
         // from, to
         ofSetColor(255,0,0);
-        ofBox(base.pos, 10);
-        ofBox(opposite.pos, 10);
+        ofDrawBox(base.pos, 10);
+        ofDrawBox(opposite.pos, 10);
 		
         ofVec3f strPos1 = move_from.pos;
         strPos1.y += 20;
@@ -130,20 +142,20 @@ public:
 		ofVec3f curStrPos = camera.pos;
 		curStrPos.y += 20;;
 		ofDrawBitmapString("Camera", curStrPos);
-		ofBox(camera.pos, 10);
+		ofDrawBox(camera.pos, 10);
 		
 		// lookAt
 		ofSetColor(0, 255, 0);
 		ofVec3f lookAtStrPos = camera.lookAt;
 		lookAtStrPos.y += 20;;
 		ofDrawBitmapString("Look At", lookAtStrPos);
-		ofBox(camera.lookAt, 10);
+		ofDrawBox(camera.lookAt, 10);
 		
-		ofLine(camera.lookAt, camera.pos);
+		ofDrawLine(camera.lookAt, camera.pos);
 		
         ofPopStyle();
         
-        ramEndCamera();
+        rdtk::EndCamera();
 	}
     
     void reloadXML()

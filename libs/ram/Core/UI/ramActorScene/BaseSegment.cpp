@@ -1,4 +1,4 @@
-// 
+//
 // BaseSegment.cpp - RAMDanceToolkit
 // 
 // Copyright 2012-2013 YCAM InterLab, Yoshito Onishi, Satoru Higa, Motoi Shimizu, and Kyle McDonald
@@ -17,7 +17,7 @@
 
 #include "BaseSegment.h"
 
-
+using namespace rdtk;
 
 string BaseSegment::getName() const
 {
@@ -32,12 +32,13 @@ void BaseSegment::init()
 {
     bHideActor = false;
     bNeedsResetPos = false;
+	bFixActor = false;
     jointColor = ofFloatColor(1.0, 0.15, 0.4);
     position = ofPoint(0, 0);
 }
 
 string BaseSegment::getCacheFilePath() const
 {
-	return ramToResourcePath("Settings/cache/color."+name+".xml");
+	return ToResourcePath("Settings/cache/color."+name+".xml");
 }
 

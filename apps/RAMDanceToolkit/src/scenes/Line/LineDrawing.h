@@ -20,7 +20,7 @@
 #include "ofxXmlSettings.h"
 #include "ramNodeLine.h"
 
-class LineDrawing : public ramBaseScene
+class LineDrawing : public rdtk::BaseScene
 {
 	
 public:
@@ -48,18 +48,80 @@ public:
 		float line_width;
 		ofFloatColor color;
 		
-		ramNodeLine nodeLine;
+		rdtk::NodeLine nodeLine;
         ofxUIToggle *toggle;
 		
 		bool active;
 		int id;
-        
+		
+		void drawImGui()
+		{
+			ImGui::BeginChild(("win"+ofToString(id)).c_str(), ImVec2(400, 170),
+							  false, ImGuiWindowFlags_AlwaysAutoResize);
+			
+			ImGui::Checkbox(("Line " + ofToString(id)).c_str(), &active);
+			set_from = ImGui::Button("From");ImGui::SameLine();
+			set_control0 = ImGui::Button("Control0");ImGui::SameLine();
+			set_control1 = ImGui::Button("Control1");ImGui::SameLine();
+			set_to = ImGui::Button("To");
+			
+			ImGui::ColorEdit3("Color", &color[0]);
+			
+			
+			ImGui::Columns(2, NULL, true);
+			
+			ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.2f);
+			ImGui::DragFloat("Width", &line_width, 0.1, 1, 10);
+			ImGui::PopItemWidth();
+			ImGui::NextColumn();
+			
+			ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.2f);
+			ImGui::DragFloat("curve", &curve, 1, -400, 400);
+			ImGui::PopItemWidth();
+			ImGui::NextColumn();
+			
+			ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.2f);
+			ImGui::DragFloat("spiral_radius", &spiral_radius,			1, 0, 200);
+			ImGui::PopItemWidth();
+			ImGui::NextColumn();
+			
+			ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.2f);
+			ImGui::DragFloat("spiral_num_rotate", &spiral_num_rotate,	1, 0, 100);
+			ImGui::PopItemWidth();
+			ImGui::NextColumn();
+
+			ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.2f);
+			ImGui::DragFloat("noise_scale", &noise_scale,				1, 0, 200);
+			ImGui::PopItemWidth();
+			ImGui::NextColumn();
+
+			ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.2f);
+			ImGui::DragFloat("noise_freq", &noise_freq,					1, 0, 10);
+			ImGui::PopItemWidth();
+			ImGui::NextColumn();
+
+			ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.2f);
+			ImGui::DragFloat("extend from", &extend_from,				1, 0, 1000);
+			ImGui::PopItemWidth();
+			ImGui::NextColumn();
+
+			ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.2f);
+			ImGui::DragFloat("extend to", &extend_to,					1, 0, 1000);
+			ImGui::PopItemWidth();
+			ImGui::NextColumn();
+
+			ImGui::Columns(1);
+			ImGui::EndChild();
+			ImGui::Spacing();
+			
+		}
+		
 		void setupControlPanel()
 		{
 			
 #ifdef RAM_GUI_SYSTEM_OFXUI
 			
-			ofxUICanvasPlus* panel = ramGetGUI().getCurrentUIContext();
+			ofxUICanvasPlus* panel = rdtk::GetGUI().getCurrentUIContext();
 			
 			line_width = 2;
 			
@@ -103,7 +165,7 @@ public:
 			panel->addSlider("extend to", 0, 1000, &extend_to, 150, 10);
 			panel->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
 			
-			panel->addSpacer(ramGetGUI().kLength, 2);
+			panel->addSpacer(rdtk::GetGUI().kLength, 2);
 			
 #endif
 		}
@@ -112,10 +174,10 @@ public:
 		{
 			if (!active) return;
 			
-			if (set_from) nodeLine.from = ramActorManager::instance().getLastSelectedNodeIdentifer();
-			if (set_control0) nodeLine.control0 = ramActorManager::instance().getLastSelectedNodeIdentifer();
-			if (set_control1) nodeLine.control1 = ramActorManager::instance().getLastSelectedNodeIdentifer();
-			if (set_to) nodeLine.to = ramActorManager::instance().getLastSelectedNodeIdentifer();
+			if (set_from) nodeLine.from = rdtk::ActorManager::instance().getLastSelectedNodeIdentifer();
+			if (set_control0) nodeLine.control0 = rdtk::ActorManager::instance().getLastSelectedNodeIdentifer();
+			if (set_control1) nodeLine.control1 = rdtk::ActorManager::instance().getLastSelectedNodeIdentifer();
+			if (set_to) nodeLine.to = rdtk::ActorManager::instance().getLastSelectedNodeIdentifer();
 		}
 		
 		void draw()
@@ -152,7 +214,7 @@ public:
 			
 			ofSetColor(255, 127);
 			
-			ramNode node;
+			rdtk::Node node;
 			if (nodeLine.from.findOne(node))
 			{
 				ofDrawBitmapString("FROM", node.getGlobalPosition() + ofVec3f(5, 5, 0));
@@ -176,7 +238,7 @@ public:
 		
 		void randomize()
 		{
-			ramActorManager &AM = ramActorManager::instance();
+			rdtk::ActorManager &AM = rdtk::ActorManager::instance();
 			const vector<string>& names = AM.getNodeArrayNames();
 			
 			nodeLine.from.index = ofRandom(23);
@@ -206,16 +268,38 @@ public:
 	{
 	}
 	
+	void drawImGui()
+	{
+		
+		if (ImGui::Button("Load Line Settings"))
+			loadLineSettings();
+		ImGui::SameLine();
+		if (ImGui::Button("Save Line Settings"))
+			saveLineSettings();
+		
+		if (ImGui::Button("Randomize"))
+			for (int i = 0; i < NUM_LINE; i++) lines[i].randomize();
+		
+		ImGui::SliderFloat("Auto Random change time", &random_change_time, 0.0, 60.0);
+		
+		for (int i = 0; i < NUM_LINE; i++)
+		{
+			ImGui::PushID(ofToString(i).c_str());
+			lines[i].drawImGui();
+			ImGui::PopID();
+		}
+	}
+	
 	void setupControlPanel()
 	{
-		ramGetGUI().getCurrentUIContext()->addLabelButton("Load Line Settings", false, ramGetGUI().kLength);
-		ramGetGUI().getCurrentUIContext()->addLabelButton("Save Line Settings", false, ramGetGUI().kLength);
-        ramGetGUI().getCurrentUIContext()->addSpacer(ramGetGUI().kLength, 2);
+		rdtk::GetGUI().getCurrentUIContext()->addLabelButton("Load Line Settings", false, rdtk::GetGUI().kLength);
+		rdtk::GetGUI().getCurrentUIContext()->addLabelButton("Save Line Settings", false, rdtk::GetGUI().kLength);
+        rdtk::GetGUI().getCurrentUIContext()->addSpacer(rdtk::GetGUI().kLength, 2);
         
 		random_change_time = 60;
-        ramGetGUI().addButton("Randomize");
-		ramGetGUI().addSlider("Auto Random change time", 0.0, 60, &random_change_time);
-        ramGetGUI().getCurrentUIContext()->addSpacer();
+        rdtk::GetGUI().addButton("Randomize");
+		rdtk::GetGUI().addSlider("Auto Random change time", 0.0, 60, &random_change_time);
+        rdtk::GetGUI().getCurrentUIContext()->addSpacer();
         
 		last_changed_time = ofGetElapsedTimef();
 		
@@ -225,7 +309,7 @@ public:
 			lines[i].setupControlPanel();
 		}
         
-        ofAddListener(ramGetGUI().getCurrentUIContext()->newGUIEvent, this, &LineDrawing::onValueChanged);
+        ofAddListener(rdtk::GetGUI().getCurrentUIContext()->newGUIEvent, this, &LineDrawing::onValueChanged);
 	}
 	
 	void setup()
@@ -246,52 +330,54 @@ public:
         {
             ofxUIButton *button = (ofxUIButton *)e.widget;
             if (button->getValue())
-            {
                 for (int i = 0; i < NUM_LINE; i++) lines[i].randomize();
-            }
         }
         
         if (name == "Load Line Settings")
         {
             ofxUIButton *button = (ofxUIButton *)e.widget;
-            if (button->getValue())
-            {
-                ofFileDialogResult result = ofSystemLoadDialog("Load Line Settings.", false, "Lines.xml");
-                if (result.bSuccess)
-                    loadXML(result.getPath());
-                
-                for (int i=0; i<NUM_LINE; i++)
-                {
-                    bool active;
-                    
-                    LineContext &line = lines[i];
-                    XML.pushTag("line", i);
-                    active = XML.getValue("active", true);
-                    XML.popTag();
-                    
-                    line.toggle->setValue(active);
-                    line.toggle->stateChange();
-                }
-            }
+            if (button->getValue()) loadLineSettings();
         }
         
         if (name == "Save Line Settings")
         {
             ofxUIButton *button = (ofxUIButton *)e.widget;
-            if (button->getValue())
-            {
-                ofFileDialogResult result = ofSystemSaveDialog("Lines.xml", "Save Line Settings.");
-                if (result.bSuccess)
-                    saveXML(result.getPath());
-            }
+            if (button->getValue()) saveLineSettings();
         }
         
         saveXML();
     }
 	
+	void loadLineSettings()
+	{
+		ofFileDialogResult result = ofSystemLoadDialog("Load Line Settings.", false, "Lines.xml");
+		if (result.bSuccess)
+			loadXML(result.getPath());
+		
+		for (int i=0; i<NUM_LINE; i++)
+		{
+			bool active;
+			
+			LineContext &line = lines[i];
+			XML.pushTag("line", i);
+			active = XML.getValue("active", true);
+			XML.popTag();
+			
+			line.toggle->setValue(active);
+			line.toggle->stateChange();
+		}
+	}
+	
+	void saveLineSettings()
+	{
+		ofFileDialogResult result = ofSystemSaveDialog("Lines.xml", "Save Line Settings.");
+		if (result.bSuccess)
+			saveXML(result.getPath());
+	}
+	
 	void update()
 	{
-        
+		
 		if (random_change_time < 60
 			&& ofGetElapsedTimef() - last_changed_time > random_change_time
             && random_change_time != 0.0)
@@ -312,7 +398,7 @@ public:
 	
 	void draw()
 	{
-		ramBeginCamera();
+		rdtk::BeginCamera();
 		
 		ofPushStyle();
 		for (int i = 0; i < NUM_LINE; i++)
@@ -321,7 +407,7 @@ public:
 		}
 		ofPopStyle();
 		
-		ramEndCamera();
+		rdtk::EndCamera();
 	}
     
     void exit()
@@ -382,7 +468,7 @@ public:
 	{
 		if (!ofFile::doesFileExist(fileName))
 		{
-			fileName = ramToResourcePath("Settings/presets/preset.lines.xml");
+			fileName = rdtk::ToResourcePath("Settings/presets/preset.lines.xml");
 		}
 		
 		XML.loadFile(fileName);
@@ -396,16 +482,16 @@ public:
 			
 			/// nodes
 			const string from_name	= XML.getValue("from:name", "Yoko");
-			const int	 from_id	= XML.getValue("from:id", ramActor::JOINT_RIGHT_HAND);
+			const int	 from_id	= XML.getValue("from:id", rdtk::Actor::JOINT_RIGHT_HAND);
 			
 			const string cp0_name	= XML.getValue("control0:name", "Yoko");
-			const int	 cp0_id		= XML.getValue("control0:id", ramActor::JOINT_RIGHT_TOE);
+			const int	 cp0_id		= XML.getValue("control0:id", rdtk::Actor::JOINT_RIGHT_TOE);
 			
 			const string cp1_name	= XML.getValue("control1:name", "Yoko");
-			const int	 cp1_id		= XML.getValue("control1:id", ramActor::JOINT_LEFT_TOE);
+			const int	 cp1_id		= XML.getValue("control1:id", rdtk::Actor::JOINT_LEFT_TOE);
 			
 			const string to_name	= XML.getValue("to:name", "Yoko");
-			const int	 to_id		= XML.getValue("to:id", ramActor::JOINT_LEFT_HAND);
+			const int	 to_id		= XML.getValue("to:id", rdtk::Actor::JOINT_LEFT_HAND);
 			
 			/// curve
 			const float curve		= XML.getValue("param:curve", 10);
@@ -431,10 +517,10 @@ public:
 			
 			LineContext &line = lines[i];
 			line.active = active;
-			line.nodeLine.from = ramNodeIdentifer(from_name, from_id);
-			line.nodeLine.control0 = ramNodeIdentifer(cp0_name, cp0_id);
-			line.nodeLine.control1 = ramNodeIdentifer(cp1_name, cp1_id);
-			line.nodeLine.to = ramNodeIdentifer(to_name, to_id);
+			line.nodeLine.from = rdtk::NodeIdentifer(from_name, from_id);
+			line.nodeLine.control0 = rdtk::NodeIdentifer(cp0_name, cp0_id);
+			line.nodeLine.control1 = rdtk::NodeIdentifer(cp1_name, cp1_id);
+			line.nodeLine.to = rdtk::NodeIdentifer(to_name, to_id);
 			line.curve = curve;
 			line.spiral_radius = radius;
 			line.spiral_num_rotate = num_rotate;

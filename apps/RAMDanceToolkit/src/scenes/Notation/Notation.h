@@ -21,7 +21,7 @@
 #include "ofxCv.h"
 #include "ramPlanarGestureRecognizer.h"
 
-class HistoryPoint : public ramFading
+class HistoryPoint : public rdtk::Fading
 {
 public:
 	ofVec3f point;
@@ -31,7 +31,7 @@ public:
 	{}
 };
 
-class SpatialMark : public ramFading
+class SpatialMark : public rdtk::Fading
 {
 public:
 	ofVec3f position, normal;
@@ -62,7 +62,7 @@ public:
 	}
 };
 
-class Notation : public ramBaseScene
+class Notation : public rdtk::BaseScene
 {
 public:
 	
@@ -77,7 +77,7 @@ public:
 	
 	float centerLerpRate, normalLerpRate;
 	
-	ramPlanarGestureRecognizer recognizer;
+	rdtk::PlanarGestureRecognizer recognizer;
 	
 	void setupControlPanel()
 	{
@@ -88,7 +88,7 @@ public:
 		normalLerpRate = .1;
 		threshold = .3;
 		drawDebug = false;
-		ofxUICanvas* panel = ramGetGUI().getCurrentUIContext();
+		ofxUICanvas* panel = rdtk::GetGUI().getCurrentUIContext();
 		panel->addToggle("Only limbs", &onlyLimbs, 20, 20);
 		panel->addToggle("Draw debug", &drawDebug, 20, 20);
 		panel->addSlider("History fade out", 0, 5, &maxNotationLife, 300, 20);
@@ -98,6 +98,17 @@ public:
 		panel->addSlider("Normal lerp rate", 0, 1, &normalLerpRate, 300, 20);
 	}
 	
+	void drawImGui()
+	{
+		ImGui::Checkbox("Only limbs", &onlyLimbs);
+		ImGui::Checkbox("Draw debug", &drawDebug);
+		ImGui::DragFloat("History fade out", &maxNotationLife, 0.1, 0, 5);
+		ImGui::DragFloat("Mark fade out", &maxMarkLife, 0.5, 0, 30);
+		ImGui::DragFloat("Threshold", &threshold, 0.02, 0.0, 1.0);
+		ImGui::DragFloat("Center lerp rate", &centerLerpRate, 0.02, 0.0, 1.0);
+		ImGui::DragFloat("Normal lerp rate", &normalLerpRate, 0.02, 0.0, 1.0);
+	}
+	
 	void setup()
 	{
 		
@@ -105,14 +116,14 @@ public:
 	
 	void update()
 	{
-		ramFading::bury(allMarks, maxMarkLife);
+		rdtk::Fading::bury(allMarks, maxMarkLife);
 		
 		// remove any dead points
 		map<int, list<HistoryPoint> >::iterator itr;
 		for(itr = history.begin(); itr != history.end(); itr++)
 		{
 			list<HistoryPoint>& cur = itr->second;
-			ramFading::bury(cur, maxNotationLife);
+			rdtk::Fading::bury(cur, maxNotationLife);
 			vector<ofVec3f> all;
 			list<HistoryPoint>::iterator curItr;
 			for(curItr = cur.begin(); curItr != cur.end(); curItr++)
@@ -176,7 +187,7 @@ public:
 	
 	void draw()
 	{	
-		ramBeginCamera();
+		rdtk::BeginCamera();
 		ofEnableAlphaBlending();
 		glDisable(GL_DEPTH_TEST);
 		
@@ -210,30 +221,30 @@ public:
 				int i = centersItr->first;
 				ofVec3f& center = centersItr->second;
 				ofVec3f& normal = normals[i];
-				//ofLine(center, center + normal * 100);
+				//ofDrawLine(center, center + normal * 100);
 				
 				ofPushMatrix();
 				ofTranslate(center);
 				rotateToNormal(normal);
 				ofNoFill();
-				ofRect(projected[i].getBoundingBox());
+				ofDrawRectangle(projected[i].getBoundingBox());
 				ofPopMatrix();
 			}
 		}
 		
-		ramEndCamera();
+		rdtk::EndCamera();
 	}
 	
-	void drawActor(const ramActor &actor)
+	void drawActor(const rdtk::Actor &actor)
 	{	
 		for (int i=0; i<actor.getNumNode(); i++)
 		{
 			if(onlyLimbs)
 			{
-				if(i != ramActor::JOINT_LEFT_ANKLE &&
-				   i != ramActor::JOINT_RIGHT_ANKLE &&
-				   i != ramActor::JOINT_LEFT_HAND &&
-				   i != ramActor::JOINT_RIGHT_HAND)
+				if(i != rdtk::Actor::JOINT_LEFT_ANKLE &&
+				   i != rdtk::Actor::JOINT_RIGHT_ANKLE &&
+				   i != rdtk::Actor::JOINT_LEFT_HAND &&
+				   i != rdtk::Actor::JOINT_RIGHT_HAND)
 				{
 					continue;
 				}
@@ -243,7 +254,7 @@ public:
 		}
 	}
 	
-	void drawRigid(ramRigidBody &rigid)
+	void drawRigid(rdtk::RigidBody &rigid)
 	{
 	}
 	

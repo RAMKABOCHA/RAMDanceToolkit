@@ -18,7 +18,7 @@
 #pragma once
 
 
-class Expansion : public ramBaseScene
+class Expansion : public rdtk::BaseScene
 {
 	
 public:
@@ -33,31 +33,62 @@ public:
     mBoxSizeRatio(5.0) {}
     
 
+	void drawImGui()
+	{
+		ImGui::Checkbox("Show Joint name", &mShowName);	ImGui::SameLine();
+		ImGui::Checkbox("Show Box", &mShowBox);
+		ImGui::Checkbox("Show Axis", &mShowAxis);		ImGui::SameLine();
+		ImGui::Checkbox("Show Line", &mShowLine);
+		ImGui::ColorEdit3("Box Color", &mBoxColor[0]);
+		
+		ImGui::DragFloat("Expansion Ratio", &mExpasionRatio, 0.5, 1.0, 10.0);
+		ImGui::DragFloat("Box size", &mBoxSize, 1.0, 3.0, 100.0);
+		ImGui::DragFloat("BigBox ratio", &mBoxSizeRatio, 0.5, 2.0, 10.0);
+		
+		static bool boxSize = false;
+		static bool showAll = false;
+		if (ImGui::Checkbox("Toggle box size", &boxSize)) seteAllSizeBigger(boxSize);
+		ImGui::SameLine();
+		if (ImGui::Checkbox("Show All", &showAll)) setAllVisiblity(showAll);
+		
+		ImGui::Columns(2, NULL, true);
+		for (int i = 0;i < rdtk::Actor::NUM_JOINTS; i++)
+		{
+			ImGui::PushID(ofToString(i).c_str());
+			ImGui::Checkbox(rdtk::Actor::getJointName(i).c_str(), &mNodeVisibility[i]);
+			ImGui::NextColumn();
+			ImGui::Checkbox("Bigger", &mBiggerSize[i]);
+			ImGui::NextColumn();
+			ImGui::PopID();
+		}
+		ImGui::Columns(1);
+	}
+	
 	void setupControlPanel()
 	{
 		
 #ifdef RAM_GUI_SYSTEM_OFXUI
 		
-		ofxUICanvas* panel = ramGetGUI().getCurrentUIContext();
+		ofxUICanvas* panel = rdtk::GetGUI().getCurrentUIContext();
 		
 		panel->getRect()->width =500.0f;
 		
-		ramGetGUI().addToggle("Show Joint name", &mShowName);
-		ramGetGUI().addToggle("Show Box", &mShowBox);
-		ramGetGUI().addToggle("Show Axis", &mShowAxis);
-		ramGetGUI().addToggle("Show Line", &mShowLine);
-		ramGetGUI().addColorSelector("Box Color", &mBoxColor);
+		rdtk::GetGUI().addToggle("Show Joint name", &mShowName);
+		rdtk::GetGUI().addToggle("Show Box", &mShowBox);
+		rdtk::GetGUI().addToggle("Show Axis", &mShowAxis);
+		rdtk::GetGUI().addToggle("Show Line", &mShowLine);
+		rdtk::GetGUI().addColorSelector("Box Color", &mBoxColor);
 		
-		ramGetGUI().addSlider("Expasion Ratio", 1.0, 10.0, &mExpasionRatio);
-		ramGetGUI().addSlider("Box size", 3.0, 100.0, &mBoxSize);
-		ramGetGUI().addSlider("Big Box ratio", 2.0, 10.0, &mBoxSizeRatio);
+		rdtk::GetGUI().addSlider("Expasion Ratio", 1.0, 10.0, &mExpasionRatio);
+		rdtk::GetGUI().addSlider("Box size", 3.0, 100.0, &mBoxSize);
+		rdtk::GetGUI().addSlider("Big Box ratio", 2.0, 10.0, &mBoxSizeRatio);
 		
 		panel->addToggle("Toggle box size", false, 20, 20);
 		panel->setWidgetPosition(OFX_UI_WIDGET_POSITION_RIGHT);
 		panel->addToggle("Show All", true, 20, 20);
 		panel->setWidgetPosition(OFX_UI_WIDGET_POSITION_DOWN);
 		
-		for(int i=0; i<ramActor::NUM_JOINTS; i++)
+		for(int i=0; i<rdtk::Actor::NUM_JOINTS; i++)
 		{
             mBiggerSize[i] = false;
             mNodeVisibility[i] = true;
@@ -67,7 +98,7 @@ public:
 			panel->addWidgetDown(toggleSize);
 			mToggleSize[i] = toggleSize;
 			
-			ofxUIToggle *toggleVisible = new ofxUIToggle(ramActor::getJointName(i), &mNodeVisibility[i], 8, 8);
+			ofxUIToggle *toggleVisible = new ofxUIToggle(rdtk::Actor::getJointName(i), &mNodeVisibility[i], 8, 8);
 			panel->addWidgetRight(toggleVisible);
 			mToggleDraw[i] = toggleVisible;
 		}
@@ -77,72 +108,16 @@ public:
 #endif
 	}
 	
-	void draw()
-	{
-        vector<ramNodeArray> expNAs = mExpansion.update(getAllNodeArrays());
-        vector<ramNodeArray> lpNAs = mLowpass.update(expNAs);
-
-		ramBeginCamera();
-		for (int i=0; i<getNumNodeArray(); i++)
-		{
-            ramNodeArray &src = getNodeArray(i);
-            ramNodeArray &processedNA = lpNAs.at(i);
-			
-			ofPushStyle();
-			ofNoFill();
-			for (int nodeId=0; nodeId<processedNA.getNumNode(); nodeId++)
-			{
-				if (mNodeVisibility[nodeId] == false) continue;
-                
-				ramNode &node = processedNA.getNode(nodeId);
-				
-				node.beginTransform();
-				
-				int boxSize = mBoxSize * (mBiggerSize[nodeId] ? mBoxSizeRatio : 1);
-				
-				if (mShowBox)
-				{
-					ofSetColor(mBoxColor);
-					ofBox(boxSize);
-				}
-				
-				if (mShowAxis)
-				{
-					ofDrawAxis(boxSize);
-				}
-				
-				node.endTransform();
-				
-				if (mShowLine)
-				{
-					ofSetColor(100);
-					ofSetLineWidth(1);
-					ofLine(src.getNode(nodeId), processedNA.getNode(nodeId));
-				}
-				
-				
-				if (mShowName)
-				{
-					ofSetColor(255);
-					node.drawNodeName(mBoxSize+20);
-				}
-			}
-			ofPopStyle();
-		}
-		ramEndCamera();
-	}
-
-	
 	void onValueChanged(ofxUIEventArgs& e)
 	{
 		string name = e.widget->getName();
-        
+		
 		if (name == "Expasion Ratio")
 		{
-            ofxUISlider *slider = (ofxUISlider *)e.widget;
-            setExpasionRatio(slider->getValue());
+			ofxUISlider *slider = (ofxUISlider *)e.widget;
+			setExpasionRatio(slider->getValue());
 		}
-        
+		
 		if (name == "Show All")
 		{
 			ofxUIToggle *t = (ofxUIToggle *)e.widget;
@@ -159,6 +134,64 @@ public:
 			seteAllSizeBigger(newValue);
 		}
 	}
+	
+	
+	
+	void draw()
+	{
+        vector<rdtk::NodeArray> expNAs = mExpansion.update(getAllNodeArrays());
+        vector<rdtk::NodeArray> lpNAs = mLowpass.update(expNAs);
+
+		rdtk::BeginCamera();
+		for (int i=0; i<getNumNodeArray(); i++)
+		{
+            rdtk::NodeArray &src = getNodeArray(i);
+            rdtk::NodeArray &processedNA = lpNAs.at(i);
+			
+			ofPushStyle();
+			ofNoFill();
+			for (int nodeId=0; nodeId<processedNA.getNumNode(); nodeId++)
+			{
+				if (mNodeVisibility[nodeId] == false) continue;
+                
+				rdtk::Node &node = processedNA.getNode(nodeId);
+				
+				node.beginTransform();
+				
+				int boxSize = mBoxSize * (mBiggerSize[nodeId] ? mBoxSizeRatio : 1);
+				
+				if (mShowBox)
+				{
+					ofSetColor(mBoxColor);
+					ofDrawBox(boxSize);
+				}
+				
+				if (mShowAxis)
+				{
+					ofDrawAxis(boxSize);
+				}
+				
+				node.endTransform();
+				
+				if (mShowLine)
+				{
+					ofSetColor(100);
+					ofSetLineWidth(1);
+					ofDrawLine(src.getNode(nodeId), processedNA.getNode(nodeId));
+				}
+				
+				
+				if (mShowName)
+				{
+					ofSetColor(255);
+					node.drawNodeName(mBoxSize+20);
+				}
+			}
+			ofPopStyle();
+		}
+		rdtk::EndCamera();
+	}
+
     
 	string getName() const { return "Expansion"; }
 
@@ -176,27 +209,27 @@ public:
 	
 	void setAllVisiblity(bool b)
 	{
-		for (int i=0; i<ramActor::NUM_JOINTS; i++)
+		for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++)
             mToggleDraw[i]->setValue(b);
 	}
 	
 	void seteAllSizeBigger(bool b)
 	{
-		for (int i=0; i<ramActor::NUM_JOINTS; i++)
+		for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++)
             mToggleSize[i]->setValue(b);
 	}
     
     
 private:
     
-    ramFilterEach<ramExpansion> mExpansion;
-    ramFilterEach<ramLowPassFilter> mLowpass;
+	ramFilterEach<rdtk::Expansion> mExpansion;
+	ramFilterEach<rdtk::LowPassFilter> mLowpass;
     
-	ofxUIToggle *mToggleDraw[ramActor::NUM_JOINTS];
-	bool mNodeVisibility[ramActor::NUM_JOINTS];
+	ofxUIToggle *mToggleDraw[rdtk::Actor::NUM_JOINTS];
+	bool mNodeVisibility[rdtk::Actor::NUM_JOINTS];
 	
-	ofxUIToggle *mToggleSize[ramActor::NUM_JOINTS];
-	bool mBiggerSize[ramActor::NUM_JOINTS];
+	ofxUIToggle *mToggleSize[rdtk::Actor::NUM_JOINTS];
+	bool mBiggerSize[rdtk::Actor::NUM_JOINTS];
 	
 	bool mShowAxis;
 	bool mShowBox;
