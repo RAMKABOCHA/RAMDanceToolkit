@@ -5,12 +5,12 @@ public:
     void drawImGui(){
         
         ImGui::Checkbox("draw line", &isDrawLine);
-        ImGui::SliderFloat("Volume", &volume, 0., 1.);
-        
+        ImGui::SliderFloat("volume", &volume, 0., 1.);
+        ImGui::Checkbox("sound", &isSound);
+        ImGui::SliderInt("frequency ratio", &frequency, 1, 10);
     };
     void setup(){
         handsline.assign(11, ofVec3f());
-        
     };
     void update(){
         
@@ -37,10 +37,12 @@ public:
         for (int i = 0; i < pointsIndex.size(); i++) {
             
             float amp = most - least;
-            float val = - 1. + (handsline[i].y - least) / amp * 2.;
+            float val = - 1. + (handsline[i].y - least) / 100. * 2.;
             soundline.curveTo(1. * i, val);
             
         }
+        
+        soundline = soundline.getResampledByCount(257);
         vnum = soundline.size();
         
     };
@@ -75,10 +77,15 @@ public:
     void audioOut(float * output, int bufferSize, int nChannels){
         
         if (vnum == 0) return;
-
+        if (!isSound) return;
+        
         for (int i = 0; i < bufferSize; i++) {
-            output[i * nChannels] = soundline[i % vnum].y * volume;
-            output[i * nChannels + 1] = soundline[i % vnum].y * volume;
+            int index = (i * frequency) % vnum;
+            
+            output[i * nChannels] = soundline[index].y * volume;
+            output[i * nChannels + 1] = soundline[index].y * volume;
+            
+            
         }
         
     };
@@ -104,5 +111,7 @@ private:
     ofPolyline soundline;
     int vnum = 0;
     bool isDrawLine = false;
+    bool isSound = false;
     float volume = 0.1;
+    int frequency = 1;
 };
