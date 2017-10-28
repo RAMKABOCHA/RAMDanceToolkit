@@ -25,7 +25,7 @@ public:
     };
     void update(){
         ofVec3f actor1Position;
-        ofVec3f actor2Position;
+        
         for (int j = 0; j < getNumNodeArray(); j++) {
             rdtk::NodeArray actor = getNodeArray(j);
             
@@ -85,12 +85,10 @@ public:
                 if(j == 0){
                     actor1Position = p;
                 }
-                if(j == 1){
-                    actor2Position = p;
-                }
+                
                 if(j == 2 ){
                     float d1 = actor1Position.distance(p);
-                    float d2 = actor2Position.distance(p);
+                    float d2 = actor1Position.distance(p);
                     leftVolume = ofMap(d1,0,500,1.0,0,true);
                     rightVolume = ofMap(d2,0,500,1.0,0,true);
                 }
