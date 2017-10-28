@@ -86,7 +86,7 @@ public:
                     actor1Position = p;
                 }
                 
-                if(j == 2 ){
+                if(j == 1 ){
                     float d1 = actor1Position.distance(p);
                     float d2 = actor1Position.distance(p);
                     leftVolume = ofMap(d1,0,500,1.0,0,true);
