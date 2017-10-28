@@ -10,7 +10,7 @@ public:
     }
     void setup(){
         vector<ofVec3f> hl;
-        hl.assign(11, ofVec3f());
+        hl.assign(6, ofVec3f());
         handsline.assign(3, hl);
         
         soundline.assign(3, ofPolyline());
@@ -152,14 +152,24 @@ private:
         19, //rdtk::Actor::JOINT_RIGHT_SHOULDER,
         18, //rdtk::Actor::JOINT_RIGHT_COLLAR,
         
-        3, //rdtk::Actor::JOINT_NECK,
+        3 //rdtk::Actor::JOINT_NECK,
         
-        13, //rdtk::Actor::JOINT_LEFT_COLLAR,
-        14, //rdtk::Actor::JOINT_LEFT_SHOULDER,
-        15, //rdtk::Actor::JOINT_LEFT_ELBOW,
-        16, //rdtk::Actor::JOINT_LEFT_WRIST,
-        17  //rdtk::Actor::JOINT_LEFT_HAND
     };
+//    vector<int> pointsIndex = {
+//        22, //rdtk::Actor::JOINT_RIGHT_HAND,
+//        21, //rdtk::Actor::JOINT_RIGHT_WRIST,
+//        20, //rdtk::Actor::JOINT_RIGHT_ELBOW,
+//        19, //rdtk::Actor::JOINT_RIGHT_SHOULDER,
+//        18, //rdtk::Actor::JOINT_RIGHT_COLLAR,
+//
+//        3, //rdtk::Actor::JOINT_NECK,
+//
+//        13, //rdtk::Actor::JOINT_LEFT_COLLAR,
+//        14, //rdtk::Actor::JOINT_LEFT_SHOULDER,
+//        15, //rdtk::Actor::JOINT_LEFT_ELBOW,
+//        16, //rdtk::Actor::JOINT_LEFT_WRIST,
+//        17  //rdtk::Actor::JOINT_LEFT_HAND
+//    };
     vector<int> pointsIndex2 = {
         rdtk::Actor::JOINT_HEAD,
         rdtk::Actor::JOINT_NECK, //rdtk::Actor::JOINT_RIGHT_WRIST,
