@@ -24,7 +24,8 @@ public:
         phaseAdder.assign(3, 0.01);;
     };
     void update(){
-        
+        ofVec3f actor1Position;
+        ofVec3f actor2Position;
         for (int j = 0; j < getNumNodeArray(); j++) {
             rdtk::NodeArray actor = getNodeArray(j);
             
@@ -56,6 +57,7 @@ public:
             soundline[j] = soundline[j].getResampledByCount(128 + 1);
             
             int divNum = floor(256 / (frequency[j] * 2));
+            divNum = divNum == 0 ? 1 : divNum;
             int nind = 0;
             bool isEven = true;
             int index = 0;
@@ -71,19 +73,37 @@ public:
                 } else {
                     index = 127 - nind;
                 }
-                
-                soundBuffer[j][i] = soundline[j][index].y * volume;
+                if(j<soundBuffer.size()){
+                    soundBuffer[j][i] = soundline[j][index].y * volume;
+                }
                 
             }
             
             if (phase[j] > TWO_PI) phase[j] -= TWO_PI;
-            
+            {
+                ofVec3f p = actor.getNode(4).getGlobalPosition();
+                if(j == 0){
+                    actor1Position = p;
+                }
+                if(j == 1){
+                    actor2Position = p;
+                }
+                if(j == 2 ){
+                    float d1 = actor1Position.distance(p);
+                    float d2 = actor2Position.distance(p);
+                    leftVolume = ofMap(d1,0,500,1.0,0,true);
+                    rightVolume = ofMap(d2,0,500,1.0,0,true);
+                }
+            }
             if (isHeadSynth) {
                 ofVec3f p = actor.getNode(4).getGlobalPosition();
-                frequency[j] = ofMap(p.z, -300., 300., 0., 5.);
+             
+                frequency[j] = ofMap(p.z, -300., 300., 0.1, 5.);
                 phaseAdder[j] = ofMap(p.x, -300., 300., 0.01, 0.05);
             }
+            
         }
+        
         
     };
     
@@ -111,11 +131,12 @@ public:
                 phase[j] -= TWO_PI;
             }
         }
-        
+        int length = 2;//soundBuffer.size() < 2 ? soundBuffer.size() : 2;
         for (int i = 0; i < bufferSize; i++) {
-            for (int j = 0; j < getNumNodeArray(); j++) {
-                output[i * nChannels] += soundBuffer[j][i] * sin(phase[j]);
-                output[i * nChannels + 1] += soundBuffer[j][i] * sin(phase[j]);
+            
+            for (int j = 0; j < length ; j++) {
+                output[i * nChannels] += (soundBuffer[j][i] * sin(phase[j]))*leftVolume;
+                output[i * nChannels + 1] += soundBuffer[j][i] * sin(phase[j])*rightVolume;
                 phase[j] += phaseAdder[j];
             }
             
@@ -139,6 +160,21 @@ private:
         16, //rdtk::Actor::JOINT_LEFT_WRIST,
         17  //rdtk::Actor::JOINT_LEFT_HAND
     };
+    vector<int> pointsIndex2 = {
+        rdtk::Actor::JOINT_HEAD,
+        rdtk::Actor::JOINT_NECK, //rdtk::Actor::JOINT_RIGHT_WRIST,
+        rdtk::Actor::JOINT_CHEST, //rdtk::Actor::JOINT_RIGHT_ELBOW,
+        rdtk::Actor::JOINT_ABDOMEN, //rdtk::Actor::JOINT_RIGHT_SHOULDER,
+        rdtk::Actor::JOINT_HIPS, //rdtk::Actor::JOINT_RIGHT_COLLAR,
+        
+        rdtk::Actor::JOINT_LEFT_HIP, //rdtk::Actor::JOINT_NECK,
+        
+        rdtk::Actor::JOINT_HIPS, //rdtk::Actor::JOINT_LEFT_COLLAR,
+        rdtk::Actor::JOINT_ABDOMEN, //rdtk::Actor::JOINT_LEFT_SHOULDER,
+        rdtk::Actor::JOINT_CHEST, //rdtk::Actor::JOINT_LEFT_ELBOW,
+        rdtk::Actor::JOINT_NECK, //rdtk::Actor::JOINT_LEFT_WRIST,
+        rdtk::Actor::JOINT_HEAD  //rdtk::Actor::JOINT_LEFT_HAND
+    };
     vector<vector<ofVec3f>> handsline;
     vector<ofPolyline> soundline;
     vector<vector<float>> soundBuffer;
@@ -150,5 +186,7 @@ private:
     bool isSound = false;
     bool isHeadSynth = false;
     float volume = 0.1;
+    float leftVolume = 0.1;
+    float rightVolume = 0.1;
     
 };
