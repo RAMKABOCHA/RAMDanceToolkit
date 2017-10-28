@@ -2,14 +2,14 @@
 
 class Lines : public rdtk::BaseScene{
 public:
-    float threshold;
-    float opacity;
+    float threshold = 40.;
+    float opacity = 0.3;
     vector<vector<ofVec3f>> pos;
-    int mode = 2;
+    int mode = 0;
     
     void drawImGui(){
         ImGui::SliderFloat("threshold", &threshold, 0.0, 200.0);
-        ImGui::SliderFloat("opacity", &opacity, 0.0, 255.0);
+        ImGui::SliderFloat("opacity", &opacity, 0.0, 1.0);
         ImGui::SliderInt("mode", &mode, 0, 2);
     };
     void setup(){
@@ -20,9 +20,9 @@ public:
         for (int i = 0; i < w; i++){
             for (int j = 0; j < h; j++){
                 ofVec3f v;
-                v.x = (i - w / 2. + 0.5) * 20.;
+                v.x = (i - w / 2. + 0.5) * 30.;
                 v.y = 0.;
-                v.z = (j - h / 2. + 0.5) * 20.;
+                v.z = (j - h / 2. + 0.5) * 30.;
                 
                 plane.push_back(v);
             }
@@ -30,9 +30,9 @@ public:
         pos.push_back(plane);
         
         vector<ofVec3f> sphere;
-        ofMesh mesh = ofMesh::icosphere(240., 2);
+        ofMesh mesh = ofMesh::icosphere(150., 2);
         for (int i = 0; i < mesh.getNumVertices(); i++) {
-            ofVec3f v = mesh.getVertex(i);
+            ofVec3f v = mesh.getVertex(i) + ofVec3f(0, 75, 0);
             sphere.push_back(v);
         }
         pos.push_back(sphere);
@@ -45,9 +45,9 @@ public:
             for (int j = 0; j < h; j++){
                 for (int k = 0; k < d; k++){
                     ofVec3f v;
-                    v.x = (i - w / 2. + 0.5) * 50.;
+                    v.x = (i - w / 2. + 0.5) * 60.;
                     v.y = j * 30.;
-                    v.z = (k - d / 2. + 0.5) * 50.;
+                    v.z = (k - d / 2. + 0.5) * 60.;
                     
                     grid.push_back(v);
                 }
@@ -63,27 +63,33 @@ public:
         // validate
         if (getNumNodeArray() <= 0) return;
         
-        rdtk::NodeArray actor = getNodeArray(0);
-        
         rdtk::BeginCamera();
         ofPushStyle();
-
+        ofEnableAlphaBlending();
         ofEnableBlendMode(OF_BLENDMODE_ADD);
-        ofSetColor(255, opacity);
         glBegin(GL_LINES);
-        for (int i = 0; i < actor.getNumNode(); i++) {
-            
-            ofVec3f p = actor.getNode(i).getGlobalPosition();
-            
-            for (int j = 0; j < pos[mode].size(); j++) {
+        
+        for (int k = 0; k < getNumNodeArray(); k++) {
+            rdtk::NodeArray actor = getNodeArray(k);
+            for (int i = 0; i < actor.getNumNode(); i++) {
                 
-                float dist = pos[mode][j].distance(p);
-                if (dist < threshold) {
-                    glVertex3f(pos[mode][j].x, pos[mode][j].y, pos[mode][j].z);
-                    glVertex3f(p.x, p.y, p.z);
+                ofVec3f p = actor.getNode(i).getGlobalPosition();
+                
+                for (int j = 0; j < pos[mode].size(); j++) {
+                    
+                    float dist = pos[mode][j].distance(p);
+                    ofFloatColor c(1., 1. / threshold * dist * opacity);
+                    
+                    if (dist < threshold) {
+                        glColor4f(c.r, c.g, c.b, c.a);
+                        glVertex3f(pos[mode][j].x, pos[mode][j].y, pos[mode][j].z);
+                        glColor4f(c.r, c.g, c.b, c.a);
+                        glVertex3f(p.x, p.y, p.z);
+                    }
                 }
             }
         }
+        
         glEnd();
         
         ofDisableBlendMode();
