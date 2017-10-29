@@ -4,6 +4,7 @@ class Lines : public rdtk::BaseScene{
 public:
     float threshold = 40.;
     float opacity = 0.3;
+    float lineWidth;
     vector<vector<ofVec3f>> pos;
     int mode = 0;
     
@@ -11,6 +12,8 @@ public:
         ImGui::SliderFloat("threshold", &threshold, 0.0, 200.0);
         ImGui::SliderFloat("opacity", &opacity, 0.0, 1.0);
         ImGui::SliderInt("mode", &mode, 0, 2);
+        
+        ImGui::SliderFloat("lineWidth", &lineWidth, 0.0, 10.0);
     };
     void setup(){
         
@@ -67,6 +70,7 @@ public:
         ofPushStyle();
         ofEnableAlphaBlending();
         ofEnableBlendMode(OF_BLENDMODE_ADD);
+        ofSetLineWidth(lineWidth);
         glBegin(GL_LINES);
         
         for (int k = 0; k < getNumNodeArray(); k++) {
