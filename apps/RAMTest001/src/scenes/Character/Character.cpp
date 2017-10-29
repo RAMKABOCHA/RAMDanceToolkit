@@ -10,7 +10,7 @@
 
 
 
-Character::Character(){
+Character::Character(): minScale(0.00001), maxScale(1){
     font.load("FreeUniversal-Regular.ttf",24,true,true,true);
     setup();
 //    isChacterOn.assign(4,false);
