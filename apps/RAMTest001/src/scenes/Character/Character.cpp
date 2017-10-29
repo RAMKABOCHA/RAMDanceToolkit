@@ -126,7 +126,9 @@ void Character::draw(){
                 
                 
                 int index = 0;
-                float d = NA.getNode(rdtk::Actor::JOINT_HEAD).getGlobalPosition().distance(NA.getNode(rdtk::Actor::JOINT_LEFT_KNEE).getGlobalPosition());
+                
+                float d = (j%2==0) ? NA.getNode(rdtk::Actor::JOINT_HEAD).getGlobalPosition().distance(NA.getNode(rdtk::Actor::JOINT_LEFT_KNEE).getGlobalPosition()) :
+                NA.getNode(rdtk::Actor::JOINT_RIGHT_ELBOW).getGlobalPosition().distance(NA.getNode(rdtk::Actor::JOINT_ABDOMEN).getGlobalPosition());
                 float scale =  ofMap(d,0,100,maxScale,minScale);
                 
                 
