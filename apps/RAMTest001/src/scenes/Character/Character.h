@@ -29,5 +29,6 @@ private:
     map<int,vector<string>> characterSet;
     vector<string> subjects,verbs,objects;
     bool handsOnly;
+    float maxScale,minScale;
     bool isChacterOn[4] = {false,false,false,false};
 };

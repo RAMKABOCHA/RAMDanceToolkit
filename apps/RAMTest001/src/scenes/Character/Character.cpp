@@ -106,6 +106,8 @@ void Character::drawImGui(){
     if(ImGui::Checkbox("handsOnly", &handsOnly)){
         
     }
+    ImGui::SliderFloat("maxScale", &maxScale, 0, 5);
+    ImGui::SliderFloat("minScale", &minScale, 0, 5);
     
 }
 void Character::update(){
@@ -124,8 +126,8 @@ void Character::draw(){
                 
                 
                 int index = 0;
-                float d = NA.getNode(rdtk::Actor::JOINT_LEFT_HAND).getGlobalPosition().distance(NA.getNode(rdtk::Actor::JOINT_RIGHT_HAND).getGlobalPosition());
-                float scale =  ofMap(d,0,100,3,0.001);
+                float d = NA.getNode(rdtk::Actor::JOINT_HEAD).getGlobalPosition().distance(NA.getNode(rdtk::Actor::JOINT_LEFT_KNEE).getGlobalPosition());
+                float scale =  ofMap(d,0,100,maxScale,minScale);
                 
                 
                 rdtk::Node nodeInterpolated (NA.getNode(rdtk::Actor::JOINT_LEFT_HAND));
