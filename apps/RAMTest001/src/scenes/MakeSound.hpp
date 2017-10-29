@@ -94,10 +94,15 @@ public:
                 }
             }
             if (isHeadSynth) {
-                ofVec3f p = actor.getNode(4).getGlobalPosition();
-             
-                frequency[j] = ofMap(p.z, -300., 300., 0.1, 5.);
-                phaseAdder[j] = ofMap(p.x, -300., 300., 0.01, 0.05);
+//                ofVec3f p = actor.getNode(rdtk::Actor::JOINT_LEFT_ELBOW).getGlobalPosition();
+                float _frequency = ofMap(actor.getNode(rdtk::Actor::JOINT_LEFT_ELBOW).getOrientationEuler().z,
+                      -180,180,
+                      0.1,5);
+                float _phaseAdder = ofMap(actor.getNode(rdtk::Actor::JOINT_LEFT_KNEE).getOrientationEuler().y,
+                                         -180,180,
+                                         0.01, 0.05);
+                frequency[j] = _frequency;
+                phaseAdder[j] = _phaseAdder;
             }
             
         }
