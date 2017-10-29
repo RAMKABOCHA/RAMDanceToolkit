@@ -1,6 +1,9 @@
 #pragma once
 class MakeSound : public rdtk::BaseScene {
 public:
+    MakeSound():volume(0.0001){
+        
+    }
     void drawImGui(){
         ImGui::Checkbox("sound", &isSound);
         ImGui::Checkbox("draw line", &isDrawLine);
@@ -97,7 +100,7 @@ public:
 //                ofVec3f p = actor.getNode(rdtk::Actor::JOINT_LEFT_ELBOW).getGlobalPosition();
                 float _frequency = ofMap(actor.getNode(rdtk::Actor::JOINT_LEFT_ELBOW).getOrientationEuler().z,
                       -180,180,
-                      0.1,5);
+                      0.00001,5);
                 float _phaseAdder = ofMap(actor.getNode(rdtk::Actor::JOINT_LEFT_KNEE).getOrientationEuler().y,
                                          -180,180,
                                          0.01, 0.05);
