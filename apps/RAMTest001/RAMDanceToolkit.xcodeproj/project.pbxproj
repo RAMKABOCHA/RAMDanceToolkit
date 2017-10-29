@@ -204,8 +204,8 @@
 		1A4B893B1FA2E76D0066A400 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				1A28D44C1FA56DEF007F1D03 /* Link */,
 				1AD88AD61FA3125100BE92CB /* Character */,
+				1A28D44C1FA56DEF007F1D03 /* Link */,
 				1A4B893C1FA2E7750066A400 /* Moji */,
 			);
 			name = Scene;

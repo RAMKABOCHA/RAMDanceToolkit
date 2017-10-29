@@ -23,7 +23,7 @@ class Link : public rdtk::BaseScene
     
 public:
     
-    Link() : mBoxLineWidth(2.0), mUseSingleColor(true), mLineColor(0.840, 1.000, 0.419)
+    Link() : mBoxLineWidth(1.0), mUseSingleColor(true), mLineColor(0.840, 1.000, 0.419)
     {
 //        mSizeArray.clear();
 //        mSizeArray.resize(rdtk::Actor::NUM_JOINTS);
@@ -69,12 +69,14 @@ public:
         ImGui::Checkbox("Use single color", &mUseSingleColor);
         ImGui::ColorEdit3("Line color", &mLineColor[0]);
         ImGui::DragFloat("Line width", &mBoxLineWidth, 0.1, 0.0, 10.0);
+        
 //        if (ImGui::DragFloat("Master box size", &mMasterBoxSize, 1, 0, 1000.0))
 //        {
 //            for (int i=0; i<mSizeArray.size(); i++)
 //                mSizeArray.at(i) = mMasterBoxSize;
 //        }
         
+        if (ImGui::Button("Reset")) needToReset = true;
         
         ImGui::Columns(2, NULL, true);
         for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++)
@@ -83,7 +85,6 @@ public:
             ImGui::NextColumn();
         }
         ImGui::Columns(1);
-        if (ImGui::Button("Reset")) needToReset = true;
         
     }
     void reset(){
@@ -100,6 +101,7 @@ public:
         if(needToReset){
             
             reset();
+            needToReset = false;
         }
         triangulation.reset();
         for(int i=0; i<enternalNode.size(); i++)
