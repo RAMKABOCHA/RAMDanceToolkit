@@ -25,6 +25,7 @@
 #include "MakeSound.hpp"
 #include "Moji.h"
 #include "Character.h"
+#include "Link.h"
 class ofApp : public rdtk::BaseApp
 {
 public:

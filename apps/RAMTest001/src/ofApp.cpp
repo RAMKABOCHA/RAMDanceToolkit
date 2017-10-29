@@ -36,7 +36,7 @@ void ofApp::setup()
     sceneManager.addScene<MakeSound>();
     sceneManager.addScene<Moji>();
     sceneManager.addScene<Character>();
-    
+    sceneManager.addScene<Link>();
     soundScene = (MakeSound*)(sceneManager.getScene(3).get());
     ofSoundStreamSetup(2, 0);
 }
