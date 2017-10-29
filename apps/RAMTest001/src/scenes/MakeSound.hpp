@@ -1,7 +1,7 @@
 #pragma once
 class MakeSound : public rdtk::BaseScene {
 public:
-    MakeSound():volume(0.0001){
+    MakeSound():volume(0.001), isSound(true), isDrawLine(true){
         
     }
     void drawImGui(){
