@@ -28,4 +28,6 @@ private:
     ofTrueTypeFont font;
     map<int,vector<string>> characterSet;
     vector<string> subjects,verbs,objects;
+    bool handsOnly;
+    bool isChacterOn[4] = {false,false,false,false};
 };
