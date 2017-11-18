@@ -69,6 +69,16 @@
 		1A28D59E1FA57A74007F1D03 /* BitCrusher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A28D5431FA57A74007F1D03 /* BitCrusher.cpp */; };
 		1A28D59F1FA57A74007F1D03 /* SineWave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A28D5461FA57A74007F1D03 /* SineWave.cpp */; };
 		1AD88AD91FA3125100BE92CB /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AD88AD71FA3125100BE92CB /* Character.cpp */; };
+		1AF670FE1FBF0C440082CEB4 /* Mandala.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AF670FC1FBF0C440082CEB4 /* Mandala.cpp */; };
+		1AF6716A1FBF2AF80082CEB4 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AF671041FBF2AF70082CEB4 /* CoreMIDI.framework */; };
+		1AF6716B1FBF2AF80082CEB4 /* RtMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AF671081FBF2AF70082CEB4 /* RtMidi.cpp */; };
+		1AF671771FBF2AF80082CEB4 /* ofxBaseMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AF6714A1FBF2AF70082CEB4 /* ofxBaseMidi.cpp */; };
+		1AF671781FBF2AF80082CEB4 /* ofxMidiOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AF6714B1FBF2AF70082CEB4 /* ofxMidiOut.cpp */; };
+		1AF671791FBF2AF80082CEB4 /* ofxRtMidiIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AF6714F1FBF2AF70082CEB4 /* ofxRtMidiIn.cpp */; };
+		1AF6717A1FBF2AF80082CEB4 /* ofxRtMidiOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AF671501FBF2AF70082CEB4 /* ofxRtMidiOut.cpp */; };
+		1AF671801FBF2AF80082CEB4 /* ofxMidiMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AF6715E1FBF2AF70082CEB4 /* ofxMidiMessage.cpp */; };
+		1AF671811FBF2AF80082CEB4 /* ofxMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AF671611FBF2AF70082CEB4 /* ofxMidi.cpp */; };
+		1AF671821FBF2AF80082CEB4 /* ofxMidiIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AF671621FBF2AF70082CEB4 /* ofxMidiIn.cpp */; };
 		270D2D9C16E4760700D5F750 /* icon.icns in CopyFiles */ = {isa = PBXBuildFile; fileRef = 270D2D9916E475D800D5F750 /* icon.icns */; };
 		601900591644E31F001930AA /* libram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B90AB31644E21400AF2156 /* libram.a */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
@@ -279,6 +289,28 @@
 		1A4B893D1FA2E7750066A400 /* Moji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moji.h; sourceTree = "<group>"; };
 		1AD88AD71FA3125100BE92CB /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
 		1AD88AD81FA3125100BE92CB /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
+		1AF670FA1FBF0BB70082CEB4 /* FlickerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickerControl.h; sourceTree = "<group>"; };
+		1AF670FC1FBF0C440082CEB4 /* Mandala.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mandala.cpp; sourceTree = "<group>"; };
+		1AF670FD1FBF0C440082CEB4 /* Mandala.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mandala.hpp; sourceTree = "<group>"; };
+		1AF671041FBF2AF70082CEB4 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreMIDI.framework; sourceTree = "<group>"; };
+		1AF671081FBF2AF70082CEB4 /* RtMidi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RtMidi.cpp; sourceTree = "<group>"; };
+		1AF671091FBF2AF70082CEB4 /* RtMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtMidi.h; sourceTree = "<group>"; };
+		1AF671481FBF2AF70082CEB4 /* ofxMidiIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMidiIn.h; sourceTree = "<group>"; };
+		1AF671491FBF2AF70082CEB4 /* ofxMidiConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMidiConstants.h; sourceTree = "<group>"; };
+		1AF6714A1FBF2AF70082CEB4 /* ofxBaseMidi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBaseMidi.cpp; sourceTree = "<group>"; };
+		1AF6714B1FBF2AF70082CEB4 /* ofxMidiOut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMidiOut.cpp; sourceTree = "<group>"; };
+		1AF6714C1FBF2AF70082CEB4 /* ofxMidiOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMidiOut.h; sourceTree = "<group>"; };
+		1AF6714E1FBF2AF70082CEB4 /* ofxRtMidiOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxRtMidiOut.h; sourceTree = "<group>"; };
+		1AF6714F1FBF2AF70082CEB4 /* ofxRtMidiIn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxRtMidiIn.cpp; sourceTree = "<group>"; };
+		1AF671501FBF2AF70082CEB4 /* ofxRtMidiOut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxRtMidiOut.cpp; sourceTree = "<group>"; };
+		1AF671511FBF2AF70082CEB4 /* ofxRtMidiIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxRtMidiIn.h; sourceTree = "<group>"; };
+		1AF6715D1FBF2AF70082CEB4 /* ofxMidiMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMidiMessage.h; sourceTree = "<group>"; };
+		1AF6715E1FBF2AF70082CEB4 /* ofxMidiMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMidiMessage.cpp; sourceTree = "<group>"; };
+		1AF6715F1FBF2AF70082CEB4 /* ofxMidiTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMidiTypes.h; sourceTree = "<group>"; };
+		1AF671601FBF2AF70082CEB4 /* ofxMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMidi.h; sourceTree = "<group>"; };
+		1AF671611FBF2AF70082CEB4 /* ofxMidi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMidi.cpp; sourceTree = "<group>"; };
+		1AF671621FBF2AF70082CEB4 /* ofxMidiIn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMidiIn.cpp; sourceTree = "<group>"; };
+		1AF671631FBF2AF70082CEB4 /* ofxBaseMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBaseMidi.h; sourceTree = "<group>"; };
 		270D2D9916E475D800D5F750 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../../resources/Icons/icon.icns; sourceTree = "<group>"; };
 		5A609DDA1FA0D218000F59DF /* Interp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Interp.hpp; path = scenes/Interp.hpp; sourceTree = "<group>"; };
 		5A609DDD1FA0E79B000F59DF /* Lines.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Lines.hpp; path = scenes/Lines.hpp; sourceTree = "<group>"; };
@@ -324,6 +356,7 @@
 				E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */,
 				E45BE97D0E8CC7DD009D7055 /* AudioToolbox.framework in Frameworks */,
 				E45BE97E0E8CC7DD009D7055 /* Carbon.framework in Frameworks */,
+				1AF6716A1FBF2AF80082CEB4 /* CoreMIDI.framework in Frameworks */,
 				E45BE97F0E8CC7DD009D7055 /* CoreAudio.framework in Frameworks */,
 				E45BE9800E8CC7DD009D7055 /* CoreFoundation.framework in Frameworks */,
 				E45BE9810E8CC7DD009D7055 /* CoreServices.framework in Frameworks */,
@@ -534,7 +567,9 @@
 			isa = PBXGroup;
 			children = (
 				1AD88AD61FA3125100BE92CB /* Character */,
+				1AF670F91FBF0BB70082CEB4 /* FlickerControl */,
 				1A28D44C1FA56DEF007F1D03 /* Link */,
+				1AF670FB1FBF0C390082CEB4 /* Mandala */,
 				1A4B893C1FA2E7750066A400 /* Moji */,
 			);
 			name = Scene;
@@ -559,6 +594,90 @@
 			path = Character;
 			sourceTree = "<group>";
 		};
+		1AF670F91FBF0BB70082CEB4 /* FlickerControl */ = {
+			isa = PBXGroup;
+			children = (
+				1AF670FA1FBF0BB70082CEB4 /* FlickerControl.h */,
+			);
+			path = FlickerControl;
+			sourceTree = "<group>";
+		};
+		1AF670FB1FBF0C390082CEB4 /* Mandala */ = {
+			isa = PBXGroup;
+			children = (
+				1AF670FC1FBF0C440082CEB4 /* Mandala.cpp */,
+				1AF670FD1FBF0C440082CEB4 /* Mandala.hpp */,
+			);
+			path = Mandala;
+			sourceTree = "<group>";
+		};
+		1AF670FF1FBF2AF70082CEB4 /* ofxMidi */ = {
+			isa = PBXGroup;
+			children = (
+				1AF671031FBF2AF70082CEB4 /* framework */,
+				1AF671061FBF2AF70082CEB4 /* libs */,
+				1AF671471FBF2AF70082CEB4 /* src */,
+			);
+			name = ofxMidi;
+			path = ../../../addons/ofxMidi;
+			sourceTree = "<group>";
+		};
+		1AF671031FBF2AF70082CEB4 /* framework */ = {
+			isa = PBXGroup;
+			children = (
+				1AF671041FBF2AF70082CEB4 /* CoreMIDI.framework */,
+			);
+			path = framework;
+			sourceTree = "<group>";
+		};
+		1AF671061FBF2AF70082CEB4 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				1AF671071FBF2AF70082CEB4 /* rtmidi */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		1AF671071FBF2AF70082CEB4 /* rtmidi */ = {
+			isa = PBXGroup;
+			children = (
+				1AF671081FBF2AF70082CEB4 /* RtMidi.cpp */,
+				1AF671091FBF2AF70082CEB4 /* RtMidi.h */,
+			);
+			path = rtmidi;
+			sourceTree = "<group>";
+		};
+		1AF671471FBF2AF70082CEB4 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				1AF671481FBF2AF70082CEB4 /* ofxMidiIn.h */,
+				1AF671491FBF2AF70082CEB4 /* ofxMidiConstants.h */,
+				1AF6714A1FBF2AF70082CEB4 /* ofxBaseMidi.cpp */,
+				1AF6714B1FBF2AF70082CEB4 /* ofxMidiOut.cpp */,
+				1AF6714C1FBF2AF70082CEB4 /* ofxMidiOut.h */,
+				1AF6714D1FBF2AF70082CEB4 /* desktop */,
+				1AF6715D1FBF2AF70082CEB4 /* ofxMidiMessage.h */,
+				1AF6715E1FBF2AF70082CEB4 /* ofxMidiMessage.cpp */,
+				1AF6715F1FBF2AF70082CEB4 /* ofxMidiTypes.h */,
+				1AF671601FBF2AF70082CEB4 /* ofxMidi.h */,
+				1AF671611FBF2AF70082CEB4 /* ofxMidi.cpp */,
+				1AF671621FBF2AF70082CEB4 /* ofxMidiIn.cpp */,
+				1AF671631FBF2AF70082CEB4 /* ofxBaseMidi.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		1AF6714D1FBF2AF70082CEB4 /* desktop */ = {
+			isa = PBXGroup;
+			children = (
+				1AF6714E1FBF2AF70082CEB4 /* ofxRtMidiOut.h */,
+				1AF6714F1FBF2AF70082CEB4 /* ofxRtMidiIn.cpp */,
+				1AF671501FBF2AF70082CEB4 /* ofxRtMidiOut.cpp */,
+				1AF671511FBF2AF70082CEB4 /* ofxRtMidiIn.h */,
+			);
+			path = desktop;
+			sourceTree = "<group>";
+		};
 		601900561644E22B001930AA /* ram */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +697,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				1AF670FF1FBF2AF70082CEB4 /* ofxMidi */,
 				1A28D47B1FA57A74007F1D03 /* ofxTonic */,
 				1A28D44E1FA56DFE007F1D03 /* ofxDelaunay */,
 			);
@@ -778,11 +898,14 @@
 				1A28D56F1FA57A74007F1D03 /* ControlMetroDivider.cpp in Sources */,
 				1A28D5991FA57A74007F1D03 /* MonoToStereoPanner.cpp in Sources */,
 				1A28D58F1FA57A74007F1D03 /* ControlDbToLinear.cpp in Sources */,
+				1AF6717A1FBF2AF80082CEB4 /* ofxRtMidiOut.cpp in Sources */,
+				1AF671811FBF2AF80082CEB4 /* ofxMidi.cpp in Sources */,
 				1A28D5861FA57A74007F1D03 /* ControlCounter.cpp in Sources */,
 				1A28D58E1FA57A74007F1D03 /* RectWave.cpp in Sources */,
 				1A28D5841FA57A74007F1D03 /* Arithmetic.cpp in Sources */,
 				1A28D59B1FA57A74007F1D03 /* BufferFiller.cpp in Sources */,
 				1A28D5811FA57A74007F1D03 /* ControlTrigger.cpp in Sources */,
+				1AF671781FBF2AF80082CEB4 /* ofxMidiOut.cpp in Sources */,
 				1A28D5731FA57A74007F1D03 /* ControlValue.cpp in Sources */,
 				1A28D4721FA56DFE007F1D03 /* ofxDelaunay.cpp in Sources */,
 				1A28D59F1FA57A74007F1D03 /* SineWave.cpp in Sources */,
@@ -794,6 +917,7 @@
 				1A28D56A1FA57A74007F1D03 /* ControlPrinter.cpp in Sources */,
 				1A28D59C1FA57A74007F1D03 /* ControlMidiToFreq.cpp in Sources */,
 				1A28D5751FA57A74007F1D03 /* ControlParameter.cpp in Sources */,
+				1AF671771FBF2AF80082CEB4 /* ofxBaseMidi.cpp in Sources */,
 				1AD88AD91FA3125100BE92CB /* Character.cpp in Sources */,
 				1A28D56B1FA57A74007F1D03 /* ControlRecorder.cpp in Sources */,
 				1A28D5981FA57A74007F1D03 /* FilterUtils.cpp in Sources */,
@@ -810,6 +934,7 @@
 				1A28D57F1FA57A74007F1D03 /* Synth.cpp in Sources */,
 				1A28D5711FA57A74007F1D03 /* ControlStepper.cpp in Sources */,
 				1A28D56E1FA57A74007F1D03 /* CombFilter.cpp in Sources */,
+				1AF671821FBF2AF80082CEB4 /* ofxMidiIn.cpp in Sources */,
 				1A28D5951FA57A74007F1D03 /* ControlXYSpeed.cpp in Sources */,
 				1A28D5941FA57A74007F1D03 /* Filters.cpp in Sources */,
 				1A28D4711FA56DFE007F1D03 /* Delaunay.cpp in Sources */,
@@ -818,12 +943,16 @@
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				1A28D58D1FA57A74007F1D03 /* ADSR.cpp in Sources */,
 				1A28D5931FA57A74007F1D03 /* StereoDelay.cpp in Sources */,
+				1AF671791FBF2AF80082CEB4 /* ofxRtMidiIn.cpp in Sources */,
 				1A28D57C1FA57A74007F1D03 /* LFNoise.cpp in Sources */,
 				1A28D59D1FA57A74007F1D03 /* BufferPlayer.cpp in Sources */,
 				1A28D5771FA57A74007F1D03 /* Mixer.cpp in Sources */,
+				1AF671801FBF2AF80082CEB4 /* ofxMidiMessage.cpp in Sources */,
 				1A28D5801FA57A74007F1D03 /* ControlFloor.cpp in Sources */,
 				1A28D5821FA57A74007F1D03 /* PolySynth.cpp in Sources */,
+				1AF670FE1FBF0C440082CEB4 /* Mandala.cpp in Sources */,
 				1A28D5961FA57A74007F1D03 /* RingBuffer.cpp in Sources */,
+				1AF6716B1FBF2AF80082CEB4 /* RtMidi.cpp in Sources */,
 				1A28D57B1FA57A74007F1D03 /* SampleTable.cpp in Sources */,
 				1A28D5781FA57A74007F1D03 /* CompressorLimiter.cpp in Sources */,
 				1A28D5971FA57A74007F1D03 /* ControlCallback.cpp in Sources */,

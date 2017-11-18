@@ -26,6 +26,8 @@
 #include "Moji.h"
 #include "Character.h"
 #include "Link.h"
+#include "FlickerControl.h"
+#include "Mandala.hpp"
 class ofApp : public rdtk::BaseApp
 {
 public:

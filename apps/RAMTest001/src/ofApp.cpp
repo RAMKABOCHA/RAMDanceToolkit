@@ -37,6 +37,8 @@ void ofApp::setup()
     sceneManager.addScene<Moji>();
     sceneManager.addScene<Character>();
     sceneManager.addScene<Link>();
+    sceneManager.addScene<FlickerControl>();
+    sceneManager.addScene<Mandala>();
     soundScene = (MakeSound*)(sceneManager.getScene(3).get());
     ofSoundStreamSetup(2, 0);
 }
