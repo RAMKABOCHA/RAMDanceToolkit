@@ -256,7 +256,7 @@ public:
     }
     void draw(){
         float x = currentTrackId[activeX]*ofGetWidth();
-        float y = currentTrackId[activeY]*ofGetWidth();
+        float y = currentTrackId[activeY]*ofGetHeight();
         
         
         float angle = 360.0f / (step*1.0f) ;
@@ -266,26 +266,37 @@ public:
         
         for (int  i = 0; i < step; i++) {
             float rad = DEG_TO_RAD * (degree+(angle*i));
-            float x2 = sin(rad)*radius+midX;
-            float y2 = cos(rad)*radius+midY;
+            float x2 = sin(rad)*radius;
+            float y2 = cos(rad)*radius;
             
             //            ofDrawCircle(x2, y2, 10);
             points[i].push_back(ofPoint(x2,y2));
-            if(points[i].size() > 500){
+            if(points[i].size() > maxPoint){
                 points[i].erase(points[i].begin());
             }
         }
         
+        ofPushMatrix();
+        ofTranslate(midX,midY);
         for(int i = 0 ; i < points.size(); i++){
             vector<ofPoint> pts = points[i];
-            for(int j = 0 ; j < pts.size()-1; j++){
-                
-                if(j>1){
-                    ofDrawLine(pts[j].x, pts[j].y, pts[j+1].x, pts[j+1].y);
-                }
-                
-            }
+            ofPolyline polyline(pts);
+            
+            polyline.draw();
         }
+        ofPopMatrix();
+        
+        ofPushMatrix();
+        
+        ofTranslate(midX,midY);
+        ofScale(1,-1,1);
+        for(int i = 0 ; i < points.size(); i++){
+            vector<ofPoint> pts = points[i];
+            ofPolyline polyline(pts);
+            
+            polyline.draw();
+        }
+        ofPopMatrix();
         if(isDebug){
         ofDrawBitmapString("Left Elbow Active Orientation: " + ofToString(activeOrientation[0]) ,10,100);
         ofDrawBitmapString("Right Elbow Active Orientation: "+ ofToString(activeOrientation[1]) ,10,115);
