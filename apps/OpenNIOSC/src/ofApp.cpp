@@ -113,14 +113,28 @@ void ofApp::setup() {
 	
 	ofSetLogLevel(OF_LOG_VERBOSE);
 	settings.pushTag("openNI");
-	openNI.setDeviceID(settings.getValue("deviceID", 0));
+//    openNI.setDeviceID(settings.getValue("deviceID", 0));
 	openNI.setup();
+    openNI.setLogLevel(OF_LOG_VERBOSE);
 	openNI.addDepthGenerator();
-	openNI.setRegister(false);
+    openNI.addImageGenerator();
+//    openNI.addInfraGenerator();
+    openNI.addUserGenerator();
+	openNI.setRegister(true);
 	openNI.setMirror(false);
-	openNI.addUserGenerator();
+	
 	openNI.setMaxNumUsers(settings.getValue("maxNumUsers", 2));
 	openNI.start();
+    
+    ofAddListener(openNI.userEvent, this, &ofApp::userEvent);
+    
+    ofxOpenNIUser user;
+    user.setUseMaskTexture(true);
+    user.setUsePointCloud(true);
+    user.setPointCloudDrawSize(2); // this is the size of the glPoint that will be drawn for the point cloud
+    user.setPointCloudResolution(2); // this is the step size between points for the cloud -> eg., this sets it to every second point
+    openNI.setBaseUserClass(user);
+    
 	settings.popTag();
 	
 	settings.pushTag("osc");
@@ -222,10 +236,11 @@ void ofApp::update(){
 
 void ofApp::draw() {
 	ofSetColor(255);
-	openNI.drawDepth();
-	for(int i = 0; i < openNI.getNumTrackedUsers(); i++) {
-		openNI.getTrackedUser(i).drawSkeleton();
-	}
+//     openNI.drawDebug();
+    openNI.drawDepth();
+    for(int i = 0; i < openNI.getNumTrackedUsers(); i++) {
+        openNI.getTrackedUser(i).drawSkeleton();
+    }
 }
 
 void ofApp::userEvent(ofxOpenNIUserEvent & event) {
