@@ -28,6 +28,8 @@
 #include "Link.h"
 #include "FlickerControl.h"
 #include "Mandala.hpp"
+#include "SceneSypthon.hpp"
+
 class ofApp : public rdtk::BaseApp
 {
 public:
@@ -56,7 +58,7 @@ public:
 	void onActorExit(const rdtk::Actor &actor);
 	void onRigidSetup(const rdtk::RigidBody &rigid);
 	void onRigidExit(const rdtk::RigidBody &rigid);
-    
+    void updateWithOscMessage(const ofxOscMessage &m) ;
     void audioOut(float * output, int bufferSize, int nChannels);
 private:
     ofSoundStream soundStream;
@@ -71,5 +73,7 @@ private:
     float phaseAdder;
     float phaseAdderTarget;
     
-    MakeSound* soundScene;
+    
+    
+    
 };

@@ -1,0 +1,3 @@
+ofxBezierWarpManager
+ofxSyphon
+ofxXmlSettings

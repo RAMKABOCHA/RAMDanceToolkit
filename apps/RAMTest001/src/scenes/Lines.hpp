@@ -5,10 +5,12 @@ public:
     float threshold = 40.;
     float opacity = 0.3;
     float lineWidth;
+    bool isDrawActor;
     vector<vector<ofVec3f>> pos;
     int mode = 0;
     
     void drawImGui(){
+        ImGui::Checkbox("isDrawActor",&isDrawActor);
         ImGui::SliderFloat("threshold", &threshold, 0.0, 200.0);
         ImGui::SliderFloat("opacity", &opacity, 0.0, 1.0);
         ImGui::SliderInt("mode", &mode, 0, 2);
@@ -57,11 +59,20 @@ public:
             }
         }
         pos.push_back(grid);
+        threshold = 40.;
+        opacity = 0.1;
+        lineWidth = 1;
+        isDrawActor = false;
         
     };
     
     void update(){};
-    
+    void drawActor(const rdtk::Actor &actor){
+        const rdtk::NodeArray actor1 = lowPassFilter.update(actor);
+        if(isDrawActor){
+            rdtk::DrawBasicActor(actor1);
+        }
+    }
     void draw(){
         // validate
         if (getNumNodeArray() <= 0) return;
@@ -101,6 +112,6 @@ public:
         rdtk::EndCamera();
         
     };
-    
+    rdtk::LowPassFilter lowPassFilter;
     string getName() const { return "Lines"; }
 };

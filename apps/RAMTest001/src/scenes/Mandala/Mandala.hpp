@@ -9,10 +9,11 @@
 #pragma once
 #include "ramMain.h"
 #include "ofMain.h"
+
 class Mandala : public rdtk::BaseScene{
 public:
     
-    
+
     void drawImGui(){
         //        ImGui::SliderFloat("threshold", &threshold, 0.0, 200.0);
         //        ImGui::SliderFloat("opacity", &opacity, 0.0, 1.0);
@@ -88,15 +89,20 @@ public:
         ImGui::PopID();
     };
     void setup(){
+        step = 4;
+        lowpassamount = 0.949;
+        iVelocity = 97;
+        activeX = 0;
+        activeY = 1;
         rotationRangeLeftElbowX[0] = -180;
-        rotationRangeLeftElbowX[1] = 180;
+        rotationRangeLeftElbowX[1] = 270;
         rotationRangeLeftElbowY[0] = -180;
         rotationRangeLeftElbowY[1] = 180;
         rotationRangeLeftElbowZ[0] = -180;
         rotationRangeLeftElbowZ[1] = 180;
         
-        rotationRangeRightElbowX[0] = -180;
-        rotationRangeRightElbowX[1] = 180;
+        rotationRangeRightElbowX[0] = -240;
+        rotationRangeRightElbowX[1] = 270;
         rotationRangeRightElbowY[0] = -180;
         rotationRangeRightElbowY[1] = 180;
         rotationRangeRightElbowZ[0] = -180;
@@ -343,7 +349,7 @@ public:
     
     int mode = 0;
     float midX, midY;
-    int step = 8;
+    int step = 4;
     vector<vector<ofPoint>> points;
     int maxPoint;
     bool isDebug;

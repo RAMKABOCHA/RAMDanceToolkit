@@ -21,6 +21,7 @@
 //--------------------------------------------------------------
 void ofApp::setup()
 {
+    ofSetLogLevel(OF_LOG_VERBOSE);
 	ofSetFrameRate(60);
 	ofSetVerticalSync(true);
 	
@@ -31,6 +32,7 @@ void ofApp::setup()
 	/// scenes setup
 	// ------------------
 	rdtk::SceneManager& sceneManager = rdtk::SceneManager::instance();
+    
     sceneManager.addScene<Interp>();
 	sceneManager.addScene<Lines>();
     sceneManager.addScene<MakeSound>();
@@ -39,7 +41,8 @@ void ofApp::setup()
     sceneManager.addScene<Link>();
     sceneManager.addScene<FlickerControl>();
     sceneManager.addScene<Mandala>();
-    soundScene = (MakeSound*)(sceneManager.getScene(3).get());
+    sceneManager.addScene<SceneSypthon>();
+    
     ofSoundStreamSetup(2, 0);
 }
 
@@ -47,16 +50,18 @@ void ofApp::setup()
 void ofApp::update()
 {
     
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::draw()
 {
-    
+//    rdtk::SceneManager& sceneManager = rdtk::SceneManager::instance();
+//    individualTextureSyphonServer.publishScreen();
 }
 
 void ofApp::audioOut(float * output, int bufferSize, int nChannels){
-    soundScene->audioOut(output, bufferSize, nChannels);
+//    soundScene->audioOut(output, bufferSize, nChannels);
 }
 
 
@@ -100,7 +105,11 @@ void ofApp::onRigidExit(const rdtk::RigidBody &rigid)
 
 }
 
-
+void ofApp::updateWithOscMessage(const ofxOscMessage &m) {
+    ofLogVerbose() << m.getAddress();
+    getActorManager().updateWithOscMessage(m);
+    
+}
 
 #pragma mark - of Event
 //--------------------------------------------------------------
