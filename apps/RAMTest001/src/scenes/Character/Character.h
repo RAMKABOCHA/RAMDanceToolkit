@@ -31,4 +31,22 @@ private:
     bool handsOnly;
     float maxScale,minScale;
     bool isChacterOn[4] = {false,false,false,false};
+    int selectedText;
+    
+    int rotationRangeLeftHipY[2];
+    int rotationRangeLeftKneeY[2];
+    int rotationRangeLeftAnkleY[2];
+    int rotationRangeLeftToeY[2];
+    
+    int rotationRangeRightHipY[2];
+    int rotationRangeRightKneeY[2];
+    int rotationRangeRightAnkleY[2];
+    int rotationRangeRightToeY[2];
+    
+    std::map<int,int*> mymap;
+    std::map<int,int> mymap2;
+
+    
+    rdtk::LowPassFilter lowPassFilter;
+
 };

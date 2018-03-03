@@ -314,6 +314,7 @@
 		1A41C16F1FC8F30F00FC3E95 /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSyphonServerDirectory.h; sourceTree = "<group>"; };
 		1A41C18F1FC91F1C00FC3E95 /* SceneSypthon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SceneSypthon.hpp; sourceTree = "<group>"; };
 		1A4B893D1FA2E7750066A400 /* Moji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moji.h; sourceTree = "<group>"; };
+		1A935686204AD3580079731F /* Expansion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Expansion.h; sourceTree = "<group>"; };
 		1AD88AD71FA3125100BE92CB /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
 		1AD88AD81FA3125100BE92CB /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		1AF670FA1FBF0BB70082CEB4 /* FlickerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickerControl.h; sourceTree = "<group>"; };
@@ -675,12 +676,13 @@
 		1A4B893B1FA2E76D0066A400 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				1A41C18D1FC91F0A00FC3E95 /* SceneSypthon */,
 				1AD88AD61FA3125100BE92CB /* Character */,
+				1A935685204AD3580079731F /* Expansion */,
 				1AF670F91FBF0BB70082CEB4 /* FlickerControl */,
 				1A28D44C1FA56DEF007F1D03 /* Link */,
 				1AF670FB1FBF0C390082CEB4 /* Mandala */,
 				1A4B893C1FA2E7750066A400 /* Moji */,
+				1A41C18D1FC91F0A00FC3E95 /* SceneSypthon */,
 			);
 			name = Scene;
 			path = src/scenes;
@@ -694,6 +696,14 @@
 			name = Moji;
 			path = src/scenes/Moji;
 			sourceTree = SOURCE_ROOT;
+		};
+		1A935685204AD3580079731F /* Expansion */ = {
+			isa = PBXGroup;
+			children = (
+				1A935686204AD3580079731F /* Expansion.h */,
+			);
+			path = Expansion;
+			sourceTree = "<group>";
 		};
 		1AD88AD61FA3125100BE92CB /* Character */ = {
 			isa = PBXGroup;

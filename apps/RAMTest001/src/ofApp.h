@@ -29,7 +29,7 @@
 #include "FlickerControl.h"
 #include "Mandala.hpp"
 #include "SceneSypthon.hpp"
-
+#include "Expansion.h"
 class ofApp : public rdtk::BaseApp
 {
 public:

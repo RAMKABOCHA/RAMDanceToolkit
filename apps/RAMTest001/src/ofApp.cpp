@@ -35,6 +35,7 @@ void ofApp::setup()
     
     sceneManager.addScene<Interp>();
 	sceneManager.addScene<Lines>();
+    sceneManager.addScene<Expansion>();
     sceneManager.addScene<MakeSound>();
     sceneManager.addScene<Moji>();
     sceneManager.addScene<Character>();
