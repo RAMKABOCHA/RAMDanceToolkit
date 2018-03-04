@@ -47,7 +47,7 @@ public:
         }
 		ImGui::ColorEdit3("Box Color", &mBoxColor[0]);
 		
-		ImGui::DragFloat("Expansion Ratio", &mExpasionRatio, 0.5, 1.0, 10.0);
+		ImGui::DragFloat("Expansion Ratio", &mExpasionRatio, 0.1, 1.0, 20.0);
 		ImGui::DragFloat("Box size", &mBoxSize, 1.0, 3.0, 100.0);
 		ImGui::DragFloat("BigBox ratio", &mBoxSizeRatio, 0.5, 2.0, 10.0);
 		
@@ -85,7 +85,7 @@ public:
 		rdtk::GetGUI().addToggle("Show Line", &mShowLine);
 		rdtk::GetGUI().addColorSelector("Box Color", &mBoxColor);
 		
-		rdtk::GetGUI().addSlider("Expasion Ratio", 1.0, 10.0, &mExpasionRatio);
+		rdtk::GetGUI().addSlider("Expasion Ratio", 0.1, 20.0, &mExpasionRatio);
 		rdtk::GetGUI().addSlider("Box size", 3.0, 100.0, &mBoxSize);
 		rdtk::GetGUI().addSlider("Big Box ratio", 2.0, 10.0, &mBoxSizeRatio);
 		
@@ -155,9 +155,8 @@ public:
         vector<string> temp = substrings("subjects.txt");
         int n = temp.size();
         while(!temp.empty()){
-            vector<string>::iterator it = temp.begin()+ofRandom(0,temp.size());
+            vector<string>::iterator it = temp.begin();
             subjects.push_back(*it);
-            ofL
             temp.erase(it);
         }
         
@@ -211,11 +210,13 @@ public:
 				{
 					ofSetColor(255);
 //                    node.drawNodeName(mBoxSize+20);
-                    ofPushMatrix();
-                    ofTranslate(node.getGlobalPosition());
+//                    ofPushMatrix();
+//                    ofTranslate(node.getGlobalPosition());
+                    node.beginTransform();
                     font.drawString(subjects[nodeId%subjects.size()], 0, 0);
+                    node.endTransform();
                     
-                    ofPopMatrix();
+//                    ofPopMatrix();
 				}
 			}
 			ofPopStyle();

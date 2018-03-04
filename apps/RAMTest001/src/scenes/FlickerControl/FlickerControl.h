@@ -136,7 +136,7 @@ public:
             ofDrawBitmapString("Left Elbow: " + ofToString(actor.getNode(rdtk::Actor::JOINT_LEFT_ELBOW).getOrientationEuler()) ,10,300);
             ofDrawBitmapString("Right Elbow: "+ ofToString(actor.getNode(rdtk::Actor::JOINT_RIGHT_ELBOW).getOrientationEuler()) ,10,315);
             ofDrawBitmapString("Left Knee: "+ ofToString(actor.getNode(rdtk::Actor::JOINT_LEFT_KNEE).getOrientationEuler()) ,10,330);
-            ofDrawBitmapString("Right Knee: "+ ofToString(actor.getNode(rdtk::Actor::JOINT_RIGHT_ELBOW).getOrientationEuler()) ,10,345);
+            ofDrawBitmapString("Right Knee: "+ ofToString(actor.getNode(rdtk::Actor::JOINT_RIGHT_KNEE).getOrientationEuler()) ,10,345);
         }
         int leftE = 0;
         switch(activeOrientation[0])
@@ -199,21 +199,21 @@ public:
             case 0:
             {
                 leftK = ofMap(actor.getNode(rdtk::Actor::JOINT_LEFT_KNEE).getOrientationEuler().x,
-                              rotationRangeRightElbowX[0],rotationRangeRightElbowX[1],
+                              rotationRangeLeftKneeX[0],rotationRangeLeftKneeX[1],
                               20,29);
             }
                 break;
             case 1:
             {
                 leftK = ofMap(actor.getNode(rdtk::Actor::JOINT_LEFT_KNEE).getOrientationEuler().y,
-                              rotationRangeRightElbowY[0],rotationRangeRightElbowY[1],
+                              rotationRangeLeftKneeY[0],rotationRangeLeftKneeY[1],
                               20,29);
             }
                 break;
             case 2:
             {
                 leftK = ofMap(actor.getNode(rdtk::Actor::JOINT_LEFT_KNEE).getOrientationEuler().z,
-                              rotationRangeRightElbowZ[0],rotationRangeRightElbowZ[1],
+                              rotationRangeLeftKneeZ[0],rotationRangeLeftKneeZ[1],
                               20,29);
             }
                 break;
@@ -225,22 +225,22 @@ public:
         {
             case 0:
             {
-                leftK = ofMap(actor.getNode(rdtk::Actor::JOINT_RIGHT_KNEE).getOrientationEuler().x,
-                              rotationRangeRightElbowX[0],rotationRangeRightElbowX[1],
+                rightK = ofMap(actor.getNode(rdtk::Actor::JOINT_RIGHT_KNEE).getOrientationEuler().x,
+                              rotationRangeRightKneeX[0],rotationRangeRightKneeX[1],
                               30,39);
             }
                 break;
             case 1:
             {
-                leftK = ofMap(actor.getNode(rdtk::Actor::JOINT_RIGHT_KNEE).getOrientationEuler().y,
-                              rotationRangeRightElbowY[0],rotationRangeRightElbowY[1],
+                rightK = ofMap(actor.getNode(rdtk::Actor::JOINT_RIGHT_KNEE).getOrientationEuler().y,
+                              rotationRangeRightKneeY[0],rotationRangeRightKneeY[1],
                               30,39);
             }
                 break;
             case 2:
             {
-                leftK = ofMap(actor.getNode(rdtk::Actor::JOINT_RIGHT_KNEE).getOrientationEuler().z,
-                              rotationRangeRightElbowZ[0],rotationRangeRightElbowZ[1],
+                rightK = ofMap(actor.getNode(rdtk::Actor::JOINT_RIGHT_KNEE).getOrientationEuler().z,
+                              rotationRangeRightKneeZ[0],rotationRangeRightElbowZ[1],
                               30,39);
             }
                 break;
