@@ -30,6 +30,10 @@
 #include "Mandala.hpp"
 #include "SceneSypthon.hpp"
 #include "Expansion.h"
+#include "VoiceBubble.h"
+#include "DrawSynthScene.h"
+#include "WeightEffort.h"
+
 class ofApp : public rdtk::BaseApp
 {
 public:
@@ -60,6 +64,10 @@ public:
 	void onRigidExit(const rdtk::RigidBody &rigid);
     void updateWithOscMessage(const ofxOscMessage &m) ;
     void audioOut(float * output, int bufferSize, int nChannels);
+    //--------------------------------------------------------------
+    void audioIn(float * input, int bufferSize, int nChannels);
+    
+    
 private:
     ofSoundStream soundStream;
     int sampleRate;
@@ -72,7 +80,10 @@ private:
     float phase;
     float phaseAdder;
     float phaseAdderTarget;
+    ofPtr<DrawSynthScene> drawSynthScene;
+    ofPtr<MakeSound> soundScene;
     
+    ofPtr<VoiceBubble> voiceBubble;
     
     
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A24C19B2053E01E0058382D /* SphereMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A24C1992053E01E0058382D /* SphereMesh.cpp */; };
 		1A28D4711FA56DFE007F1D03 /* Delaunay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A28D4651FA56DFE007F1D03 /* Delaunay.cpp */; };
 		1A28D4721FA56DFE007F1D03 /* ofxDelaunay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A28D46A1FA56DFE007F1D03 /* ofxDelaunay.cpp */; };
 		1A28D5651FA57A74007F1D03 /* ofxTonicSynth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A28D4CE1FA57A74007F1D03 /* ofxTonicSynth.cpp */; };
@@ -75,6 +76,7 @@
 		1A41C1801FC8F30F00FC3E95 /* ofxSyphonServerDirectory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1A41C16D1FC8F30F00FC3E95 /* ofxSyphonServerDirectory.mm */; };
 		1A41C1841FC8F4FE00FC3E95 /* Syphon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1A41C1611FC8F30F00FC3E95 /* Syphon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1AD88AD91FA3125100BE92CB /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AD88AD71FA3125100BE92CB /* Character.cpp */; };
+		1AD89C02205C1FA700CB42CF /* WeightEffort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AD89C00205C1FA700CB42CF /* WeightEffort.cpp */; };
 		1AF670FE1FBF0C440082CEB4 /* Mandala.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AF670FC1FBF0C440082CEB4 /* Mandala.cpp */; };
 		1AF6716A1FBF2AF80082CEB4 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AF671041FBF2AF70082CEB4 /* CoreMIDI.framework */; };
 		1AF6716B1FBF2AF80082CEB4 /* RtMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AF671081FBF2AF70082CEB4 /* RtMidi.cpp */; };
@@ -174,6 +176,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A24C1932053D1DC0058382D /* VoiceBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceBubble.h; sourceTree = "<group>"; };
+		1A24C1992053E01E0058382D /* SphereMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SphereMesh.cpp; sourceTree = "<group>"; };
+		1A24C19A2053E01E0058382D /* SphereMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SphereMesh.h; sourceTree = "<group>"; };
 		1A28D44D1FA56DEF007F1D03 /* Link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Link.h; sourceTree = "<group>"; };
 		1A28D4641FA56DFE007F1D03 /* Delaunay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Delaunay.h; sourceTree = "<group>"; };
 		1A28D4651FA56DFE007F1D03 /* Delaunay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Delaunay.cpp; sourceTree = "<group>"; };
@@ -314,9 +319,14 @@
 		1A41C16F1FC8F30F00FC3E95 /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSyphonServerDirectory.h; sourceTree = "<group>"; };
 		1A41C18F1FC91F1C00FC3E95 /* SceneSypthon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SceneSypthon.hpp; sourceTree = "<group>"; };
 		1A4B893D1FA2E7750066A400 /* Moji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moji.h; sourceTree = "<group>"; };
+		1A8B16FC205BFFEF0073151F /* DrawSynthScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawSynthScene.h; sourceTree = "<group>"; };
 		1A935686204AD3580079731F /* Expansion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Expansion.h; sourceTree = "<group>"; };
 		1AD88AD71FA3125100BE92CB /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
 		1AD88AD81FA3125100BE92CB /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
+		1AD89BFB205C1DB700CB42CF /* Graph3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graph3D.h; sourceTree = "<group>"; };
+		1AD89BFC205C1DB700CB42CF /* Graph2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graph2D.h; sourceTree = "<group>"; };
+		1AD89C00205C1FA700CB42CF /* WeightEffort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WeightEffort.cpp; sourceTree = "<group>"; };
+		1AD89C01205C1FA700CB42CF /* WeightEffort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeightEffort.h; sourceTree = "<group>"; };
 		1AF670FA1FBF0BB70082CEB4 /* FlickerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickerControl.h; sourceTree = "<group>"; };
 		1AF670FC1FBF0C440082CEB4 /* Mandala.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mandala.cpp; sourceTree = "<group>"; };
 		1AF670FD1FBF0C440082CEB4 /* Mandala.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mandala.hpp; sourceTree = "<group>"; };
@@ -401,6 +411,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A24C1912053D1BE0058382D /* VoiceBubble */ = {
+			isa = PBXGroup;
+			children = (
+				1A24C1992053E01E0058382D /* SphereMesh.cpp */,
+				1A24C19A2053E01E0058382D /* SphereMesh.h */,
+				1A24C1932053D1DC0058382D /* VoiceBubble.h */,
+			);
+			path = VoiceBubble;
+			sourceTree = "<group>";
+		};
 		1A28D44C1FA56DEF007F1D03 /* Link */ = {
 			isa = PBXGroup;
 			children = (
@@ -676,6 +696,10 @@
 		1A4B893B1FA2E76D0066A400 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				1AD89BFF205C1FA700CB42CF /* WeightEffort */,
+				1AD89BFA205C1DB700CB42CF /* Graph */,
+				1A8B16FB205BFFDF0073151F /* DrawSynth */,
+				1A24C1912053D1BE0058382D /* VoiceBubble */,
 				1AD88AD61FA3125100BE92CB /* Character */,
 				1A935685204AD3580079731F /* Expansion */,
 				1AF670F91FBF0BB70082CEB4 /* FlickerControl */,
@@ -697,6 +721,14 @@
 			path = src/scenes/Moji;
 			sourceTree = SOURCE_ROOT;
 		};
+		1A8B16FB205BFFDF0073151F /* DrawSynth */ = {
+			isa = PBXGroup;
+			children = (
+				1A8B16FC205BFFEF0073151F /* DrawSynthScene.h */,
+			);
+			path = DrawSynth;
+			sourceTree = "<group>";
+		};
 		1A935685204AD3580079731F /* Expansion */ = {
 			isa = PBXGroup;
 			children = (
@@ -712,6 +744,24 @@
 				1AD88AD81FA3125100BE92CB /* Character.h */,
 			);
 			path = Character;
+			sourceTree = "<group>";
+		};
+		1AD89BFA205C1DB700CB42CF /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				1AD89BFB205C1DB700CB42CF /* Graph3D.h */,
+				1AD89BFC205C1DB700CB42CF /* Graph2D.h */,
+			);
+			path = Graph;
+			sourceTree = "<group>";
+		};
+		1AD89BFF205C1FA700CB42CF /* WeightEffort */ = {
+			isa = PBXGroup;
+			children = (
+				1AD89C00205C1FA700CB42CF /* WeightEffort.cpp */,
+				1AD89C01205C1FA700CB42CF /* WeightEffort.h */,
+			);
+			path = WeightEffort;
 			sourceTree = "<group>";
 		};
 		1AF670F91FBF0BB70082CEB4 /* FlickerControl */ = {
@@ -1015,6 +1065,7 @@
 				1A28D59A1FA57A74007F1D03 /* ControlSnapToScale.cpp in Sources */,
 				1A28D5871FA57A74007F1D03 /* ControlTriggerFilter.cpp in Sources */,
 				1A28D58C1FA57A74007F1D03 /* ControlComparison.cpp in Sources */,
+				1A24C19B2053E01E0058382D /* SphereMesh.cpp in Sources */,
 				1A28D5681FA57A74007F1D03 /* TableLookupOsc.cpp in Sources */,
 				1A28D58B1FA57A74007F1D03 /* RampedValue.cpp in Sources */,
 				1A28D56D1FA57A74007F1D03 /* ControlChangeNotifier.cpp in Sources */,
@@ -1046,6 +1097,7 @@
 				1AD88AD91FA3125100BE92CB /* Character.cpp in Sources */,
 				1A28D56B1FA57A74007F1D03 /* ControlRecorder.cpp in Sources */,
 				1A28D5981FA57A74007F1D03 /* FilterUtils.cpp in Sources */,
+				1AD89C02205C1FA700CB42CF /* WeightEffort.cpp in Sources */,
 				1A28D5701FA57A74007F1D03 /* BasicDelay.cpp in Sources */,
 				1A28D57A1FA57A74007F1D03 /* TonicFrames.cpp in Sources */,
 				1A28D5761FA57A74007F1D03 /* ControlMetro.cpp in Sources */,
@@ -1129,12 +1181,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(OF_CORE_HEADERS)",
+					"$(RAM_HEADER_SEARCH_PATHS)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-D__MACOSX_CORE__",
 					"-lpthread",
 					"-mtune=native",
 				);
+				RAM_HEADER_SEARCH_PATHS = "../../libs/ram/** $(OF_PATH)/addons/ofxOsc/** $(OF_PATH)/addons/ofxXmlSettings/** ../../addons/ofxUI/src/** ../../addons/ofxUITabbedCanvas/** ../../addons/ofxInteractivePrimitives/src/** ../../addons/ofxBt/libs/bullet/include/bullet ../../addons/ofxBt/src ../../addons/ofxNodeArray/src ../../addons/ofxCv/src $(OF_PATH)/addons/ofxGui/** ../../addons/ofxCv/libs/ofxCv/include/ ../../addons/ofxCv/libs/CLD/include/CLD/** $(OF_PATH)/addons/ofxOpenCV/src $(OF_PATH)/addons/ofxOpenCV/libs/opencv/include/** ../../addons/ofxDelaunay/src ../../addons/ofxDelaunay/libs/Delaunay/** ../../addons/ofxQuadWarp/src ../../addons/ramFloorQuadWarper ../../addons/ofxUITabbedCanvas ../../libs/dp/** ";
 				SDKROOT = macosx10.9;
 				VALID_ARCHS = i386;
 			};
@@ -1161,12 +1218,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(OF_CORE_HEADERS)",
+					"$(RAM_HEADER_SEARCH_PATHS)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-D__MACOSX_CORE__",
 					"-lpthread",
 					"-mtune=native",
 				);
+				RAM_HEADER_SEARCH_PATHS = "../../libs/ram/** $(OF_PATH)/addons/ofxOsc/** $(OF_PATH)/addons/ofxXmlSettings/** ../../addons/ofxUI/src/** ../../addons/ofxUITabbedCanvas/** ../../addons/ofxInteractivePrimitives/src/** ../../addons/ofxBt/libs/bullet/include/bullet ../../addons/ofxBt/src ../../addons/ofxNodeArray/src ../../addons/ofxCv/src $(OF_PATH)/addons/ofxGui/** ../../addons/ofxCv/libs/ofxCv/include/ ../../addons/ofxCv/libs/CLD/include/CLD/** $(OF_PATH)/addons/ofxOpenCV/src $(OF_PATH)/addons/ofxOpenCV/libs/opencv/include/** ../../addons/ofxDelaunay/src ../../addons/ofxDelaunay/libs/Delaunay/** ../../addons/ofxQuadWarp/src ../../addons/ramFloorQuadWarper ../../addons/ofxUITabbedCanvas ../../libs/dp/** ";
 				SDKROOT = macosx10.9;
 				VALID_ARCHS = i386;
 			};

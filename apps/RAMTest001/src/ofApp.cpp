@@ -32,19 +32,27 @@ void ofApp::setup()
 	/// scenes setup
 	// ------------------
 	rdtk::SceneManager& sceneManager = rdtk::SceneManager::instance();
-    
+    drawSynthScene = make_shared<DrawSynthScene>();
+    sceneManager.addScene(drawSynthScene);
+    sceneManager.addScene<WeightEffort>();
+    voiceBubble = make_shared<VoiceBubble>();
+    sceneManager.addScene(voiceBubble);
     sceneManager.addScene<Interp>();
 	sceneManager.addScene<Lines>();
     sceneManager.addScene<Expansion>();
-    sceneManager.addScene<MakeSound>();
+    soundScene = make_shared<MakeSound>();
+    sceneManager.addScene(soundScene);
     sceneManager.addScene<Moji>();
     sceneManager.addScene<Character>();
     sceneManager.addScene<Link>();
     sceneManager.addScene<FlickerControl>();
     sceneManager.addScene<Mandala>();
     sceneManager.addScene<SceneSypthon>();
-    
+    soundStream.printDeviceList();
+    soundStream.setDeviceID(2);     //note some devices are input only and some are output only 
     ofSoundStreamSetup(2, 0);
+    soundStream.setup(this, 0, 2, 44100, 256, 4);
+    soundStream.start();
 }
 
 //--------------------------------------------------------------
@@ -62,8 +70,17 @@ void ofApp::draw()
 }
 
 void ofApp::audioOut(float * output, int bufferSize, int nChannels){
-//    soundScene->audioOut(output, bufferSize, nChannels);
+    soundScene.get()->audioOut(output, bufferSize, nChannels);
+    
+    drawSynthScene.get()->audioOut(output,bufferSize,nChannels);
 }
+
+//--------------------------------------------------------------
+void ofApp::audioIn(float * input, int bufferSize, int nChannels){
+    voiceBubble.get()->audioIn(input, bufferSize, nChannels);
+}
+
+
 
 
 

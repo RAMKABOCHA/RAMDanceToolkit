@@ -54,6 +54,19 @@ public:
         rotationRangeRightKneeZ[0] = -180;
         rotationRangeRightKneeZ[1] = 180;
         
+        
+        currentTrackIdRange1[0] = 0;
+        currentTrackIdRange1[1] = 9;
+        
+        currentTrackIdRange2[0] = 10;
+        currentTrackIdRange2[1] = 19;
+        
+        currentTrackIdRange3[0] = 20;
+        currentTrackIdRange3[1] = 29;
+        
+        currentTrackIdRange4[0] = 30;
+        currentTrackIdRange4[1] = 39;
+        
         constantTrigger = false;
         
         for(int i = 0; i < 4; i++) { activeOrientation[i] = 0; currentTrackId[i] = 0; }
@@ -78,6 +91,13 @@ public:
         ImGui::Checkbox("Constant Trigger", &constantTrigger);
         ImGui::SliderFloat("Low Pass", &lowpassamount,0.0,1.0);
         ImGui::SliderInt("Velocity", &iVelocity,0,127);
+        
+        ImGui::DragIntRange2("currentTrackIdRange 1", &currentTrackIdRange1[0], &currentTrackIdRange1[1], 1, 0, 9);
+        ImGui::DragIntRange2("currentTrackIdRange 2", &currentTrackIdRange2[0], &currentTrackIdRange2[1], 1, 10, 19);
+        ImGui::DragIntRange2("currentTrackIdRange 3", &currentTrackIdRange3[0], &currentTrackIdRange3[1], 1, 20, 29);
+        ImGui::DragIntRange2("currentTrackIdRange 4", &currentTrackIdRange4[0], &currentTrackIdRange4[1], 1, 30, 39);
+        
+        
         
         ImGui::PushID("1");
         ImGui::Text("Left Elbow");
@@ -247,29 +267,29 @@ public:
             default: break;
         }
         
-        currentTrackId[0] = ofClamp(leftE,0,9);
-        currentTrackId[1] = ofClamp(rightE,10,19);
-        currentTrackId[2] = ofClamp(leftK,20,29);
-        currentTrackId[3] = ofClamp(rightK,30,39);
+        currentTrackId[0] = ofClamp(leftE,currentTrackIdRange1[0],currentTrackIdRange1[1]);//ofClamp(leftE,0,9);
+        currentTrackId[1] = ofClamp(rightE,currentTrackIdRange2[0],currentTrackIdRange2[1]);
+        currentTrackId[2] = ofClamp(leftK,currentTrackIdRange3[0],currentTrackIdRange3[1]);
+        currentTrackId[3] = ofClamp(rightK,currentTrackIdRange4[0],currentTrackIdRange4[1]);
         
         if(constantTrigger) {
             if(currentTrackId[0] != previousTrackId[0]) {
-                midiOut.sendNoteOn(1,currentTrackId[0],10);
+                midiOut.sendNoteOn(1, currentTrackId[0],iVelocity);
                 previousTrackId[0] = currentTrackId[0];
             }
             
             if(currentTrackId[1] != previousTrackId[1]) {
-                midiOut.sendNoteOn(2,currentTrackId[1],10);
+                midiOut.sendNoteOn(2, currentTrackId[1],iVelocity);
                 previousTrackId[1] = currentTrackId[1];
             }
             
             if(currentTrackId[2] != previousTrackId[2]) {
-                midiOut.sendNoteOn(3,currentTrackId[2],10);
+                midiOut.sendNoteOn(3, currentTrackId[2],iVelocity);
                 previousTrackId[2] = currentTrackId[2];
             }
             
             if(currentTrackId[3] != previousTrackId[3]) {
-                midiOut.sendNoteOn(4,currentTrackId[3],10);
+                midiOut.sendNoteOn(4, currentTrackId[3],iVelocity);
                 previousTrackId[3] = currentTrackId[3];
             }
             
@@ -327,6 +347,12 @@ public:
     int rotationRangeRightKneeX[2];
     int rotationRangeRightKneeY[2];
     int rotationRangeRightKneeZ[2];
+    
+    int currentTrackIdRange1[2];
+    int currentTrackIdRange2[2];
+    int currentTrackIdRange3[2];
+    int currentTrackIdRange4[2];
+    
     
     rdtk::LowPassFilter lowPassFilter;
     float lowpassamount;

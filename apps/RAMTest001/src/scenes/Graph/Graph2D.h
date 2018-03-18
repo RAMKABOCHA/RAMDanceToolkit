@@ -19,7 +19,7 @@
 
 #include "ramMain.h"
 
-class Graph2D : public ramBaseScene
+class Graph2D : public rdtk::BaseScene
 {
 public:
 	
@@ -32,19 +32,19 @@ public:
 		bool set_from;
 		bool set_to;
 		
-		ramGraphView *graphView;
+		rdtk::GraphView *graphView;
 		
-		ramNodeFinder from;
-		ramNodeFinder to;
+		rdtk::NodeFinder from;
+		rdtk::NodeFinder to;
 		
 		float min, max;
-		ramNode from_node, to_node;
+		rdtk::Node from_node, to_node;
 		
 		ofColor color;
 		
 		bool use_height;
 		
-		void setup(int id, ramGraphView *graphView)
+		void setup(int id, rdtk::GraphView *graphView)
 		{
 			this->id = id;
 			use_height = false;
@@ -66,12 +66,12 @@ public:
 		
 		void update()
 		{
-			if (set_from) from = ramActorManager::instance().getLastSelectedNodeIdentifer();
-			if (set_to) to = ramActorManager::instance().getLastSelectedNodeIdentifer();
+			if (set_from) from = rdtk::ActorManager::instance().getLastSelectedNodeIdentifer();
+			if (set_to) to = rdtk::ActorManager::instance().getLastSelectedNodeIdentifer();
 			
 			string name = ofToString(id);
 			
-			if (from.get(from_node) && to.get(to_node))
+			if (from.findOne(from_node) && to.findOne(to_node))
 			{
 				if (use_height)
 				{
@@ -128,12 +128,12 @@ public:
 	};
 	
 	float line_width;
-	ramGraphView graphView;
+	rdtk::GraphView graphView;
 	Record records[NUM_RECORD];
 	
 	void setupControlPanel(ofxUICanvas* panel)
 	{
-		ramControlPanel &gui = ramGetGUI();
+		rdtk::ControlPanel &gui = rdtk::GetGUI();
 		
 		panel->addWidgetDown(new ofxUILabel(getName(), OFX_UI_FONT_LARGE));
 		panel->addSpacer(gui.kLength, 2);
@@ -169,12 +169,12 @@ public:
 		ofPushStyle();
 		ofSetLineWidth(line_width);
 		
-		ramBeginCamera();
+		rdtk::BeginCamera();
 		for (int i = 0; i < 2; i++)
 		{
 			records[i].draw();
 		}
-		ramEndCamera();
+		rdtk::EndCamera();
 		ofPopStyle();
 	}
 	
@@ -188,11 +188,11 @@ public:
 		ofPopStyle();
 	}
 	
-	void drawActor(ramActor& actor)
+	void drawActor(rdtk::Actor& actor)
 	{
 	}
 	
-	void drawRigid(ramRigidBody &rigid)
+	void drawRigid(rdtk::RigidBody &rigid)
 	{
 		
 	}
