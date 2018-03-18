@@ -18,11 +18,11 @@ WeightEffort::WeightEffort() :
     std::fill(mPrevAngles.begin(), mPrevAngles.end(), ofVec3f(0.0));
     
     vector<string>files;
-    files.push_back("2_elechamber.m4a");
-    files.push_back("1_dreambell.m4a");
-    files.push_back("3_glocken..2.m4a");
-    files.push_back("4__voices_.m4a");
-    files.push_back("5_alto_flute.m4a");
+    files.push_back("2_elechamber.wav");
+    files.push_back("1_dreambell.wav");
+    files.push_back("3_glocken..2.wav");
+    files.push_back("4__voices_.wav");
+    files.push_back("5_alto_flute.wav");
     
     for(int i = 0 ; i < files.size() ; i++){
         ofPtr<ofSoundPlayer> soundPlayer =  ofPtr<ofSoundPlayer>(new ofSoundPlayer());
