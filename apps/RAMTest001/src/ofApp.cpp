@@ -24,7 +24,12 @@ void ofApp::setup()
     ofSetLogLevel(OF_LOG_VERBOSE);
 	ofSetFrameRate(60);
 	ofSetVerticalSync(true);
-	
+    soundStream.printDeviceList();
+    //    soundStream.setDeviceID(2);     //note some devices are input only and some are output only
+    ofSoundStreamSetup(2, 0, this);
+    soundStream.setup(this, 0, 2, 44100, 256, 4);
+    soundStream.start();
+    
 	/// ram setup
 	// ------------------
 	rdtk::Initialize(10000, true);
@@ -46,13 +51,10 @@ void ofApp::setup()
     sceneManager.addScene<Character>();
     sceneManager.addScene<Link>();
     sceneManager.addScene<FlickerControl>();
+    sceneManager.addScene<FlickerControl2>();
     sceneManager.addScene<Mandala>();
     sceneManager.addScene<SceneSypthon>();
-    soundStream.printDeviceList();
-    soundStream.setDeviceID(2);     //note some devices are input only and some are output only 
-    ofSoundStreamSetup(2, 0);
-    soundStream.setup(this, 0, 2, 44100, 256, 4);
-    soundStream.start();
+    
 }
 
 //--------------------------------------------------------------
@@ -70,14 +72,19 @@ void ofApp::draw()
 }
 
 void ofApp::audioOut(float * output, int bufferSize, int nChannels){
-    soundScene.get()->audioOut(output, bufferSize, nChannels);
-    
-    drawSynthScene.get()->audioOut(output,bufferSize,nChannels);
+    if(soundScene.get() != NULL){
+        soundScene.get()->audioOut(output, bufferSize, nChannels);
+    }
+    if(drawSynthScene.get() != NULL){
+        drawSynthScene.get()->audioOut(output,bufferSize,nChannels);
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::audioIn(float * input, int bufferSize, int nChannels){
-    voiceBubble.get()->audioIn(input, bufferSize, nChannels);
+    if(voiceBubble.get() != NULL){
+        voiceBubble.get()->audioIn(input, bufferSize, nChannels);
+    }
 }
 
 

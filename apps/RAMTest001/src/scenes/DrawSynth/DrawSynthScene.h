@@ -157,7 +157,7 @@ public:
                             orientation = v1.x;
                             break;
                     }
-                    float value = ofMap(orientation, minRotation.at(i), maxRotation.at(i), 10, 80);
+                    int value = floor(ofMap(orientation, minRotation.at(i), maxRotation.at(i), 1, 8))*10;
                     
                     pitchesSlider.at(silderIndex).param.value(value);
                     silderIndex++;
@@ -217,24 +217,16 @@ public:
         ImGui::Columns(1);
         
         vector<ControlParameter> synthParameters = synth.getParameters();
+        ImGui::Separator();
+        
+        ImGui::Columns(3, NULL, true);
+        
         for(int i = 0; i < synthParameters.size(); i++){
-
-            if(i < 2 ){
-                ImGui::Columns(1, NULL, true);
-            }else{
-                ImGui::Columns(3, NULL, true);
-            }
             ControlParameter slider = synthParameters.at(i);
             TonicFloat value = slider.getValue();
             ImGui::DragFloat(slider.getDisplayName().c_str(), &value, 1, slider.getMin(), slider.getMax());
             slider.value(value);
-            if(i < 2 ){
-            }else{
                 ImGui::NextColumn();
-            }
-            
-
-
         }
         ImGui::Columns(1, NULL, true);
         

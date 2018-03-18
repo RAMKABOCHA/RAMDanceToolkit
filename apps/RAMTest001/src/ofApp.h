@@ -27,6 +27,7 @@
 #include "Character.h"
 #include "Link.h"
 #include "FlickerControl.h"
+#include "FlickerControl2.h"
 #include "Mandala.hpp"
 #include "SceneSypthon.hpp"
 #include "Expansion.h"

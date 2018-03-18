@@ -327,6 +327,7 @@
 		1AD89BFC205C1DB700CB42CF /* Graph2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graph2D.h; sourceTree = "<group>"; };
 		1AD89C00205C1FA700CB42CF /* WeightEffort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WeightEffort.cpp; sourceTree = "<group>"; };
 		1AD89C01205C1FA700CB42CF /* WeightEffort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeightEffort.h; sourceTree = "<group>"; };
+		1AE05068205E90A000C00A2C /* FlickerControl2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickerControl2.h; sourceTree = "<group>"; };
 		1AF670FA1FBF0BB70082CEB4 /* FlickerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickerControl.h; sourceTree = "<group>"; };
 		1AF670FC1FBF0C440082CEB4 /* Mandala.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mandala.cpp; sourceTree = "<group>"; };
 		1AF670FD1FBF0C440082CEB4 /* Mandala.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mandala.hpp; sourceTree = "<group>"; };
@@ -703,6 +704,7 @@
 				1AD88AD61FA3125100BE92CB /* Character */,
 				1A935685204AD3580079731F /* Expansion */,
 				1AF670F91FBF0BB70082CEB4 /* FlickerControl */,
+				1AE05067205E90A000C00A2C /* FlickerControl2 */,
 				1A28D44C1FA56DEF007F1D03 /* Link */,
 				1AF670FB1FBF0C390082CEB4 /* Mandala */,
 				1A4B893C1FA2E7750066A400 /* Moji */,
@@ -762,6 +764,14 @@
 				1AD89C01205C1FA700CB42CF /* WeightEffort.h */,
 			);
 			path = WeightEffort;
+			sourceTree = "<group>";
+		};
+		1AE05067205E90A000C00A2C /* FlickerControl2 */ = {
+			isa = PBXGroup;
+			children = (
+				1AE05068205E90A000C00A2C /* FlickerControl2.h */,
+			);
+			path = FlickerControl2;
 			sourceTree = "<group>";
 		};
 		1AF670F91FBF0BB70082CEB4 /* FlickerControl */ = {
