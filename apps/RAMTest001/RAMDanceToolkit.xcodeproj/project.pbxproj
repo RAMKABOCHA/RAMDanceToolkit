@@ -319,6 +319,8 @@
 		1A41C16F1FC8F30F00FC3E95 /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSyphonServerDirectory.h; sourceTree = "<group>"; };
 		1A41C18F1FC91F1C00FC3E95 /* SceneSypthon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SceneSypthon.hpp; sourceTree = "<group>"; };
 		1A4B893D1FA2E7750066A400 /* Moji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moji.h; sourceTree = "<group>"; };
+		1A6A47DA206149AF00EE9890 /* Force.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Force.hpp; sourceTree = "<group>"; };
+		1A6A47DB206160C300EE9890 /* Force2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Force2.hpp; sourceTree = "<group>"; };
 		1A8B16FC205BFFEF0073151F /* DrawSynthScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawSynthScene.h; sourceTree = "<group>"; };
 		1A935686204AD3580079731F /* Expansion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Expansion.h; sourceTree = "<group>"; };
 		1AD88AD71FA3125100BE92CB /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
@@ -697,18 +699,19 @@
 		1A4B893B1FA2E76D0066A400 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				1AD89BFF205C1FA700CB42CF /* WeightEffort */,
-				1AD89BFA205C1DB700CB42CF /* Graph */,
-				1A8B16FB205BFFDF0073151F /* DrawSynth */,
-				1A24C1912053D1BE0058382D /* VoiceBubble */,
+				1A6A47D92061497400EE9890 /* Force */,
 				1AD88AD61FA3125100BE92CB /* Character */,
+				1A8B16FB205BFFDF0073151F /* DrawSynth */,
 				1A935685204AD3580079731F /* Expansion */,
 				1AF670F91FBF0BB70082CEB4 /* FlickerControl */,
 				1AE05067205E90A000C00A2C /* FlickerControl2 */,
+				1AD89BFA205C1DB700CB42CF /* Graph */,
 				1A28D44C1FA56DEF007F1D03 /* Link */,
 				1AF670FB1FBF0C390082CEB4 /* Mandala */,
 				1A4B893C1FA2E7750066A400 /* Moji */,
 				1A41C18D1FC91F0A00FC3E95 /* SceneSypthon */,
+				1A24C1912053D1BE0058382D /* VoiceBubble */,
+				1AD89BFF205C1FA700CB42CF /* WeightEffort */,
 			);
 			name = Scene;
 			path = src/scenes;
@@ -722,6 +725,15 @@
 			name = Moji;
 			path = src/scenes/Moji;
 			sourceTree = SOURCE_ROOT;
+		};
+		1A6A47D92061497400EE9890 /* Force */ = {
+			isa = PBXGroup;
+			children = (
+				1A6A47DA206149AF00EE9890 /* Force.hpp */,
+				1A6A47DB206160C300EE9890 /* Force2.hpp */,
+			);
+			path = Force;
+			sourceTree = "<group>";
 		};
 		1A8B16FB205BFFDF0073151F /* DrawSynth */ = {
 			isa = PBXGroup;

@@ -37,6 +37,7 @@ void ofApp::setup()
 	/// scenes setup
 	// ------------------
 	rdtk::SceneManager& sceneManager = rdtk::SceneManager::instance();
+    sceneManager.addScene<Force>();
     drawSynthScene = make_shared<DrawSynthScene>();
     sceneManager.addScene(drawSynthScene);
     sceneManager.addScene<WeightEffort>();

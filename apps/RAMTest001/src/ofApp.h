@@ -34,7 +34,8 @@
 #include "VoiceBubble.h"
 #include "DrawSynthScene.h"
 #include "WeightEffort.h"
-
+#include "Force.hpp"
+#include "Force2.hpp"
 class ofApp : public rdtk::BaseApp
 {
 public:
