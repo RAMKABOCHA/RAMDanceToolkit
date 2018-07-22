@@ -13,37 +13,11 @@
 Character::Character(): minScale(0.00001), maxScale(1), selectedText(0){
     font.load("FreeUniversal-Regular.ttf",24,true,true,true);
     setup();
-//    isChacterOn.assign(4,false);
-    //    characterSet[0]={};
-    //    characterSet[1]={};
-    //    characterSet[2]={};
-    //    characterSet[3]={};
-    
-    mymap2 = {
-        { rdtk::Actor::JOINT_LEFT_SHOULDER, rdtk::Actor::JOINT_LEFT_HIP},
-        { rdtk::Actor::JOINT_LEFT_ELBOW, rdtk::Actor::JOINT_LEFT_KNEE },
-        { rdtk::Actor::JOINT_LEFT_WRIST, rdtk::Actor::JOINT_LEFT_ANKLE },
-        { rdtk::Actor::JOINT_LEFT_HAND, rdtk::Actor::JOINT_LEFT_TOE },
-        { rdtk::Actor::JOINT_RIGHT_SHOULDER, rdtk::Actor::JOINT_RIGHT_HIP },
-        { rdtk::Actor::JOINT_RIGHT_ELBOW, rdtk::Actor::JOINT_RIGHT_KNEE },
-        { rdtk::Actor::JOINT_RIGHT_WRIST, rdtk::Actor::JOINT_RIGHT_ANKLE },
-        { rdtk::Actor::JOINT_RIGHT_HAND, rdtk::Actor::JOINT_RIGHT_TOE } };
-    mymap = {
-        { rdtk::Actor::JOINT_LEFT_SHOULDER, rotationRangeLeftHipY },
-        { rdtk::Actor::JOINT_LEFT_ELBOW, rotationRangeLeftKneeY },
-        { rdtk::Actor::JOINT_LEFT_WRIST, rotationRangeLeftAnkleY },
-        { rdtk::Actor::JOINT_LEFT_HAND, rotationRangeLeftToeY },
-        { rdtk::Actor::JOINT_RIGHT_SHOULDER, rotationRangeRightHipY },
-        { rdtk::Actor::JOINT_RIGHT_ELBOW, rotationRangeRightKneeY },
-        { rdtk::Actor::JOINT_RIGHT_WRIST, rotationRangeRightAnkleY },
-        { rdtk::Actor::JOINT_RIGHT_HAND, rotationRangeRightToeY } };
-    
-    for (auto& x: mymap) {
-        x.second[0] = -180;
-        x.second[1] = 180;
-        std::cout << x.first << ": " << x.second << '\n';
+    for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++){
+        rangeOfMotion[i][0] = -180;
+        rangeOfMotion[i][1] = 180;
     }
-
+    
 }
 
 vector<string> substrings(string filename){
@@ -91,36 +65,40 @@ void Character::drawImGui(){
     if (ImGui::Button("Reset")) {
         reset();
     }
-//    bool update = false;
-//    for(int i = 0 ; i < 4 ; i++){
-//        string name = "Character"+ofToString(i);
-//        if(ImGui::Checkbox(name.c_str(), &isChacterOn[i])){
-//            update = true;
-//        }
-//    }
-//    if(ImGui::Checkbox("handsOnly", &handsOnly)){
-//
-//    }
     ImGui::SliderFloat("maxScale", &maxScale, 0, 5);
     ImGui::SliderFloat("minScale", &minScale, 0, 5);
-    ImGui::SliderInt("selectedText", &selectedText, 0, characterSet.size());
-    
-    ImGui::DragIntRange2("rotationRangeLeftHipY", &rotationRangeLeftHipY[0], &rotationRangeLeftHipY[1]);
-    
-    ImGui::DragIntRange2("rotationRangeLeftKneeY", &rotationRangeLeftKneeY[0], &rotationRangeLeftKneeY[1]);
-    
-    ImGui::DragIntRange2("rotationRangeLeftAnkleY", &rotationRangeLeftAnkleY[0], &rotationRangeLeftAnkleY[1]);
-    
-    ImGui::DragIntRange2("rotationRangeLeftToeY", &rotationRangeLeftToeY[0], &rotationRangeLeftToeY[1]);
-    
-    ImGui::DragIntRange2("rotationRangeRightHipY", &rotationRangeRightHipY[0], &rotationRangeRightHipY[1]);
-    
-    ImGui::DragIntRange2("rotationRangeRightKneeY", &rotationRangeRightKneeY[0], &rotationRangeRightKneeY[1]);
-    
-    ImGui::DragIntRange2("rotationRangeRightAnkleY", &rotationRangeRightAnkleY[0], &rotationRangeRightAnkleY[1]);
-    
-    ImGui::DragIntRange2("rotationRangeRightToeY", &rotationRangeRightToeY[0], &rotationRangeRightToeY[1]);
-
+    ImGui::SliderInt("selectedText", &selectedText, 0, characterSet.size()-1);
+    ImGui::LabelText("text ", "%s", subjects[selectedText].c_str());
+    ImGui::Checkbox("isDebug", &isDebug);
+    if (ImGui::Button("Set All")) {
+        for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++)
+        {
+            mNodeVisibility[i] = true;
+        }
+    }
+    if (ImGui::Button("Unset All")) {
+        for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++)
+        {
+            mNodeVisibility[i] = false;
+        }
+    }
+    ImGui::Separator();
+    ImGui::Columns(3, NULL, true);
+    for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++)
+    {
+        ImGui::Checkbox(rdtk::Actor::getJointName(i).c_str(), &mNodeVisibility[i]);
+        ImGui::NextColumn();
+    }
+    ImGui::Columns(1, NULL, true);
+    ImGui::Separator();
+    for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++)
+    {
+        if(mNodeVisibility[i]){
+            
+            ImGui::DragIntRange2(rdtk::Actor::getJointName(i).c_str(), &rangeOfMotion[i][0], &rangeOfMotion[i][1]);
+            
+        }
+    }
 }
 void Character::update(){
     
@@ -130,65 +108,37 @@ void Character::draw(){
     rdtk::BeginCamera();
     for(int j=0; j<getNumNodeArray(); j++)
     {
-//        if(isChacterOn[j])
         {
             const rdtk::NodeArray &NA = getNodeArray(j);
             
-//            if(j<characterSet.size())
+            
             {
                 vector<string> strings = characterSet[selectedText];
                 
                 
-                int index = 0;
-                
-                float d = (j%2==0) ? NA.getNode(rdtk::Actor::JOINT_HEAD).getGlobalPosition().distance(NA.getNode(rdtk::Actor::JOINT_LEFT_KNEE).getGlobalPosition()) :
-                NA.getNode(rdtk::Actor::JOINT_RIGHT_SHOULDER).getGlobalPosition().distance(NA.getNode(rdtk::Actor::JOINT_LEFT_TOE).getGlobalPosition());
-                float scale =  ofMap(d,0,100,maxScale,minScale);
                 
                 
-                rdtk::Node nodeInterpolated (NA.getNode(rdtk::Actor::JOINT_LEFT_HAND));
-                ofMatrix4x4 m1 = NA.getNode(rdtk::Actor::JOINT_LEFT_HAND).getGlobalTransformMatrix();
-                ofMatrix4x4 m2 = NA.getNode(rdtk::Actor::JOINT_RIGHT_HAND).getGlobalTransformMatrix();
-                ofQuaternion rot;
-                rot.slerp(0.5, m1.getRotate(), m2.getRotate());
-                nodeInterpolated.setGlobalOrientation(rot);
-                ofVec3f p1 = m1.getTranslation(), p2 = m2.getTranslation();
-                ofVec3f p = p1.getInterpolated(p2,0.5);
-                nodeInterpolated.setGlobalPosition(p);
+                //                float d = (j%2==0) ? NA.getNode(rdtk::Actor::JOINT_HEAD).getGlobalPosition().distance(NA.getNode(rdtk::Actor::JOINT_LEFT_KNEE).getGlobalPosition()) :
+                //                NA.getNode(rdtk::Actor::JOINT_RIGHT_SHOULDER).getGlobalPosition().distance(NA.getNode(rdtk::Actor::JOINT_LEFT_TOE).getGlobalPosition());
+                float scale =  maxScale;//ofMap(d,0,100,maxScale,minScale);
                 
-//                glPushAttrib(GL_ALL_ATTRIB_BITS);
-//                glPushMatrix();
-//                {
-//                    ofPushStyle();
-//                    ofNoFill();
-//
-//                    glEnable(GL_DEPTH_TEST);
-//                    nodeInterpolated.beginTransform();
-//                    ofScale(scale,scale,scale);
-//                    font.drawStringAsShapes(strings[0], 0, 0);
-//
-//                    nodeInterpolated.endTransform();
-//
-//                    ofPopStyle();
-//                }
-//                glPopMatrix();
-//                glPopAttrib();
                 
-                //if(!handsOnly)
+                //                rdtk::Node nodeInterpolated (NA.getNode(rdtk::Actor::JOINT_LEFT_HAND));
+                //                ofMatrix4x4 m1 = NA.getNode(rdtk::Actor::JOINT_LEFT_HAND).getGlobalTransformMatrix();
+                //                ofMatrix4x4 m2 = NA.getNode(rdtk::Actor::JOINT_RIGHT_HAND).getGlobalTransformMatrix();
+                //                ofQuaternion rot;
+                //                rot.slerp(0.5, m1.getRotate(), m2.getRotate());
+                //                nodeInterpolated.setGlobalOrientation(rot);
+                //                ofVec3f p1 = m1.getTranslation(), p2 = m2.getTranslation();
+                //                ofVec3f p = p1.getInterpolated(p2,0.5);
+                //                nodeInterpolated.setGlobalPosition(p);
+                
                 {
                     
                     for (int i=0; i<NA.getNumNode(); i++)
                     {
-                        if(i == rdtk::Actor::JOINT_LEFT_SHOULDER ||
-                           i == rdtk::Actor::JOINT_RIGHT_SHOULDER ||
-                           i == rdtk::Actor::JOINT_LEFT_ELBOW ||
-                           i == rdtk::Actor::JOINT_RIGHT_ELBOW ||
-                           i == rdtk::Actor::JOINT_LEFT_WRIST ||
-                           i == rdtk::Actor::JOINT_RIGHT_WRIST ||
-                           i == rdtk::Actor::JOINT_RIGHT_HAND ||
-                           i == rdtk::Actor::JOINT_LEFT_HAND
-                           ){
-
+                        if(mNodeVisibility[i]){
+                            
                             const rdtk::Node &node = NA.getNode(i);
                             
                             glPushAttrib(GL_ALL_ATTRIB_BITS);
@@ -198,32 +148,30 @@ void Character::draw(){
                                 ofNoFill();
                                 
                                 glEnable(GL_DEPTH_TEST);
-//                                node.beginTransform();
                                 
-//                                ofScale(scale,scale,scale);
-//                                font.drawStringAsShapes(strings[index%strings.size()], 0, 0);
-                                
-//                                node.endTransform();
                                 ofPushMatrix();
                                 ofTranslate(node.getGlobalTransformMatrix().getTranslation());
-
+                                
                                 ofScale(scale,scale,scale);
                                 ofRotate(0,1,0,0);
                                 ofRotate(0,0,1,0);
                                 ofRotate(0,0,0,1);
-                                int targetIndex = ofMap(NA.getNode(mymap2[i]).getOrientationEuler().y,
-                                                        mymap[i][0],mymap[i][1],
-                                                        0,strings.size());
+                                int wave = NA.getNode(i).getOrientationEuler().y + NA.getNode(i).getOrientationEuler().x + NA.getNode(i).getOrientationEuler().z ;
+                                //TODO fix it
+                                int index = ofMap(wave,
+                                             rangeOfMotion[i][0],rangeOfMotion[i][1],
+                                             0,strings.size());
+                                index = index < 0 ? 0 : index > strings.size() ? strings.size()-1 : index;
                                 font.drawString(strings[index%strings.size()], 0, 0);
                                 ofPopMatrix();
                                 
-
+                                
                                 
                                 ofPopStyle();
                             }
                             glPopMatrix();
                             glPopAttrib();
-                            index++;
+                            //
                         }
                     }
                 }
@@ -231,4 +179,23 @@ void Character::draw(){
         }
     }
     rdtk::EndCamera();
+    if(isDebug){
+        for(int j=0; j<getNumNodeArray(); j++)
+        {
+            
+            const rdtk::NodeArray &NA = getNodeArray(j);
+            
+            for (int i=0; i<NA.getNumNode(); i++)
+            {
+                if(mNodeVisibility[i]){
+                    
+                    
+                    int wave = NA.getNode(i).getOrientationEuler().y + NA.getNode(i).getOrientationEuler().x + NA.getNode(i).getOrientationEuler().z ;
+                    ofDrawBitmapString(NA.getNode(i).getName() + ofToString(wave) , 20, 20+(i*15));
+                }
+                
+            }
+            
+        }
+    }
 }

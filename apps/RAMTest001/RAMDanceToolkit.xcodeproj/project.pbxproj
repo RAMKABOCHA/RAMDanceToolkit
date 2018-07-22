@@ -323,6 +323,10 @@
 		1A6A47DB206160C300EE9890 /* Force2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Force2.hpp; sourceTree = "<group>"; };
 		1A8B16FC205BFFEF0073151F /* DrawSynthScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawSynthScene.h; sourceTree = "<group>"; };
 		1A935686204AD3580079731F /* Expansion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Expansion.h; sourceTree = "<group>"; };
+		1A94EDB02102EA890082A8DB /* Future.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Future.h; sourceTree = "<group>"; };
+		1A94EDB22102EC770082A8DB /* Particles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particles.h; sourceTree = "<group>"; };
+		1A94EDB32102EC770082A8DB /* ParticleEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleEngine.h; sourceTree = "<group>"; };
+		1A94EDB52102F6240082A8DB /* MovingCam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovingCam.h; sourceTree = "<group>"; };
 		1AD88AD71FA3125100BE92CB /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
 		1AD88AD81FA3125100BE92CB /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		1AD89BFB205C1DB700CB42CF /* Graph3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graph3D.h; sourceTree = "<group>"; };
@@ -699,12 +703,15 @@
 		1A4B893B1FA2E76D0066A400 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				1A6A47D92061497400EE9890 /* Force */,
+				1A94EDB42102F6240082A8DB /* MovingCam */,
+				1A94EDB12102EC770082A8DB /* Particles */,
 				1AD88AD61FA3125100BE92CB /* Character */,
 				1A8B16FB205BFFDF0073151F /* DrawSynth */,
 				1A935685204AD3580079731F /* Expansion */,
 				1AF670F91FBF0BB70082CEB4 /* FlickerControl */,
 				1AE05067205E90A000C00A2C /* FlickerControl2 */,
+				1A6A47D92061497400EE9890 /* Force */,
+				1A94EDAF2102EA890082A8DB /* Future */,
 				1AD89BFA205C1DB700CB42CF /* Graph */,
 				1A28D44C1FA56DEF007F1D03 /* Link */,
 				1AF670FB1FBF0C390082CEB4 /* Mandala */,
@@ -749,6 +756,31 @@
 				1A935686204AD3580079731F /* Expansion.h */,
 			);
 			path = Expansion;
+			sourceTree = "<group>";
+		};
+		1A94EDAF2102EA890082A8DB /* Future */ = {
+			isa = PBXGroup;
+			children = (
+				1A94EDB02102EA890082A8DB /* Future.h */,
+			);
+			path = Future;
+			sourceTree = "<group>";
+		};
+		1A94EDB12102EC770082A8DB /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				1A94EDB22102EC770082A8DB /* Particles.h */,
+				1A94EDB32102EC770082A8DB /* ParticleEngine.h */,
+			);
+			path = Particles;
+			sourceTree = "<group>";
+		};
+		1A94EDB42102F6240082A8DB /* MovingCam */ = {
+			isa = PBXGroup;
+			children = (
+				1A94EDB52102F6240082A8DB /* MovingCam.h */,
+			);
+			path = MovingCam;
 			sourceTree = "<group>";
 		};
 		1AD88AD61FA3125100BE92CB /* Character */ = {

@@ -25,19 +25,22 @@ public:
     
 	Expansion() :
     mShowName(true),
-    mShowBox(true),
-    mShowAxis(true),
-    mShowLine(true),
+    mShowBox(false),
+    mShowAxis(false),
+    mShowLine(false),
     mExpasionRatio(1.5),
     mBoxSize(10.0),
-    mBoxSizeRatio(5.0) {
-        font.load("FreeUniversal-Regular.ttf",24,true,true,true);
+    mBoxSizeRatio(5.0),
+    speed(0.03),
+    bFixCenter(true){
+        font.load("FreeUniversal-Regular.ttf",48,true,true,true);
         reset();
     }
     
 
 	void drawImGui()
 	{
+        ImGui::Checkbox("Fixe Center", &bFixCenter);    ImGui::SameLine();
 		ImGui::Checkbox("Show Joint name", &mShowName);	ImGui::SameLine();
 		ImGui::Checkbox("Show Box", &mShowBox);
 		ImGui::Checkbox("Show Axis", &mShowAxis);		ImGui::SameLine();
@@ -50,7 +53,7 @@ public:
 		ImGui::DragFloat("Expansion Ratio", &mExpasionRatio, 0.1, 1.0, 20.0);
 		ImGui::DragFloat("Box size", &mBoxSize, 1.0, 3.0, 100.0);
 		ImGui::DragFloat("BigBox ratio", &mBoxSizeRatio, 0.5, 2.0, 10.0);
-		
+		ImGui::DragFloat("speed", &speed, 0.01, 0.001, 0.5);
 		static bool boxSize = false;
 		static bool showAll = false;
 		if (ImGui::Checkbox("Toggle box size", &boxSize)) seteAllSizeBigger(boxSize);
@@ -107,6 +110,7 @@ public:
 			ofxUIToggle *toggleVisible = new ofxUIToggle(rdtk::Actor::getJointName(i), &mNodeVisibility[i], 8, 8);
 			panel->addWidgetRight(toggleVisible);
 			mToggleDraw[i] = toggleVisible;
+            mNodeAlpha[i] = 0;
 		}
 		
 		ofAddListener(panel->newGUIEvent, this, &Expansion::onValueChanged);
@@ -152,7 +156,7 @@ public:
     void reset()
     {
         subjects.clear();
-        vector<string> temp = substrings("subjects.txt");
+        vector<string> temp = substrings("subjects-expansion.txt");
         int n = temp.size();
         while(!temp.empty()){
             vector<string>::iterator it = temp.begin();
@@ -175,14 +179,25 @@ public:
 			
 			ofPushStyle();
 			ofNoFill();
+            if(bFixCenter){
+                ofPushMatrix();
+                ofTranslate(-src.getNode(rdtk::Actor::JOINT_CHEST).getGlobalPosition().x,0,
+                            -src.getNode(rdtk::Actor::JOINT_CHEST).getGlobalPosition().z);
+            }
 			for (int nodeId=0; nodeId<processedNA.getNumNode(); nodeId++)
 			{
-				if (mNodeVisibility[nodeId] == false) continue;
-                
+				if (mNodeVisibility[nodeId] == false && mNodeAlpha[nodeId]<0) continue;
+                if(mNodeVisibility[nodeId]){
+                    if(mNodeAlpha[nodeId]<1)mNodeAlpha[nodeId] += speed;
+                }else{
+                    if(mNodeAlpha[nodeId]>0)mNodeAlpha[nodeId] -= speed;
+                }
 				rdtk::Node &node = processedNA.getNode(nodeId);
                 node.setName("node"+ofToString(nodeId));
+                
+                ofSetColor(255,255,255,255*mNodeAlpha[nodeId]);
 				node.beginTransform();
-				
+                
 				int boxSize = mBoxSize * (mBiggerSize[nodeId] ? mBoxSizeRatio : 1);
 				
 				if (mShowBox)
@@ -200,7 +215,7 @@ public:
 				
 				if (mShowLine)
 				{
-					ofSetColor(100);
+                    ofSetColor(255,255,255,255*mNodeAlpha[nodeId]);
 					ofSetLineWidth(1);
 					ofDrawLine(src.getNode(nodeId), processedNA.getNode(nodeId));
 				}
@@ -208,18 +223,24 @@ public:
 				
 				if (mShowName)
 				{
-					ofSetColor(255);
+                    
+					ofSetColor(255,255,255,255*mNodeAlpha[nodeId]);
 //                    node.drawNodeName(mBoxSize+20);
 //                    ofPushMatrix();
 //                    ofTranslate(node.getGlobalPosition());
+                    string s = subjects[nodeId%subjects.size()];
+                    ofRectangle rect = font.getStringBoundingBox(s,0,0);
                     node.beginTransform();
-                    font.drawString(subjects[nodeId%subjects.size()], 0, 0);
+                    font.drawString(s, rect.width * -0.5, rect.height * -0.5 );
                     node.endTransform();
                     
 //                    ofPopMatrix();
 				}
 			}
 			ofPopStyle();
+            if(bFixCenter){
+                ofPopMatrix();
+            }
 		}
 		rdtk::EndCamera();
 	}
@@ -259,6 +280,8 @@ private:
     
 	ofxUIToggle *mToggleDraw[rdtk::Actor::NUM_JOINTS];
 	bool mNodeVisibility[rdtk::Actor::NUM_JOINTS];
+    float mNodeAlpha[rdtk::Actor::NUM_JOINTS];
+    bool bFixCenter;
 	
 	ofxUIToggle *mToggleSize[rdtk::Actor::NUM_JOINTS];
 	bool mBiggerSize[rdtk::Actor::NUM_JOINTS];
@@ -270,6 +293,7 @@ private:
 	float mExpasionRatio;
 	float mBoxSize;
 	float mBoxSizeRatio;
+    float speed;
 	ofFloatColor mBoxColor;
     
     vector<string> subjects;

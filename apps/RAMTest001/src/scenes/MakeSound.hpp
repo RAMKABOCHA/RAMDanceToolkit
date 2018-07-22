@@ -2,24 +2,58 @@
 class MakeSound : public rdtk::BaseScene {
 public:
     MakeSound():volume(0.001), isSound(true), isDrawLine(true), leftVolume(0.5), rightVolume(0.5){
-        leftElbowRange[0] = -180;
-        leftElbowRange[1] = 180;
-        leftKneeRange[0] = -180;
-        leftKneeRange[1] = 180;
+//        leftElbowRange[0] = -180;
+//        leftElbowRange[1] = 180;
+//        leftKneeRange[0] = -180;
+//        leftKneeRange[1] = 180;
+        for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++){
+            rangeOfMotion[i][0] = -180;
+            rangeOfMotion[i][1] = 180;
+        }
     }
     void drawImGui(){
         ImGui::Checkbox("sound", &isSound);
         ImGui::Checkbox("draw line", &isDrawLine);
-        ImGui::SliderFloat("volume", &volume, 0.0000001, 0.1);
-        ImGui::Checkbox("head synth", &isHeadSynth);
+        ImGui::SliderFloat("volume", &volume, 0.0000001, 2);
+//        ImGui::Checkbox("head synth", &isHeadSynth);
         
-        ImGui::SliderFloat("left elbow min", &leftElbowRange[0], -180, 180);
+//        ImGui::SliderFloat("left elbow min", &leftElbowRange[0], -180, 180);
+//
+//        ImGui::SliderFloat("left elbow max", &leftElbowRange[1], -180, 180);
+//
+//        ImGui::SliderFloat("left knee min ", &leftKneeRange[0], -180, 180);
+//
+//        ImGui::SliderFloat("left knee max", &leftKneeRange[1], -180, 180);
         
-        ImGui::SliderFloat("left elbow max", &leftElbowRange[1], -180, 180);
-        
-        ImGui::SliderFloat("left knee min ", &leftKneeRange[0], -180, 180);
-        
-        ImGui::SliderFloat("left knee max", &leftKneeRange[1], -180, 180);
+        if (ImGui::Button("Set All")) {
+            for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++)
+            {
+                mNodeVisibility[i] = true;
+            }
+        }
+        if (ImGui::Button("Unset All")) {
+            for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++)
+            {
+                mNodeVisibility[i] = false;
+            }
+        }
+        ImGui::Separator();
+        ImGui::Columns(3, NULL, true);
+        for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++)
+        {
+            ImGui::Checkbox(rdtk::Actor::getJointName(i).c_str(), &mNodeVisibility[i]);
+            ImGui::NextColumn();
+        }
+        ImGui::Columns(1, NULL, true);
+        ImGui::Separator();
+        for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++)
+        {
+            if(mNodeVisibility[i]){
+                
+                ImGui::DragIntRange2(rdtk::Actor::getJointName(i).c_str(), &rangeOfMotion[i][0], &rangeOfMotion[i][1]);
+                
+            }
+        }
         
     }
     void setup(){
@@ -64,7 +98,7 @@ public:
             
 //            for (int i = 0; i < pointsIndex.size(); i++) {
             
-                float val = ofMap(p.y, -180, 180, -1., 1.);
+                float val = ofMap(p.y+p.x+p.z, rangeOfMotion[i][0], rangeOfMotion[i][1],  -1., 1.);
                 soundline[j].curveTo(1. * i, val);
                 
             }
@@ -111,10 +145,10 @@ public:
             if (isHeadSynth) {
 //                ofVec3f p = actor.getNode(rdtk::Actor::JOINT_LEFT_ELBOW).getGlobalPosition();
                 float _frequency = ofMap(actor.getNode(rdtk::Actor::JOINT_LEFT_ELBOW).getOrientationEuler().y,
-                      leftElbowRange[0],leftElbowRange[1],
+                      rangeOfMotion[rdtk::Actor::JOINT_LEFT_ELBOW][0],rangeOfMotion[rdtk::Actor::JOINT_LEFT_ELBOW][1],
                       0.00000,6);
-                float _phaseAdder = ofMap(actor.getNode(rdtk::Actor::JOINT_LEFT_KNEE).getOrientationEuler().y,
-                                         leftKneeRange[0],leftKneeRange[1],
+                float _phaseAdder = ofMap(actor.getNode(rdtk::Actor::JOINT_RIGHT_ELBOW).getOrientationEuler().y,
+                                         rangeOfMotion[rdtk::Actor::JOINT_RIGHT_ELBOW][0],rangeOfMotion[rdtk::Actor::JOINT_RIGHT_ELBOW][1],
                                          0.01, 0.05);
                 frequency[j] = _frequency > 0 ? _frequency : 0;
                 phaseAdder[j] = _phaseAdder;
@@ -137,12 +171,13 @@ public:
                 soundline[j].draw();
                 ofPopMatrix();
             }
-            
+            ofPushMatrix();
             for (int j = 0; j < getNumNodeArray(); j++) {
                 rdtk::NodeArray actor = getNodeArray(j);
-                ofDrawBitmapString("Left Elbow" +ofToString(actor.getNode(rdtk::Actor::JOINT_LEFT_ELBOW).getOrientationEuler()), 10,100+(j*20));
-                ofDrawBitmapString("Left KNEE" +ofToString(actor.getNode(rdtk::Actor::JOINT_LEFT_KNEE).getOrientationEuler()), 10,130+(j*20));
+                int wave = actor.getNode(j).getOrientationEuler().y + actor.getNode(j).getOrientationEuler().x + actor.getNode(j).getOrientationEuler().z ;
+                ofDrawBitmapString(actor.getNode(j).getName() + ofToString(wave) , 20, 20-(j*15));
             }
+            ofPopMatrix();
             
         }
     };
@@ -221,8 +256,9 @@ private:
     float volume = 0.1;
     float leftVolume = 0.1;
     float rightVolume = 0.1;
-    
-    float leftElbowRange[2];
-    float leftKneeRange[2];
-    
+//
+//    float leftElbowRange[2];
+//    float leftKneeRange[2];
+    int rangeOfMotion[rdtk::Actor::NUM_JOINTS][2];
+    bool mNodeVisibility[rdtk::Actor::NUM_JOINTS];
 };

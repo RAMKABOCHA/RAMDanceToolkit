@@ -38,6 +38,7 @@ void ofApp::setup()
 	// ------------------
 	rdtk::SceneManager& sceneManager = rdtk::SceneManager::instance();
     sceneManager.addScene<Force>();
+    sceneManager.addScene<Character>();
     drawSynthScene = make_shared<DrawSynthScene>();
     sceneManager.addScene(drawSynthScene);
     sceneManager.addScene<WeightEffort>();
@@ -45,11 +46,12 @@ void ofApp::setup()
     sceneManager.addScene(voiceBubble);
     sceneManager.addScene<Interp>();
 	sceneManager.addScene<Lines>();
+    sceneManager.addScene<Future>();
     sceneManager.addScene<Expansion>();
     soundScene = make_shared<MakeSound>();
     sceneManager.addScene(soundScene);
     sceneManager.addScene<Moji>();
-    sceneManager.addScene<Character>();
+    
     sceneManager.addScene<Link>();
     sceneManager.addScene<FlickerControl>();
     sceneManager.addScene<FlickerControl2>();

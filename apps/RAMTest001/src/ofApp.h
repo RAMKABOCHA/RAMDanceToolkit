@@ -36,6 +36,7 @@
 #include "WeightEffort.h"
 #include "Force.hpp"
 #include "Force2.hpp"
+#include "Future.h"
 class ofApp : public rdtk::BaseApp
 {
 public:

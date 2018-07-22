@@ -20,7 +20,7 @@
 class SceneSypthon : public rdtk::BaseScene{
 public:
     
-    ofxSyphonServer individualTextureSyphonServer;
+    ofxSyphonServer individualTextureSyphonServer;	
     
     void setup(){
         individualTextureSyphonServer.setName("mandala");
