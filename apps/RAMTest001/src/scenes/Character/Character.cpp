@@ -11,7 +11,7 @@
 
 
 Character::Character(): minScale(0.00001), maxScale(1), selectedText(0){
-    font.load("FreeUniversal-Regular.ttf",24,true,true,true);
+    font.load("Constantia.ttf",24,true,true,true);
     setup();
     for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++){
         rangeOfMotion[i][0] = -180;

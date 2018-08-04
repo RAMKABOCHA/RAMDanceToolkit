@@ -34,7 +34,7 @@ public:
     speed(0.03),
     mFontSize(1.0),
     bFixCenter(true){
-        font.load("FreeUniversal-Regular.ttf",48,true,true,true);
+        font.load("Constantia.ttf",48,true,true,true);
         reset();
     }
     

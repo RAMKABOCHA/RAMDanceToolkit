@@ -14,7 +14,7 @@ class Moji : public rdtk::BaseScene
 {
     public:
     Moji(){
-        font.load("FreeUniversal-Regular.ttf",24,true,true,true);
+        font.load("Constantia.ttf",24,true,true,true);
     }
     void selectPoints(int i0)
     {
