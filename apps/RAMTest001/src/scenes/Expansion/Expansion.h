@@ -32,6 +32,7 @@ public:
     mBoxSize(10.0),
     mBoxSizeRatio(5.0),
     speed(0.03),
+    mFontSize(1.0),
     bFixCenter(true){
         font.load("FreeUniversal-Regular.ttf",48,true,true,true);
         reset();
@@ -53,6 +54,8 @@ public:
 		ImGui::DragFloat("Expansion Ratio", &mExpasionRatio, 0.1, 1.0, 20.0);
 		ImGui::DragFloat("Box size", &mBoxSize, 1.0, 3.0, 100.0);
 		ImGui::DragFloat("BigBox ratio", &mBoxSizeRatio, 0.5, 2.0, 10.0);
+        ImGui::DragFloat("Font Size", &mFontSize, 0.001, 0.0001, 1.0);
+        
 		ImGui::DragFloat("speed", &speed, 0.01, 0.001, 0.5);
 		static bool boxSize = false;
 		static bool showAll = false;
@@ -89,7 +92,8 @@ public:
 		rdtk::GetGUI().addColorSelector("Box Color", &mBoxColor);
 		
 		rdtk::GetGUI().addSlider("Expasion Ratio", 0.1, 20.0, &mExpasionRatio);
-		rdtk::GetGUI().addSlider("Box size", 3.0, 100.0, &mBoxSize);
+		rdtk::GetGUI().addSlider("Box size", 1.0, 100.0, &mBoxSize);
+        rdtk::GetGUI().addSlider("Font size", 0.01, 1, &mFontSize);
 		rdtk::GetGUI().addSlider("Big Box ratio", 2.0, 10.0, &mBoxSizeRatio);
 		
 		panel->addToggle("Toggle box size", false, 20, 20);
@@ -226,15 +230,20 @@ public:
                     
 					ofSetColor(255,255,255,255*mNodeAlpha[nodeId]);
 //                    node.drawNodeName(mBoxSize+20);
-//                    ofPushMatrix();
+                    
+                    
 //                    ofTranslate(node.getGlobalPosition());
                     string s = subjects[nodeId%subjects.size()];
                     ofRectangle rect = font.getStringBoundingBox(s,0,0);
                     node.beginTransform();
-                    font.drawString(s, rect.width * -0.5, rect.height * -0.5 );
+                    ofPushMatrix();
+                    ofScale(mFontSize,mFontSize,mFontSize);
+                    font.drawString(s, rect.width * -0.5 * mFontSize, rect.height * -0.5 * mFontSize);
+//                    font.drawString(s, 0, 0);
+                    ofPopMatrix();
                     node.endTransform();
                     
-//                    ofPopMatrix();
+                    
 				}
 			}
 			ofPopStyle();
@@ -292,6 +301,7 @@ private:
 	bool mShowLine;
 	float mExpasionRatio;
 	float mBoxSize;
+    float mFontSize;
 	float mBoxSizeRatio;
     float speed;
 	ofFloatColor mBoxColor;

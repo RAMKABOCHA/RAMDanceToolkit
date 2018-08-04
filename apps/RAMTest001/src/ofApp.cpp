@@ -37,25 +37,26 @@ void ofApp::setup()
 	/// scenes setup
 	// ------------------
 	rdtk::SceneManager& sceneManager = rdtk::SceneManager::instance();
-    sceneManager.addScene<Force>();
-    sceneManager.addScene<Character>();
-    drawSynthScene = make_shared<DrawSynthScene>();
-    sceneManager.addScene(drawSynthScene);
-    sceneManager.addScene<WeightEffort>();
-    voiceBubble = make_shared<VoiceBubble>();
-    sceneManager.addScene(voiceBubble);
-    sceneManager.addScene<Interp>();
-	sceneManager.addScene<Lines>();
+    sceneManager.addScene<MovingCam>();
+//    sceneManager.addScene<Force>();
+//    sceneManager.addScene<Character>();
+//    drawSynthScene = make_shared<DrawSynthScene>();
+//    sceneManager.addScene(drawSynthScene);
+//    sceneManager.addScene<WeightEffort>();
+//    voiceBubble = make_shared<VoiceBubble>();
+//    sceneManager.addScene(voiceBubble);
+//    sceneManager.addScene<Interp>();
+//    sceneManager.addScene<Lines>();
     sceneManager.addScene<Future>();
     sceneManager.addScene<Expansion>();
-    soundScene = make_shared<MakeSound>();
-    sceneManager.addScene(soundScene);
-    sceneManager.addScene<Moji>();
+//    soundScene = make_shared<MakeSound>();
+//    sceneManager.addScene(soundScene);
+//    sceneManager.addScene<Moji>();
     
-    sceneManager.addScene<Link>();
-    sceneManager.addScene<FlickerControl>();
-    sceneManager.addScene<FlickerControl2>();
-    sceneManager.addScene<Mandala>();
+//    sceneManager.addScene<Link>();
+//    sceneManager.addScene<FlickerControl>();
+//    sceneManager.addScene<FlickerControl2>();
+//    sceneManager.addScene<Mandala>();
     sceneManager.addScene<SceneSypthon>();
     
 }
@@ -75,19 +76,19 @@ void ofApp::draw()
 }
 
 void ofApp::audioOut(float * output, int bufferSize, int nChannels){
-    if(soundScene.get() != NULL){
-        soundScene.get()->audioOut(output, bufferSize, nChannels);
-    }
-    if(drawSynthScene.get() != NULL){
-        drawSynthScene.get()->audioOut(output,bufferSize,nChannels);
-    }
+//    if(soundScene.get() != NULL){
+//        soundScene.get()->audioOut(output, bufferSize, nChannels);
+//    }
+//    if(drawSynthScene.get() != NULL){
+//        drawSynthScene.get()->audioOut(output,bufferSize,nChannels);
+//    }
 }
 
 //--------------------------------------------------------------
 void ofApp::audioIn(float * input, int bufferSize, int nChannels){
-    if(voiceBubble.get() != NULL){
-        voiceBubble.get()->audioIn(input, bufferSize, nChannels);
-    }
+//    if(voiceBubble.get() != NULL){
+//        voiceBubble.get()->audioIn(input, bufferSize, nChannels);
+//    }
 }
 
 

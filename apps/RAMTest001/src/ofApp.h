@@ -20,23 +20,24 @@
 #include "ofMain.h"
 #include "ramMain.h"
 
-#include "Lines.hpp"
-#include "Interp.hpp"
-#include "MakeSound.hpp"
-#include "Moji.h"
-#include "Character.h"
-#include "Link.h"
-#include "FlickerControl.h"
-#include "FlickerControl2.h"
-#include "Mandala.hpp"
+//#include "Lines.hpp"
+//#include "Interp.hpp"
+//#include "MakeSound.hpp"
+//#include "Moji.h"
+//#include "Character.h"
+//#include "Link.h"
+//#include "FlickerControl.h"
+//#include "FlickerControl2.h"
+//#include "Mandala.hpp"
 #include "SceneSypthon.hpp"
 #include "Expansion.h"
-#include "VoiceBubble.h"
-#include "DrawSynthScene.h"
-#include "WeightEffort.h"
-#include "Force.hpp"
-#include "Force2.hpp"
+//#include "VoiceBubble.h"
+//#include "DrawSynthScene.h"
+//#include "WeightEffort.h"
+//#include "Force.hpp"
+//#include "Force2.hpp"
 #include "Future.h"
+#include "MovingCam.h"
 class ofApp : public rdtk::BaseApp
 {
 public:
@@ -83,10 +84,10 @@ private:
     float phase;
     float phaseAdder;
     float phaseAdderTarget;
-    ofPtr<DrawSynthScene> drawSynthScene;
-    ofPtr<MakeSound> soundScene;
+//    ofPtr<DrawSynthScene> drawSynthScene;
+//    ofPtr<MakeSound> soundScene;
     
-    ofPtr<VoiceBubble> voiceBubble;
+//    ofPtr<VoiceBubble> voiceBubble;
     
     
     
