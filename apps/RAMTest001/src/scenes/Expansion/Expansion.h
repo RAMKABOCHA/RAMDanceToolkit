@@ -34,7 +34,7 @@ public:
     speed(0.03),
     mFontSize(1.0),
     bFixCenter(true){
-        font.load("Constantia.ttf",48,true,true,true);
+        font.load("FreeUniversal-Regular.ttf",48,true,true,true);
         reset();
     }
     
@@ -235,13 +235,14 @@ public:
 //                    ofTranslate(node.getGlobalPosition());
                     string s = subjects[nodeId%subjects.size()];
                     ofRectangle rect = font.getStringBoundingBox(s,0,0);
-                    node.beginTransform();
+//                    node.beginTransform();
                     ofPushMatrix();
+                    ofTranslate(node.getGlobalPosition());
                     ofScale(mFontSize,mFontSize,mFontSize);
                     font.drawString(s, rect.width * -0.5 * mFontSize, rect.height * -0.5 * mFontSize);
 //                    font.drawString(s, 0, 0);
                     ofPopMatrix();
-                    node.endTransform();
+//                    node.endTransform();
                     
                     
 				}

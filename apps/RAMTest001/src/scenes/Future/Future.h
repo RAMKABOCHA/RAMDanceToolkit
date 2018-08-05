@@ -44,7 +44,7 @@ public:
     bFixCenter(true),
     mFontSize(1.0),
     decay(0.03){
-        font.load("Constantia.ttf",12,true,true,true);
+        font.load("FreeUniversal-Regular.ttf",24,true,false,true);
         customDraw = true;
         vector<string> temp = substrings("subjects-future.txt");
         int n = temp.size();
@@ -93,7 +93,7 @@ public:
 		ofAddListener(rdtk::GetGUI().addButton("Speed: Fast"), this, &Future::onPresetFast);
         ofAddListener(rdtk::GetGUI().addButton("Speed: Zero"), this, &Future::onPresetZero);
 		
-		rdtk::GetGUI().addSlider("Distance", 0.0, 512, &distance);
+		rdtk::GetGUI().addSlider("Distance", 0.0, 400, &distance);
 		rdtk::GetGUI().addSlider("Speed", 0.0, 255.0, &speed);
         rdtk::GetGUI().addSlider("decay", 0.001, 0.5, &decay);
 		
@@ -140,7 +140,7 @@ public:
             onPresetZero(dummy);
             updateFilters();
         }
-		if (ImGui::DragFloat("Distance", &distance, 1, 0, 255)) updateFilters();
+		if (ImGui::DragFloat("Distance", &distance, 1, 0, 400)) updateFilters();
 		if (ImGui::DragFloat("Speed", &speed, 1, 0, 255)) updateFilters();
         ImGui::DragFloat("decay", &decay, 0.001,  0.001, 0.5);
         
