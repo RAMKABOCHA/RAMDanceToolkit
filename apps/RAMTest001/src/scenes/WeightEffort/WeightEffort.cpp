@@ -44,7 +44,7 @@ fadeOut(0.05)
         soundPlayer.get()->setLoop(true);
         soundPlayer.get()->setVolume(0.0);
         soundPlayer.get()->stop();
-        soundPlayer.get()->setMultiPlay(false);
+        soundPlayer.get()->setMultiPlay(true);
         players.push_back(soundPlayer);
     }
     for (int i=0; i< rdtk::Actor::NUM_JOINTS; i++){

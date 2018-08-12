@@ -46,3 +46,4 @@ resources/Settings/presets/preset.init.xml
 
 # imgui
 *.ini
+apps/OpenNIOSC

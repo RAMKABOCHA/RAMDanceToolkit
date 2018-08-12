@@ -195,9 +195,9 @@ public:
         base.angle = ofRadToDeg( atan(triHeight/triBase) );
         
         
-        // creating mirror node at Z-Axis opposite side
+        // creating mirror node at Y-Axis opposite side
         opposite = base;
-        opposite.pos.z *= 10;
+        opposite.pos.y *= -1;
         opposite.angle *= -1;
         
         

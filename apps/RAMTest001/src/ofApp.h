@@ -67,13 +67,13 @@ public:
 	void onRigidSetup(const rdtk::RigidBody &rigid);
 	void onRigidExit(const rdtk::RigidBody &rigid);
     void updateWithOscMessage(const ofxOscMessage &m) ;
-    void audioOut(float * output, int bufferSize, int nChannels);
+//    void audioOut(float * output, int bufferSize, int nChannels);
     //--------------------------------------------------------------
-    void audioIn(float * input, int bufferSize, int nChannels);
+//    void audioIn(float * input, int bufferSize, int nChannels);
     
     
 private:
-    ofSoundStream soundStream;
+//    ofSoundStream soundStream;
     int sampleRate;
     bool bNoise;
     float volume;

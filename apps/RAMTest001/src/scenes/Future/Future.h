@@ -18,7 +18,8 @@
 #pragma once
 
 #include "ParticleEngine.h"
-
+#include "Sound3d.h"
+#include <cmath>
 class Future : public rdtk::BaseScene
 {
 	
@@ -26,13 +27,18 @@ class Future : public rdtk::BaseScene
 	ramFilterEach<rdtk::LowPassFilter> lowPassFilters;
 	float mNodeAlpha[rdtk::Actor::NUM_JOINTS];
     bool mNodeVisibility[rdtk::Actor::NUM_JOINTS];
-	float speed, distance;
+    ofVec3f mVelocitySmoothed[rdtk::Actor::NUM_JOINTS];
+	float speed, distance, smooth;
     bool customDraw, drawLine;
     ofTrueTypeFont font;
     vector<string> subjects;
     bool bFixCenter;
     float decay;
     float mFontSize;
+    vector<ofPtr<Sound3D>> players;
+    float rangeOfMotion1[2];
+    float rangeOfMotion2[2];
+    ofVec3f lvelocity, lforward, lup, lposition, svelocity;
 public:
 	
     bool draw_line;
@@ -43,7 +49,8 @@ public:
     draw_line(false),
     bFixCenter(true),
     mFontSize(1.0),
-    decay(0.03){
+    decay(0.03),
+    smooth(35){
         font.load("FreeUniversal-Regular.ttf",24,true,false,true);
         customDraw = true;
         vector<string> temp = substrings("subjects-future.txt");
@@ -57,6 +64,32 @@ public:
         {
             mNodeVisibility[i] = false;
             mNodeAlpha[i] = 0;
+            mVelocitySmoothed[i] = ofVec3f::zero();
+        }
+        rangeOfMotion1[0] = 0.4;
+        rangeOfMotion1[1] = 1.0;
+        
+        rangeOfMotion2[0] = 122;
+        rangeOfMotion2[1] = 200;
+        
+        lvelocity.set(1, 1, 1);
+        lup.set(0, 1, 0);
+        lforward.set(0, 0, 1);
+        lposition.set(0, 0, 0);
+        svelocity.set(1, 1, 1);
+        
+        ofDirectory dir;
+        dir.allowExt("m4a");
+        dir.allowExt("wav");
+        int nFile =  dir.listDir("./bubbles");
+        for(int i = 0 ;i < nFile ; i++){
+            ofPtr<Sound3D> player = ofPtr<Sound3D>(new Sound3D());
+            player.get()->loadSound(dir.getPath(i));
+            player.get()->setVolume(1);
+            player.get()->setPosition(ofRandomf());
+            player.get()->setMultiPlay(true);
+            player.get()->play();
+            players.push_back(player);
         }
     }
     
@@ -142,7 +175,10 @@ public:
         }
 		if (ImGui::DragFloat("Distance", &distance, 1, 0, 400)) updateFilters();
 		if (ImGui::DragFloat("Speed", &speed, 1, 0, 255)) updateFilters();
+        ImGui::DragFloat("Smooth", &smooth, 1.0, 1.0, 50.0);
         ImGui::DragFloat("decay", &decay, 0.001,  0.001, 0.5);
+        ImGui::DragFloatRange2("range 1", &rangeOfMotion1[0], &rangeOfMotion1[1], 0.01, 0.0, 1.0);
+        ImGui::DragFloatRange2("range 2", &rangeOfMotion2[0], &rangeOfMotion2[1], 1, 20, 200);
         
         ImGui::Columns(2, NULL, true);
         for (int i = 0;i < rdtk::Actor::NUM_JOINTS; i++)
@@ -164,7 +200,9 @@ public:
 	{
 		const vector<rdtk::NodeArray>& NAs = ghostFilters.update(getAllNodeArrays());
 		const vector<rdtk::NodeArray>& lowPassedNAs = lowPassFilters.update(NAs);
-		
+        
+        
+        
 		rdtk::BeginCamera();
         
 		for(int i=0; i<lowPassedNAs.size(); i++)
@@ -190,11 +228,13 @@ public:
                             -NA.getNode(rdtk::Actor::JOINT_CHEST).getGlobalPosition().z);
             }
             if(customDraw){
-                
+                int soundIndex = 0;
                 for (int nodeId=0; nodeId<processedNA.getNumNode(); nodeId++)
                 {
                     const rdtk::Node &node = processedNA.getNode(nodeId);
-                    if (mNodeVisibility[nodeId] == false && mNodeAlpha[nodeId]<0) continue;
+                    if (mNodeVisibility[nodeId] == false && mNodeAlpha[nodeId] < 0.1f) continue;
+                    ofVec3f mVelocity        = NA.getNode(nodeId).getVelocity();
+                    mVelocitySmoothed[nodeId] += (mVelocity - mVelocitySmoothed[nodeId]) / smooth;
                     if(mNodeVisibility[nodeId]){
                         if(mNodeAlpha[nodeId]<1)mNodeAlpha[nodeId] += decay;
                     }else{
@@ -215,6 +255,25 @@ public:
                     ofPopMatrix();
                     ofPopStyle();
                     node.endTransform();
+                    
+                    if(mNodeVisibility[nodeId]) {
+                        int index = soundIndex++;
+                        if(index < players.size()){
+                            ofPtr<Sound3D> player = players[index];
+                            if(!player.get()->isPlaying()){
+                                player.get()->play();
+                            }
+                            
+                            player.get()->updateListener(lposition, lvelocity, lforward, lup);
+                            float l = mVelocitySmoothed[nodeId].length();
+                            ofLogVerbose("volume") << l;
+                            float div  = ofMap(l, rangeOfMotion1[0], rangeOfMotion1[1], rangeOfMotion2[0], rangeOfMotion2[1]);
+                            ofVec3f v = ofVec3f(node.getGlobalPosition()/div);
+                            player.get()->updateSound(v, svelocity);
+                            player.get()->setVolume(mNodeAlpha[nodeId]);
+                            player.get()->update();
+                        }
+                    }
                 }
             }else{
                 rdtk::DrawNodes(processedNA);

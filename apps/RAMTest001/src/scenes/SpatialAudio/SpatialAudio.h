@@ -14,6 +14,9 @@ public:
     void setup()
     {
     }
+    void drawImGui()
+    {
+    }
     void update()
     {
     }
