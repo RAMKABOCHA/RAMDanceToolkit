@@ -35,7 +35,7 @@ public:
     mFontSize(1.0),
     bFixCenter(true),
     mIs3d(false){
-        font.load("Scrawlerz.otf",48,true,true,true);
+        font.load("Scrawlerz.otf",48);
         reset();
     }
     
@@ -192,7 +192,7 @@ public:
             }
             for (int nodeId=0; nodeId<processedNA.getNumNode(); nodeId++)
             {
-                if (mNodeVisibility[nodeId] == false && mNodeAlpha[nodeId]<0) continue;
+                if (!mNodeVisibility[nodeId] && mNodeAlpha[nodeId] <= 0) continue;
                 if(mNodeVisibility[nodeId]){
                     if(mNodeAlpha[nodeId]<1)mNodeAlpha[nodeId] += speed;
                 }else{

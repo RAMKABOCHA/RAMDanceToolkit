@@ -47,12 +47,12 @@ public:
     bool draw_line;
 	
 	Future() :
-    distance(150),
-    speed(27),
+    distance(400),
+    speed(2),
     draw_line(false),
     bFixCenter(true),
     mFontSize(1.0),
-    decay(0.03),
+    decay(0.01),
     drawLine(false),
     smooth(35){
 //        font.load("FreeUniversal-Regular.ttf",24,true,false,true);
@@ -72,11 +72,11 @@ public:
             mNodeAlpha[i] = 0;
             mVelocitySmoothed[i] = ofVec3f::zero();
         }
-        rangeOfMotion1[0] = 0.4;
+        rangeOfMotion1[0] = 0.08;
         rangeOfMotion1[1] = 1.0;
         
-        rangeOfMotion2[0] = 122;
-        rangeOfMotion2[1] = 200;
+        rangeOfMotion2[0] = 20;
+        rangeOfMotion2[1] = 400;
         
         lvelocity.set(1, 1, 1);
         lup.set(0, 1, 0);
@@ -262,7 +262,7 @@ public:
                 for (int nodeId=0; nodeId<processedNA.getNumNode(); nodeId++)
                 {
                     const rdtk::Node &node = processedNA.getNode(nodeId);
-                    if (mNodeVisibility[nodeId] == false && mNodeAlpha[nodeId] < 0.1f) continue;
+                    if (!mNodeVisibility[nodeId] && mNodeAlpha[nodeId] <= 0) continue;
                     ofVec3f mVelocity        = NA.getNode(nodeId).getVelocity();
                     mVelocitySmoothed[nodeId] += (mVelocity - mVelocitySmoothed[nodeId]) / smooth;
                     if(mNodeVisibility[nodeId]){
