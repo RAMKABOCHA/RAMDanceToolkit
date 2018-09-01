@@ -20,13 +20,15 @@
 #include "ParticleEngine.h"
 #include "Sound3d.h"
 #include <cmath>
-class Future : public rdtk::BaseScene
+#include "QLabCommunication.h"
+class Future : public rdtk::BaseScene, public QLabCommunication
 {
 	
 	ramFilterEach<rdtk::Ghost> ghostFilters;
 	ramFilterEach<rdtk::LowPassFilter> lowPassFilters;
 	float mNodeAlpha[rdtk::Actor::NUM_JOINTS];
     bool mNodeVisibility[rdtk::Actor::NUM_JOINTS];
+    bool mSoundVisibility[rdtk::Actor::NUM_JOINTS];
     ofVec3f mVelocitySmoothed[rdtk::Actor::NUM_JOINTS];
 	float speed, distance, smooth;
     bool customDraw, drawLine;
@@ -36,6 +38,7 @@ class Future : public rdtk::BaseScene
     float decay;
     float mFontSize;
     vector<ofPtr<Sound3D>> players;
+    float *trackVolume;
     float rangeOfMotion1[2];
     float rangeOfMotion2[2];
     ofVec3f lvelocity, lforward, lup, lposition, svelocity;
@@ -50,8 +53,10 @@ public:
     bFixCenter(true),
     mFontSize(1.0),
     decay(0.03),
+    drawLine(false),
     smooth(35){
-        font.load("FreeUniversal-Regular.ttf",24,true,false,true);
+//        font.load("FreeUniversal-Regular.ttf",24,true,false,true);
+        font.load("Scrawlerz.otf",24,true,false,true);
         customDraw = true;
         vector<string> temp = substrings("subjects-future.txt");
         int n = temp.size();
@@ -63,6 +68,7 @@ public:
         for(int i=0; i<rdtk::Actor::NUM_JOINTS; i++)
         {
             mNodeVisibility[i] = false;
+            mSoundVisibility[i] = false;
             mNodeAlpha[i] = 0;
             mVelocitySmoothed[i] = ofVec3f::zero();
         }
@@ -81,16 +87,21 @@ public:
         ofDirectory dir;
         dir.allowExt("m4a");
         dir.allowExt("wav");
+        dir.sort();
         int nFile =  dir.listDir("./bubbles");
+        trackVolume = new float[nFile];
         for(int i = 0 ;i < nFile ; i++){
             ofPtr<Sound3D> player = ofPtr<Sound3D>(new Sound3D());
             player.get()->loadSound(dir.getPath(i));
             player.get()->setVolume(1);
             player.get()->setPosition(ofRandomf());
             player.get()->setMultiPlay(true);
-            player.get()->play();
+            player.get()->setPaused(true);
             players.push_back(player);
+            trackVolume[i] = 1;
+            
         }
+        
     }
     
     vector<string> substrings(string filename){
@@ -114,7 +125,11 @@ public:
 			self->setDistance(distance);
 		}
 	};
-
+    void setup()
+    {
+        
+        QLabCommunication::setup(QLabCommunication::RAM_OSC_ADDR_COMMUNICATE_QLAB+getName());
+    }
 	void setupControlPanel()
 	{
 		
@@ -178,13 +193,19 @@ public:
         ImGui::DragFloat("Smooth", &smooth, 1.0, 1.0, 50.0);
         ImGui::DragFloat("decay", &decay, 0.001,  0.001, 0.5);
         ImGui::DragFloatRange2("range 1", &rangeOfMotion1[0], &rangeOfMotion1[1], 0.01, 0.0, 1.0);
-        ImGui::DragFloatRange2("range 2", &rangeOfMotion2[0], &rangeOfMotion2[1], 1, 20, 200);
+        ImGui::DragFloatRange2("range 2", &rangeOfMotion2[0], &rangeOfMotion2[1], 1, 20, 400);
         
-        ImGui::Columns(2, NULL, true);
+        for(int t = 0 ; t < players.size(); t++){
+            ImGui::DragFloat(("trackVolume_"+ofToString(t)).c_str(), &trackVolume[t], 0.01, 0, 1);
+        }
+        
+        ImGui::Columns(4, NULL, true);
         for (int i = 0;i < rdtk::Actor::NUM_JOINTS; i++)
         {
             ImGui::PushID(ofToString(i).c_str());
             ImGui::Checkbox(rdtk::Actor::getJointName(i).c_str(), &mNodeVisibility[i]);
+            ImGui::NextColumn();
+            ImGui::Checkbox((rdtk::Actor::getJointName(i)+"_s").c_str(), &mSoundVisibility[i]);
             ImGui::NextColumn();
             ImGui::PopID();
         }
@@ -193,8 +214,17 @@ public:
 	}
     void setAllVisiblity(bool b)
     {
-        for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++)
+        for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++){
             mNodeVisibility[i] = b;
+        }
+    }
+    void update()
+    {
+        QLabCommunication::update();
+    }
+    void updateWithOscMessage(const ofxOscMessage &m)
+    {
+        ofLogVerbose("updateWithOscMessage") << "Furute | address: " << m.getAddress() << "| args : " << m.getArgAsString(0);
     }
 	void draw()
 	{
@@ -218,7 +248,7 @@ public:
 			ofNoFill();
 			
 			const ofColor gcolor =
-			i==0 ? rdtk::Color::RED_LIGHT :
+			i==0 ? rdtk::Color::BLUE_LIGHT :
 			i==1 ? rdtk::Color::YELLOW_DEEP : rdtk::Color::BLUE_LIGHT;
 			
 			ofSetColor(gcolor);
@@ -256,9 +286,10 @@ public:
                     ofPopStyle();
                     node.endTransform();
                     
-                    if(mNodeVisibility[nodeId]) {
+                    if(mNodeVisibility[nodeId] && mSoundVisibility[nodeId]) {
                         int index = soundIndex++;
                         if(index < players.size()){
+                            
                             ofPtr<Sound3D> player = players[index];
                             if(!player.get()->isPlaying()){
                                 player.get()->play();
@@ -266,13 +297,13 @@ public:
                             
                             player.get()->updateListener(lposition, lvelocity, lforward, lup);
                             float l = mVelocitySmoothed[nodeId].length();
-                            ofLogVerbose("volume") << l;
                             float div  = ofMap(l, rangeOfMotion1[0], rangeOfMotion1[1], rangeOfMotion2[0], rangeOfMotion2[1]);
                             ofVec3f v = ofVec3f(node.getGlobalPosition()/div);
                             player.get()->updateSound(v, svelocity);
-                            player.get()->setVolume(mNodeAlpha[nodeId]);
+                            player.get()->setVolume(trackVolume[index]*mNodeAlpha[nodeId]);
                             player.get()->update();
                         }
+                    
                     }
                 }
             }else{
@@ -344,8 +375,7 @@ public:
 		}
 	}
 	
-	
-	string getName() const { return "Future"; }
+	string getName() const { return "Monster"; }
     
     
 };

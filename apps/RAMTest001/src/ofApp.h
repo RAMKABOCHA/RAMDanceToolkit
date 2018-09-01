@@ -38,6 +38,7 @@
 //#include "Force2.hpp"
 #include "Future.h"
 #include "MovingCam.h"
+#include "ofxOsc.h"
 class ofApp : public rdtk::BaseApp
 {
 public:
@@ -88,7 +89,5 @@ private:
 //    ofPtr<MakeSound> soundScene;
     
 //    ofPtr<VoiceBubble> voiceBubble;
-    
-    
     
 };

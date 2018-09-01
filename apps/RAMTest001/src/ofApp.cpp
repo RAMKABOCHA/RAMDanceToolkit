@@ -47,8 +47,8 @@ void ofApp::setup()
 //    sceneManager.addScene(voiceBubble);
 //    sceneManager.addScene<Interp>();
 //    sceneManager.addScene<Lines>();
-    sceneManager.addScene<Future>();
     sceneManager.addScene<Expansion>();
+    sceneManager.addScene<Future>();
 //    soundScene = make_shared<MakeSound>();
 //    sceneManager.addScene(soundScene);
 //    sceneManager.addScene<Moji>();
@@ -59,13 +59,13 @@ void ofApp::setup()
 //    sceneManager.addScene<Mandala>();
     sceneManager.addScene<SceneSypthon>();
     
+    
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update()
 {
-    
-    
 }
 
 //--------------------------------------------------------------

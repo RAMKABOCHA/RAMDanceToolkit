@@ -177,6 +177,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A060C5621326727001513AA /* QLabCommunication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QLabCommunication.h; sourceTree = "<group>"; };
 		1A24C1932053D1DC0058382D /* VoiceBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceBubble.h; sourceTree = "<group>"; };
 		1A24C1992053E01E0058382D /* SphereMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SphereMesh.cpp; sourceTree = "<group>"; };
 		1A24C19A2053E01E0058382D /* SphereMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SphereMesh.h; sourceTree = "<group>"; };
@@ -332,8 +333,6 @@
 		1A94EDB52102F6240082A8DB /* MovingCam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovingCam.h; sourceTree = "<group>"; };
 		1AD88AD71FA3125100BE92CB /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
 		1AD88AD81FA3125100BE92CB /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
-		1AD89BFB205C1DB700CB42CF /* Graph3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graph3D.h; sourceTree = "<group>"; };
-		1AD89BFC205C1DB700CB42CF /* Graph2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graph2D.h; sourceTree = "<group>"; };
 		1AD89C00205C1FA700CB42CF /* WeightEffort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WeightEffort.cpp; sourceTree = "<group>"; };
 		1AD89C01205C1FA700CB42CF /* WeightEffort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeightEffort.h; sourceTree = "<group>"; };
 		1AE05068205E90A000C00A2C /* FlickerControl2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickerControl2.h; sourceTree = "<group>"; };
@@ -421,6 +420,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A060C5521326712001513AA /* QLabCommunication */ = {
+			isa = PBXGroup;
+			children = (
+				1A060C5621326727001513AA /* QLabCommunication.h */,
+			);
+			path = QLabCommunication;
+			sourceTree = "<group>";
+		};
 		1A24C1912053D1BE0058382D /* VoiceBubble */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,8 +713,6 @@
 		1A4B893B1FA2E76D0066A400 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				1A94EDB42102F6240082A8DB /* MovingCam */,
-				1A94EDB12102EC770082A8DB /* Particles */,
 				1AD88AD61FA3125100BE92CB /* Character */,
 				1A8B16FB205BFFDF0073151F /* DrawSynth */,
 				1A935685204AD3580079731F /* Expansion */,
@@ -715,10 +720,12 @@
 				1AE05067205E90A000C00A2C /* FlickerControl2 */,
 				1A6A47D92061497400EE9890 /* Force */,
 				1A94EDAF2102EA890082A8DB /* Future */,
-				1AD89BFA205C1DB700CB42CF /* Graph */,
 				1A28D44C1FA56DEF007F1D03 /* Link */,
 				1AF670FB1FBF0C390082CEB4 /* Mandala */,
 				1A4B893C1FA2E7750066A400 /* Moji */,
+				1A94EDB42102F6240082A8DB /* MovingCam */,
+				1A94EDB12102EC770082A8DB /* Particles */,
+				1A060C5521326712001513AA /* QLabCommunication */,
 				1A41C18D1FC91F0A00FC3E95 /* SceneSypthon */,
 				1A24C1912053D1BE0058382D /* VoiceBubble */,
 				1AD89BFF205C1FA700CB42CF /* WeightEffort */,
@@ -795,15 +802,6 @@
 				1AD88AD81FA3125100BE92CB /* Character.h */,
 			);
 			path = Character;
-			sourceTree = "<group>";
-		};
-		1AD89BFA205C1DB700CB42CF /* Graph */ = {
-			isa = PBXGroup;
-			children = (
-				1AD89BFB205C1DB700CB42CF /* Graph3D.h */,
-				1AD89BFC205C1DB700CB42CF /* Graph2D.h */,
-			);
-			path = Graph;
 			sourceTree = "<group>";
 		};
 		1AD89BFF205C1FA700CB42CF /* WeightEffort */ = {
