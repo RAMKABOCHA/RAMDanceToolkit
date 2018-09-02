@@ -24,6 +24,9 @@ void ofApp::setup()
     ofSetLogLevel(OF_LOG_VERBOSE);
 	ofSetFrameRate(60);
 	ofSetVerticalSync(true);
+    
+    QLabCommunication &qlabCommunication = QLabCommunication::instance();
+    qlabCommunication.setup("localhost", 1234, 12345);
 //    soundStream.printDeviceList();
     //    soundStream.setDeviceID(2);     //note some devices are input only and some are output only
 //    ofSoundStreamSetup(2, 0, this);

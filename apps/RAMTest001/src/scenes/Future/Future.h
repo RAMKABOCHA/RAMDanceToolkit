@@ -21,7 +21,7 @@
 #include "Sound3d.h"
 #include <cmath>
 #include "QLabCommunication.h"
-class Future : public rdtk::BaseScene, public QLabCommunication
+class Future : public rdtk::BaseScene
 {
 	
 	ramFilterEach<rdtk::Ghost> ghostFilters;
@@ -89,6 +89,8 @@ public:
         dir.allowExt("wav");
         dir.sort();
         int nFile =  dir.listDir("./bubbles");
+        QLabCommunication &qlabCommunication = QLabCommunication::instance();
+        
         trackVolume = new float[nFile];
         for(int i = 0 ;i < nFile ; i++){
             ofPtr<Sound3D> player = ofPtr<Sound3D>(new Sound3D());
@@ -99,9 +101,23 @@ public:
             player.get()->setPaused(true);
             players.push_back(player);
             trackVolume[i] = 1;
-            
+            qlabCommunication.addVariableToPath(trackVolume[i], "/Monster/trackVolume"+ofToString(i) );
         }
         
+        for (int i = 0;i < rdtk::Actor::NUM_JOINTS; i++)
+        {
+            qlabCommunication.addVariableToPath(mNodeVisibility[i], "/Monster/"+rdtk::Actor::getJointName(i) );
+            qlabCommunication.addVariableToPath(mSoundVisibility[i], "/Monster/"+rdtk::Actor::getJointName(i)+"_Sound" );
+        }
+        
+        qlabCommunication.addVariableToPath(distance, "/Monster/distance");
+        qlabCommunication.addVariableToPath(speed, "/Monster/speed");
+        qlabCommunication.addVariableToPath(draw_line, "/Monster/draw_line");
+        qlabCommunication.addVariableToPath(bFixCenter, "/Monster/bFixCenter");
+        qlabCommunication.addVariableToPath(mFontSize, "/Monster/mFontSize");
+        qlabCommunication.addVariableToPath(decay, "/Monster/decay");
+        qlabCommunication.addVariableToPath(drawLine, "/Monster/drawLine");
+        qlabCommunication.addVariableToPath(smooth, "/Monster/smooth");
     }
     
     vector<string> substrings(string filename){
@@ -125,11 +141,7 @@ public:
 			self->setDistance(distance);
 		}
 	};
-    void setup()
-    {
-        
-        QLabCommunication::setup(QLabCommunication::RAM_OSC_ADDR_COMMUNICATE_QLAB+getName());
-    }
+    
 	void setupControlPanel()
 	{
 		
@@ -162,7 +174,7 @@ public:
         ImGui::Checkbox("Toggle drawLine", &drawLine);
         static bool showAll = false;
         if (ImGui::Checkbox("Show All", &showAll)) setAllVisiblity(showAll);
-        ImGui::DragFloat("Font Size", &mFontSize, 0.001, 0.0001, 1.0);
+        ImGui::DragFloat("Font Size", &mFontSize, 0.001, 0.0001, 4.0);
 		if (ImGui::Button("speed: Ghost"))
 		{
 			onPresetGhost(dummy);
@@ -218,10 +230,7 @@ public:
             mNodeVisibility[i] = b;
         }
     }
-    void update()
-    {
-        QLabCommunication::update();
-    }
+    
     void updateWithOscMessage(const ofxOscMessage &m)
     {
         ofLogVerbose("updateWithOscMessage") << "Furute | address: " << m.getAddress() << "| args : " << m.getArgAsString(0);

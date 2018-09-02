@@ -39,6 +39,7 @@
 #include "Future.h"
 #include "MovingCam.h"
 #include "ofxOsc.h"
+#include "Qlabcommunication.h"
 class ofApp : public rdtk::BaseApp
 {
 public:

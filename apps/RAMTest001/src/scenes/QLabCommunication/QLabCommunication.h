@@ -7,35 +7,34 @@
 
 #ifndef QLabCommunication_h
 #define QLabCommunication_h
-#include "ramUnit.h"
-#include "ramControlPanel.h"
-#include "ramBaseHasFbo.h"
-#include "ramImGuiPanel.h"
-
+#include "ofxOSCvariable.h"
 
 class QLabCommunication{
-private:
-    
-    
-    rdtk::OscManager*        oscManager;
-    rdtk::OscReceiveTag    oscReceiver;
 public:
-    const std::string RAM_OSC_ADDR_COMMUNICATE_QLAB    = "/ram/communicate/qlab/";
-    void setup(string address)
-    {
-        oscManager = &rdtk::OscManager::instance();
-        oscReceiver.addAddress(address);
-        oscManager->addReceiverTag(&oscReceiver);
+    
+    void setup(string senderHost, int senderPort, int receivePort);
+    void update();
+    template <typename T>
+    ofxOscVariablePath_<T>* addVariableToPath(T& var, string path){
+        return oscVar.addVariableToPath(var, path);
     }
-    void update()
+    
+    inline static QLabCommunication& instance()
     {
-        while (oscReceiver.hasWaitingMessages()) {
-            ofxOscMessage m;
-            oscReceiver.getNextMessage(&m);
-            updateWithOscMessage(m);
-        }
+        if (__instance == NULL)
+            __instance = new QLabCommunication;
+        return *__instance;
     }
-    virtual void updateWithOscMessage(const ofxOscMessage &m) = 0;
+    
+private:
+    static QLabCommunication *__instance;
+    
+    QLabCommunication() {};
+    QLabCommunication(const QLabCommunication&){}
+    QLabCommunication& operator=(const QLabCommunication&){return *__instance;}
+    ~QLabCommunication() {};
+    ofxOscVariable oscVar;
 };
+//
 
 #endif /* QLabCommunication_h */

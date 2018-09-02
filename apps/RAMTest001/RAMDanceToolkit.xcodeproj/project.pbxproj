@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A24C19B2053E01E0058382D /* SphereMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A24C1992053E01E0058382D /* SphereMesh.cpp */; };
+		1A2715CC213B7B060028239B /* QLabCommunication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2715CA213B7B060028239B /* QLabCommunication.cpp */; };
 		1A28D4711FA56DFE007F1D03 /* Delaunay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A28D4651FA56DFE007F1D03 /* Delaunay.cpp */; };
 		1A28D4721FA56DFE007F1D03 /* ofxDelaunay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A28D46A1FA56DFE007F1D03 /* ofxDelaunay.cpp */; };
 		1A28D5651FA57A74007F1D03 /* ofxTonicSynth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A28D4CE1FA57A74007F1D03 /* ofxTonicSynth.cpp */; };
@@ -181,6 +182,8 @@
 		1A24C1932053D1DC0058382D /* VoiceBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceBubble.h; sourceTree = "<group>"; };
 		1A24C1992053E01E0058382D /* SphereMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SphereMesh.cpp; sourceTree = "<group>"; };
 		1A24C19A2053E01E0058382D /* SphereMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SphereMesh.h; sourceTree = "<group>"; };
+		1A2715C1213B767F0028239B /* ofxOSCvariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOSCvariable.h; sourceTree = "<group>"; };
+		1A2715CA213B7B060028239B /* QLabCommunication.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = QLabCommunication.cpp; sourceTree = "<group>"; };
 		1A28D44D1FA56DEF007F1D03 /* Link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Link.h; sourceTree = "<group>"; };
 		1A28D4641FA56DFE007F1D03 /* Delaunay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Delaunay.h; sourceTree = "<group>"; };
 		1A28D4651FA56DFE007F1D03 /* Delaunay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Delaunay.cpp; sourceTree = "<group>"; };
@@ -424,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				1A060C5621326727001513AA /* QLabCommunication.h */,
+				1A2715CA213B7B060028239B /* QLabCommunication.cpp */,
 			);
 			path = QLabCommunication;
 			sourceTree = "<group>";
@@ -436,6 +440,23 @@
 				1A24C1932053D1DC0058382D /* VoiceBubble.h */,
 			);
 			path = VoiceBubble;
+			sourceTree = "<group>";
+		};
+		1A27159F213B767F0028239B /* ofxOscVariable */ = {
+			isa = PBXGroup;
+			children = (
+				1A2715C0213B767F0028239B /* src */,
+			);
+			name = ofxOscVariable;
+			path = ../../../addons/ofxOscVariable;
+			sourceTree = "<group>";
+		};
+		1A2715C0213B767F0028239B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				1A2715C1213B767F0028239B /* ofxOSCvariable.h */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		1A28D44C1FA56DEF007F1D03 /* Link */ = {
@@ -924,6 +945,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				1A27159F213B767F0028239B /* ofxOscVariable */,
 				1A41C1361FC8F30F00FC3E95 /* ofxSyphon */,
 				1AF670FF1FBF2AF70082CEB4 /* ofxMidi */,
 				1A28D47B1FA57A74007F1D03 /* ofxTonic */,
@@ -1189,6 +1211,7 @@
 				1A28D5821FA57A74007F1D03 /* PolySynth.cpp in Sources */,
 				1AF670FE1FBF0C440082CEB4 /* Mandala.cpp in Sources */,
 				1A28D5961FA57A74007F1D03 /* RingBuffer.cpp in Sources */,
+				1A2715CC213B7B060028239B /* QLabCommunication.cpp in Sources */,
 				1AF6716B1FBF2AF80082CEB4 /* RtMidi.cpp in Sources */,
 				1A28D57B1FA57A74007F1D03 /* SampleTable.cpp in Sources */,
 				1A28D5781FA57A74007F1D03 /* CompressorLimiter.cpp in Sources */,
@@ -1313,12 +1336,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(OF_CORE_HEADERS)",
 					"$(RAM_HEADER_SEARCH_PATHS)",
-					../../../addons/ofxSyphon/libs,
-					../../../addons/ofxSyphon/libs/Syphon,
-					../../../addons/ofxSyphon/libs/Syphon/lib,
-					../../../addons/ofxSyphon/libs/Syphon/lib/osx,
-					../../../addons/ofxSyphon/libs/Syphon/src,
-					../../../addons/ofxSyphon/src,
+					"$(OF_PATH)/addons/ofxSyphon/libs",
+					"$(OF_PATH)/addons/ofxSyphon/libs/Syphon",
+					"$(OF_PATH)/addons/ofxSyphon/libs/Syphon/lib",
+					"$(OF_PATH)/addons/ofxSyphon/libs/Syphon/lib/osx",
+					"$(OF_PATH)/addons/ofxSyphon/libs/Syphon/src",
+					"$(OF_PATH)/addons/ofxSyphon/src",
+					"$(OF_PATH)/addons/ofxOscVariable/src",
 				);
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -1424,12 +1448,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(OF_CORE_HEADERS)",
 					"$(RAM_HEADER_SEARCH_PATHS)",
-					../../../addons/ofxSyphon/libs,
-					../../../addons/ofxSyphon/libs/Syphon,
-					../../../addons/ofxSyphon/libs/Syphon/lib,
-					../../../addons/ofxSyphon/libs/Syphon/lib/osx,
-					../../../addons/ofxSyphon/libs/Syphon/src,
-					../../../addons/ofxSyphon/src,
+					"$(OF_PATH)/addons/ofxSyphon/libs",
+					"$(OF_PATH)/addons/ofxSyphon/libs/Syphon",
+					"$(OF_PATH)/addons/ofxSyphon/libs/Syphon/lib",
+					"$(OF_PATH)/addons/ofxSyphon/libs/Syphon/lib/osx",
+					"$(OF_PATH)/addons/ofxSyphon/libs/Syphon/src",
+					"$(OF_PATH)/addons/ofxSyphon/src",
+					"$(OF_PATH)/addons/ofxOscVariable/src",
 				);
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";

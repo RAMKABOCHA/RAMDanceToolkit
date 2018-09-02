@@ -37,6 +37,11 @@ public:
     mIs3d(false){
         font.load("Scrawlerz.otf",48);
         reset();
+        QLabCommunication &qlabCommunication = QLabCommunication::instance();
+        for (int i = 0;i < rdtk::Actor::NUM_JOINTS; i++)
+        {
+            qlabCommunication.addVariableToPath(mNodeVisibility[i], "/Expansion/"+rdtk::Actor::getJointName(i) );
+        }
     }
     
     
