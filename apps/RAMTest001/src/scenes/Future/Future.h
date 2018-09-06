@@ -174,7 +174,7 @@ public:
         ImGui::Checkbox("Toggle drawLine", &drawLine);
         static bool showAll = false;
         if (ImGui::Checkbox("Show All", &showAll)) setAllVisiblity(showAll);
-        ImGui::DragFloat("Font Size", &mFontSize, 0.001, 0.0001, 4.0);
+        ImGui::DragFloat("Font Size", &mFontSize, 0.001, 0.0001, 10.0);
 		if (ImGui::Button("speed: Ghost"))
 		{
 			onPresetGhost(dummy);
@@ -285,12 +285,13 @@ public:
                     node.beginTransform();
                     ofPushStyle();
                     ofSetColor(255,255,255,255*mNodeAlpha[nodeId]);
+                    ofFill();
                     ofPushMatrix();
                     ofRotate(180, 0, 1, 0);
                     string s = subjects[nodeId%subjects.size()];
                     ofRectangle rect = font.getStringBoundingBox(s,0,0);
                     ofScale(mFontSize,mFontSize,mFontSize);
-                    font.drawString(s, rect.getWidth() * (-0.5) * mFontSize, rect.getHeight() * 0.5 * mFontSize);
+                    font.drawStringAsShapes(s, rect.getWidth() * (-0.5) * mFontSize, rect.getHeight() * 0.5 * mFontSize);
                     ofPopMatrix();
                     ofPopStyle();
                     node.endTransform();

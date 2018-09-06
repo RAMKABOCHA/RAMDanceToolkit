@@ -28,20 +28,27 @@ public:
     mShowBox(false),
     mShowAxis(false),
     mShowLine(false),
-    mExpasionRatio(1.5),
+    mExpansionRatio(1.5),
+    expasionRatio(1.5),
     mBoxSize(10.0),
     mBoxSizeRatio(5.0),
     speed(0.03),
     mFontSize(1.0),
     bFixCenter(true),
     mIs3d(false){
-        font.load("Scrawlerz.otf",48);
+        font.load("Scrawlerz.otf",48,false,false,true);
+        font.setLetterSpacing(1.037);
         reset();
         QLabCommunication &qlabCommunication = QLabCommunication::instance();
         for (int i = 0;i < rdtk::Actor::NUM_JOINTS; i++)
         {
             qlabCommunication.addVariableToPath(mNodeVisibility[i], "/Expansion/"+rdtk::Actor::getJointName(i) );
         }
+        qlabCommunication.addVariableToPath(mFontSize, "/Expansion/fontSize" );
+        qlabCommunication.addVariableToPath(bFixCenter, "/Expansion/fixCenter" );
+        qlabCommunication.addVariableToPath(expasionRatio, "/Expansion/mExpansionRatio" );
+        qlabCommunication.addVariableToPath(mIs3d, "/Expansion/3d" );
+        qlabCommunication.addVariableToPath(shouldShowAll, "/Expansion/shouldShowAll" );
     }
     
     
@@ -57,10 +64,13 @@ public:
         }
         ImGui::ColorEdit3("Box Color", &mBoxColor[0]);
         
-        ImGui::DragFloat("Expansion Ratio", &mExpasionRatio, 0.1, 1.0, 20.0);
+        if(ImGui::DragFloat("Expansion Ratio", &mExpansionRatio, 0.05, 0.001, 20.0)){
+            expasionRatio = mExpansionRatio;
+            setExpasionRatio(mExpansionRatio);
+        };
         ImGui::DragFloat("Box size", &mBoxSize, 1.0, 3.0, 100.0);
         ImGui::DragFloat("BigBox ratio", &mBoxSizeRatio, 0.5, 2.0, 10.0);
-        ImGui::DragFloat("Font Size", &mFontSize, 0.001, 0.0001, 1.0);
+        ImGui::DragFloat("Font Size", &mFontSize, 0.001, 0.0001, 10.0);
         
         ImGui::DragFloat("speed", &speed, 0.01, 0.001, 0.5);
         static bool boxSize = false;
@@ -68,7 +78,7 @@ public:
         if (ImGui::Checkbox("Toggle box size", &boxSize)) seteAllSizeBigger(boxSize);
         ImGui::SameLine();
         if (ImGui::Checkbox("Show All", &showAll)) setAllVisiblity(showAll);
-        if (ImGui::Checkbox("3d", &mIs3d)) setAllVisiblity(false);
+        ImGui::Checkbox("3d", &mIs3d);
         
         ImGui::Columns(2, NULL, true);
         for (int i = 0;i < rdtk::Actor::NUM_JOINTS; i++)
@@ -81,6 +91,17 @@ public:
             ImGui::PopID();
         }
         ImGui::Columns(1);
+    }
+    
+    void update(){
+        if(expasionRatio != mExpansionRatio){
+            mExpansionRatio = expasionRatio;
+            setExpasionRatio(mExpansionRatio);
+        }
+        if(shouldShowAll != showAll) {
+            showAll = shouldShowAll;
+            setAllVisiblity(showAll);
+        }
     }
     
     void setupControlPanel()
@@ -98,7 +119,7 @@ public:
         rdtk::GetGUI().addToggle("Show Line", &mShowLine);
         rdtk::GetGUI().addColorSelector("Box Color", &mBoxColor);
         
-        rdtk::GetGUI().addSlider("Expasion Ratio", 0.1, 20.0, &mExpasionRatio);
+        rdtk::GetGUI().addSlider("Expasion Ratio", 0.1, 20.0, &mExpansionRatio);
         rdtk::GetGUI().addSlider("Box size", 1.0, 100.0, &mBoxSize);
         rdtk::GetGUI().addSlider("Font size", 0.01, 1, &mFontSize);
         rdtk::GetGUI().addSlider("Big Box ratio", 2.0, 10.0, &mBoxSizeRatio);
@@ -234,12 +255,14 @@ public:
                 
                 if (mShowName)
                 {
-                    
+                    ofPushStyle();
                     ofSetColor(255,255,255,255*mNodeAlpha[nodeId]);
+                    ofFill();
                     //                    node.drawNodeName(mBoxSize+20);
                     
                     
                     //                    ofTranslate(node.getGlobalPosition());
+                    
                     string s = subjects[nodeId%subjects.size()];
                     ofRectangle rect = font.getStringBoundingBox(s,0,0);
                     
@@ -247,7 +270,7 @@ public:
                         //-------------------------------3d
                         node.beginTransform();
                         ofScale(mFontSize,mFontSize,mFontSize);
-                        font.drawString(s, rect.width * -0.5 * mFontSize, rect.height * -0.5 * mFontSize);
+                        font.drawStringAsShapes(s, rect.width * -0.5, rect.height * -0.5);
                         node.endTransform();
                         //---------------------------------
                     } else {
@@ -256,10 +279,11 @@ public:
                         ofPushMatrix();
                         ofTranslate(node.getGlobalPosition());
                         ofScale(mFontSize,mFontSize,mFontSize);
-                        font.drawString(s, rect.width * -0.5 * mFontSize, rect.height * -0.5 * mFontSize);
+                        font.drawStringAsShapes(s, rect.width * -0.5, rect.height * -0.5);
                         ofPopMatrix();
                         //--------------------------------
                     }
+                    ofPopStyle();
                 }
             }
             ofPopStyle();
@@ -316,11 +340,13 @@ private:
     bool mShowName;
     bool mShowLine;
     bool mIs3d;
-    float mExpasionRatio;
+    float mExpansionRatio;
+    float expasionRatio;
     float mBoxSize;
     float mFontSize;
     float mBoxSizeRatio;
     float speed;
+    bool shouldShowAll, showAll;
     ofFloatColor mBoxColor;
     
     vector<string> subjects;
