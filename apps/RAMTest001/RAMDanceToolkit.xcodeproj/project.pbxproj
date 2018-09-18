@@ -1245,7 +1245,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
@@ -1273,8 +1273,8 @@
 					"-mtune=native",
 				);
 				RAM_HEADER_SEARCH_PATHS = "../../libs/ram/** $(OF_PATH)/addons/ofxOsc/** $(OF_PATH)/addons/ofxXmlSettings/** ../../addons/ofxUI/src/** ../../addons/ofxUITabbedCanvas/** ../../addons/ofxInteractivePrimitives/src/** ../../addons/ofxBt/libs/bullet/include/bullet ../../addons/ofxBt/src ../../addons/ofxNodeArray/src ../../addons/ofxCv/src $(OF_PATH)/addons/ofxGui/** ../../addons/ofxCv/libs/ofxCv/include/ ../../addons/ofxCv/libs/CLD/include/CLD/** $(OF_PATH)/addons/ofxOpenCV/src $(OF_PATH)/addons/ofxOpenCV/libs/opencv/include/** ../../addons/ofxDelaunay/src ../../addons/ofxDelaunay/libs/Delaunay/** ../../addons/ofxQuadWarp/src ../../addons/ramFloorQuadWarper ../../addons/ofxUITabbedCanvas ../../libs/dp/** ";
-				SDKROOT = macosx10.9;
-				VALID_ARCHS = i386;
+				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -1282,7 +1282,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -1310,15 +1310,15 @@
 					"-mtune=native",
 				);
 				RAM_HEADER_SEARCH_PATHS = "../../libs/ram/** $(OF_PATH)/addons/ofxOsc/** $(OF_PATH)/addons/ofxXmlSettings/** ../../addons/ofxUI/src/** ../../addons/ofxUITabbedCanvas/** ../../addons/ofxInteractivePrimitives/src/** ../../addons/ofxBt/libs/bullet/include/bullet ../../addons/ofxBt/src ../../addons/ofxNodeArray/src ../../addons/ofxCv/src $(OF_PATH)/addons/ofxGui/** ../../addons/ofxCv/libs/ofxCv/include/ ../../addons/ofxCv/libs/CLD/include/CLD/** $(OF_PATH)/addons/ofxOpenCV/src $(OF_PATH)/addons/ofxOpenCV/libs/opencv/include/** ../../addons/ofxDelaunay/src ../../addons/ofxDelaunay/libs/Delaunay/** ../../addons/ofxQuadWarp/src ../../addons/ramFloorQuadWarper ../../addons/ofxUITabbedCanvas ../../libs/dp/** ";
-				SDKROOT = macosx10.9;
-				VALID_ARCHS = i386;
+				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
 		E4B69B600A3A1757003C02F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1422,7 +1422,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
 				RAM_HEADER_SEARCH_PATHS = "../../libs/ram/** $(OF_PATH)/addons/ofxOsc/** $(OF_PATH)/addons/ofxXmlSettings/** ../../addons/ofxUI/src/** ../../addons/ofxUITabbedCanvas/** ../../addons/ofxInteractivePrimitives/src/** ../../addons/ofxBt/libs/bullet/include/bullet ../../addons/ofxBt/src ../../addons/ofxNodeArray/src ../../addons/ofxCv/src $(OF_PATH)/addons/ofxGui/** ../../addons/ofxCv/libs/ofxCv/include/ ../../addons/ofxCv/libs/CLD/include/CLD/** $(OF_PATH)/addons/ofxOpenCV/src $(OF_PATH)/addons/ofxOpenCV/libs/opencv/include/** ../../addons/ofxDelaunay/src ../../addons/ofxDelaunay/libs/Delaunay/** ../../addons/ofxQuadWarp/src ../../addons/ramFloorQuadWarper ../../addons/ofxUITabbedCanvas ../../libs/dp/** ../../../addons/ofxImGui/src/** ../../../addons/ofxImGui/libs/**";
 				SDKROOT = macosx;
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1430,7 +1430,7 @@
 		E4B69B610A3A1757003C02F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1534,7 +1534,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RAM_HEADER_SEARCH_PATHS = "../../libs/ram/** $(OF_PATH)/addons/ofxOsc/** $(OF_PATH)/addons/ofxXmlSettings/** ../../addons/ofxUI/src/** ../../addons/ofxUITabbedCanvas/** ../../addons/ofxInteractivePrimitives/src/** ../../addons/ofxBt/libs/bullet/include/bullet ../../addons/ofxBt/src ../../addons/ofxNodeArray/src ../../addons/ofxCv/src $(OF_PATH)/addons/ofxGui/** ../../addons/ofxCv/libs/ofxCv/include/ ../../addons/ofxCv/libs/CLD/include/CLD/** $(OF_PATH)/addons/ofxOpenCV/src $(OF_PATH)/addons/ofxOpenCV/libs/opencv/include/** ../../addons/ofxDelaunay/src ../../addons/ofxDelaunay/libs/Delaunay/** ../../addons/ofxQuadWarp/src ../../addons/ramFloorQuadWarper ../../addons/ofxUITabbedCanvas ../../libs/dp/** ../../../addons/ofxImGui/src/** ../../../addons/ofxImGui/libs/**";
 				SDKROOT = macosx;
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

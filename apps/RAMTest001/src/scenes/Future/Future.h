@@ -31,6 +31,7 @@ class Future : public rdtk::BaseScene
     bool mSoundVisibility[rdtk::Actor::NUM_JOINTS];
     ofVec3f mVelocitySmoothed[rdtk::Actor::NUM_JOINTS];
 	float speed, distance, smooth;
+    float _speed, _distance;
     bool customDraw, drawLine;
     ofTrueTypeFont font;
     vector<string> subjects;
@@ -110,8 +111,8 @@ public:
             qlabCommunication.addVariableToPath(mSoundVisibility[i], "/Monster/"+rdtk::Actor::getJointName(i)+"_Sound" );
         }
         
-        qlabCommunication.addVariableToPath(distance, "/Monster/distance");
-        qlabCommunication.addVariableToPath(speed, "/Monster/speed");
+        qlabCommunication.addVariableToPath(_distance, "/Monster/distance");
+        qlabCommunication.addVariableToPath(_speed, "/Monster/speed");
         qlabCommunication.addVariableToPath(draw_line, "/Monster/draw_line");
         qlabCommunication.addVariableToPath(bFixCenter, "/Monster/bFixCenter");
         qlabCommunication.addVariableToPath(mFontSize, "/Monster/mFontSize");
@@ -200,8 +201,14 @@ public:
             onPresetZero(dummy);
             updateFilters();
         }
-		if (ImGui::DragFloat("Distance", &distance, 1, 0, 400)) updateFilters();
-		if (ImGui::DragFloat("Speed", &speed, 1, 0, 255)) updateFilters();
+        if (ImGui::DragFloat("Distance", &distance, 1, 0, 400)) {
+            _distance = distance;
+            updateFilters();
+        }
+        if (ImGui::DragFloat("Speed", &speed, 1, 0, 255)) {
+            _speed = speed;
+            updateFilters();
+        }
         ImGui::DragFloat("Smooth", &smooth, 1.0, 1.0, 50.0);
         ImGui::DragFloat("decay", &decay, 0.001,  0.001, 0.5);
         ImGui::DragFloatRange2("range 1", &rangeOfMotion1[0], &rangeOfMotion1[1], 0.01, 0.0, 1.0);
@@ -224,6 +231,15 @@ public:
         ImGui::Columns(1);
 		
 	}
+    
+    void update(){
+        if(_speed != speed && _distance != distance){
+            speed = _speed;
+            distance = _distance;
+            updateFilters();
+        }
+    }
+    
     void setAllVisiblity(bool b)
     {
         for (int i=0; i<rdtk::Actor::NUM_JOINTS; i++){

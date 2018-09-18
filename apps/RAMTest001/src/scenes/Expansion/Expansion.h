@@ -74,10 +74,13 @@ public:
         
         ImGui::DragFloat("speed", &speed, 0.01, 0.001, 0.5);
         static bool boxSize = false;
-        static bool showAll = false;
+        
         if (ImGui::Checkbox("Toggle box size", &boxSize)) seteAllSizeBigger(boxSize);
         ImGui::SameLine();
-        if (ImGui::Checkbox("Show All", &showAll)) setAllVisiblity(showAll);
+        if (ImGui::Checkbox("Show All", &showAll)){
+            shouldShowAll = showAll;
+            setAllVisiblity(showAll);
+        }
         ImGui::Checkbox("3d", &mIs3d);
         
         ImGui::Columns(2, NULL, true);
